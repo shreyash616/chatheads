@@ -1,27 +1,34 @@
 import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import {
-    NavBar,
-    NavBarWrapper
+    Navbar,
+    NavbarWrapper,
+    NavbarBrand
 } from './styles'
-// import icon from '../../../chatheads.ico'
+import styleVals from '../../styleVals/global'
 
-const AppNavBar = (props) => {
+const AppNavbar = (props) => {
     return (
-        <NavBarWrapper>
-            <NavBar                
-                colorMode={props.colorMode}
-            >
-                {/* <img src={icon}></img> */}
-                {props.title}
-            </NavBar>
-        </NavBarWrapper>
+        <NavbarWrapper>
+          <Navbar                
+            colorMode={props.colorMode}
+            brandLink={props.brandLink}
+          >            
+            <NavbarBrand>{props.title}</NavbarBrand>
+          </Navbar>
+        </NavbarWrapper>
     )
 }
 
-AppNavBar.propTypes = {
-    title: PropTypes.string,
-    colorMode: PropTypes.string
+AppNavbar.defaultProps = {
+    colorMode: styleVals.color.dark,
+    brandLink: '#'
 }
 
-export default AppNavBar
+AppNavbar.propTypes = {
+    title: PropTypes.string,
+    colorMode: PropTypes.string,
+    brandLink: PropTypes.string
+}
+
+export default AppNavbar

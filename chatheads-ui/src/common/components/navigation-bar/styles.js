@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import styleVals from '../../styleVals/global'
 
-export const NavBar = styled.nav`    
+export const Navbar = styled.div`    
     width: 100%;
-    font-family: ${styleVals.fonts.segoeUI};
+    font-family: ${styleVals.fonts.wordFont};
     font-weight: bold;
     vertical-align: center;
     padding: ${styleVals.dimensions.spacing16};
@@ -17,7 +17,14 @@ export const NavBar = styled.nav`
         color: styleVals.color.dark
     })}
 `
-export const NavBarWrapper = styled.div`
+export const NavbarBrand = styled.span`
+    font-size: ${styleVals.dimensions.spacing22};
+    &: hover{
+        cursor: pointer;
+    }
+`
+
+export const NavbarWrapper = styled.div`
     display: flex;
     flex-direction: row;
 `
