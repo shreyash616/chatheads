@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import './App.css';
+import appConstants from './common/constants/appConstants'
+
+//common components
+import NavBar from './common/components/navigation-bar/index'
 
 function App() {
+
+  const [colorMode, setColorMode] = useState('dark')
+
+  const commonProps = {
+    setColorMode
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <NavBar 
+        title={appConstants.navBarTitle} 
+        colorMode={colorMode}
+        {...commonProps}
+        />
+      <Router>
+        <Switch>
+          <Route key='signIn' path='/signIn'/>
+        </Switch>
+      </Router>
+    </React.Fragment>
   );
 }
 
