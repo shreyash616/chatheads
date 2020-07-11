@@ -5,9 +5,9 @@ const chatheadsService = {}
 chatheadsService.signUp = (signUpDetails) => {
     if(validator.validateToken(signUpDetails.jwtToken)){
         if(validator.validateUserId(signUpDetails.data.userId)){
-            chatheadsModel.signUp(signUpDetails.data).then((response)=>{
+            return chatheadsModel.signUp(signUpDetails.data).then((response)=>{                
                 return response
-            }).catch((err)=>{
+            }).catch((err)=>{                
                 if(err.message){
                     throw err;
                 }

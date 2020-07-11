@@ -3,12 +3,12 @@ const router = express.Router()
 const chatheadsService = require('../service/index')
 const { response } = require('express')
 
-router.post('/signUp',(req,res,next)=>{
+router.post('/signUp',(req,res,next)=>{      
     chatheadsService.signUp(req.body).then((response)=>{
         res.send({
             confirmation: response
         })
-    }).catch((err)=>{
+    }).catch((err)=>{        
         next(err)
     })
 })

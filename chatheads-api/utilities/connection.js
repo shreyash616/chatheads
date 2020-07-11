@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 mongoose.set("useCreateIndex", true)
 
 var userSchema = new Schema({
-    userID: {
+    userId: {
         type: String, 
         required: true, 
         unique: true

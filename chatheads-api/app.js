@@ -8,8 +8,8 @@ var requestLogger = require('./utilities/requestlogger')
 var errorLogger = require('./utilities/errorlogger')
 
 //middlewares
-app.use(cors())
 app.use(bodyParser.json())
+app.use(cors())
 app.use(bodyParser.urlencoded({
     extended: true
 }))

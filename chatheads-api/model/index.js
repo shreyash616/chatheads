@@ -3,7 +3,7 @@ const chatheadsModel = {}
 
 chatheadsModel.signUp = (signUpDetails) => {
     return connection.getUserModel().then((userDb)=>{
-        signUpDetails.type='Ordinary'
+        signUpDetails.userType='Ordinary'
         signUpDetails.chats = []
         return userDb.insertMany([signUpDetails]).then((confirmation)=>{
             if(confirmation){
@@ -12,7 +12,8 @@ chatheadsModel.signUp = (signUpDetails) => {
             }
         })
     }).catch((error)=>{
-        throw error;
+        console.log(error)
+        throw error
     })
 }
 
