@@ -1,17 +1,14 @@
 import styled from 'styled-components'
 import styleVals from '../../styleVals/global'
 
-export const NavbarWrapper = styled.div`
+export const Navbar = styled.div`  
     display: flex;
-    flex-direction: row;
-`
-export const Navbar = styled.div`    
-    width: 100%;
+    flex-direction: row;    
     font-family: ${styleVals.fonts.wordFont};
     font-weight: bold;
-    vertical-align: center;
+
     padding: ${styleVals.dimensions.spacing16};
-    ${props => props.colorMode === 'dark'
+    ${props => props.theme === 'dark'
     ? ({
         backgroundColor: styleVals.color.dark,
         color: styleVals.color.light
@@ -21,17 +18,24 @@ export const Navbar = styled.div`
         color: styleVals.color.dark
     })}
     &: hover{        
-        color: ${props => props.colorMode === 'dark'
+        color: ${props => props.theme === 'dark'
                 ?styleVals.color.bestOrange
                 :styleVals.color.ogBlue}
             }
 `
 export const NavbarBrand = styled.span`
     font-size: ${styleVals.dimensions.spacing22};
-    color: ${props => props.colorMode === 'dark'
+    margin-top: ${styleVals.dimensions.spacing4};
+    color: ${props => props.theme === 'dark'
         ?styleVals.color.bestOrange
         :styleVals.color.ogBlue} !important;
     &: hover{
         cursor: pointer;        
     }
+`
+
+export const ActionButtons = styled.div`
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;    
 `

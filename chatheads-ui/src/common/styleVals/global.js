@@ -11,13 +11,15 @@ export default {
         spacing16: '16px',
         spacing18: '18px',
         spacing20: '20px',
-        spacing22: '22px'
+        spacing22: '22px',
     },
     color: {
         dark: '#1c272b',
         light: '#dbdad9',
-        bestOrange: '#fd7e14',
-        ogBlue: '#1976d2'
+        bestOrange: '#fd6d03',
+        dullOrange: '#ad3205',
+        ogBlue: '#1976d2',
+        dullBlue: '#2c6eb0'
     },
     fonts: {
         segoeUI: 'Segoe UI Light',

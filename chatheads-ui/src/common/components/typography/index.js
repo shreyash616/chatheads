@@ -12,6 +12,6 @@ P.defaultProps = {
     bold: false
 }
 
-AppNavBar.propTypes = {
+P.propTypes = {
     bold: PropTypes.bool
 }

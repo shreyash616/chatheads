@@ -1,33 +1,38 @@
 import React, {useState, useEffect} from 'react'
+import Button from '../button/index'
 import PropTypes from 'prop-types'
 import {
     Navbar,
-    NavbarWrapper,
-    NavbarBrand
+    NavbarBrand,
+    ActionButtons
 } from './styles'
 import styleVals from '../../styleVals/global'
 
 const AppNavbar = (props) => {
 
-    return (
-        <NavbarWrapper>
-          <Navbar {...props}>            
-            <NavbarBrand {...props}>{props.title}</NavbarBrand>
-            {/* <Actions>              
-            </Actions> */}
-          </Navbar>
-        </NavbarWrapper>
+    return (        
+    <Navbar {...props}>            
+    <NavbarBrand {...props}>{props.title}</NavbarBrand>
+    <ActionButtons>
+        <Button {...props}>
+          Log In                  
+        </Button>
+        <Button {...props}>
+          Sign Up                  
+        </Button>
+    </ActionButtons>
+    </Navbar>        
     )
 }
 
 AppNavbar.defaultProps = {
-    colorMode: styleVals.color.dark,
+    theme: styleVals.color.dark,
     brandLink: '#'
 }
 
 AppNavbar.propTypes = {
     title: PropTypes.string,
-    colorMode: PropTypes.string,
+    theme: PropTypes.string,
     brandLink: PropTypes.string
 }
 
