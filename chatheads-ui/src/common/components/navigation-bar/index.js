@@ -8,13 +8,13 @@ import {
 import styleVals from '../../styleVals/global'
 
 const AppNavbar = (props) => {
+
     return (
         <NavbarWrapper>
-          <Navbar                
-            colorMode={props.colorMode}
-            brandLink={props.brandLink}
-          >            
-            <NavbarBrand>{props.title}</NavbarBrand>
+          <Navbar {...props}>            
+            <NavbarBrand {...props}>{props.title}</NavbarBrand>
+            {/* <Actions>              
+            </Actions> */}
           </Navbar>
         </NavbarWrapper>
     )
