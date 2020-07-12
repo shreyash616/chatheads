@@ -30,4 +30,15 @@ validator.validateUserId = (userId) => {
     }
 }
 
+validator.validatePassword = (password) => {
+    if(passwordPattern.test(password)){
+        return true
+    }
+    else{
+        let error = new Error('Invalid password')
+        error.status = 400
+        throw error
+    }
+}
+
 module.exports = validator

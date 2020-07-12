@@ -5,19 +5,39 @@ const chatheadsService = {}
 chatheadsService.signUp = (signUpDetails) => {
     if(validator.validateToken(signUpDetails.jwtToken)){
         if(validator.validateUserId(signUpDetails.data.userId)){
-            return chatheadsModel.signUp(signUpDetails.data).then((response)=>{                
-                return response
-            }).catch((err)=>{                
-                if(err.message){
-                    throw err;
-                }
-                else{
-                    let error = new Error("Couldn't connect to database");
-                    error.status = 400;
-                    throw error;
-                }
-            })
+            if(validator.validatePassword(signUpDetails.data.password)){
+                return chatheadsModel.signUp(signUpDetails.data).then((response)=>{                
+                    return response
+                }).catch((err)=>{                
+                    if(err.message){
+                        throw err;
+                    }
+                    else{
+                        let error = new Error("Couldn't connect to database");
+                        error.status = 400;
+                        throw error;
+                    }
+                })
+            }
         }
+    }    
+}
+
+
+chatheadsService.signIn = (signInDetails) => {
+    if(validator.validateToken(signInDetails.jwtToken)){
+        return chatheadsModel.signIn(signInDetails.data).then((response)=>{                
+            return response
+        }).catch((err)=>{                
+            if(err.message){
+                throw err;
+            }
+            else{
+                let error = new Error("Couldn't connect to database");
+                error.status = 400;
+                throw error;
+            }
+        })
     }    
 }
 
