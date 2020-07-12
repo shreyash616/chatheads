@@ -17,7 +17,7 @@ chatheadsModel.signUp = (signUpDetails) => {
     })
 }
 
-chatheadsModel.signIn = (id, password) => {
+chatheadsModel.signIn = (signInDetails) => {
 
 }
 

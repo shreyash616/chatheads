@@ -1,4 +1,6 @@
 const validator = {}
+const userIdPattern = /^[a-z0-9]+$/
+const passwordPattern = /^[A-Z]{1}[A-z0-9]+$/
 
 validator.generateToken = () => {
     return 'jbassbf3523kjbdfkjb214n'
@@ -18,7 +20,6 @@ validator.validateToken = (token) => {
 }
 
 validator.validateUserId = (userId) => {
-    let userIdPattern = /^[A-z0-9]+$/
     if(userIdPattern.test(userId)){
         return true
     }
