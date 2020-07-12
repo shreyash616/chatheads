@@ -20,8 +20,7 @@ export const Navbar = styled.div`
         backgroundColor: styleVals.color.light,
         color: styleVals.color.dark
     })}
-    &: hover{
-        cursor: pointer;
+    &: hover{        
         color: ${props => props.colorMode === 'dark'
                 ?styleVals.color.bestOrange
                 :styleVals.color.ogBlue}

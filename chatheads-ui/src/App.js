@@ -8,7 +8,7 @@ import NavBar from './common/components/navigation-bar/index'
 
 function App() {
 
-  const [colorMode, setColorMode] = useState('dark')
+  const [colorMode, setColorMode] = useState('light')
 
   const commonProps = {
     setColorMode
@@ -23,7 +23,7 @@ function App() {
         />
       <Router>
         <Switch>
-          <Route key='signIn' path='/signIn'/>
+          <Route key='signUp' path='/signUp'/>
         </Switch>
       </Router>
     </React.Fragment>
