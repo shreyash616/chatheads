@@ -13,6 +13,12 @@ export default {
         spacing20: '20px',
         spacing22: '22px',
         spacing24: '24px',
+        spacing26: '26px',
+        spacing28: '28px',
+        spacing30: '30px',
+        spacing32: '32px',
+        spacing34: '34px',
+        spacing36: '36px',
     },
     color: {
         dark: '#1c272b',

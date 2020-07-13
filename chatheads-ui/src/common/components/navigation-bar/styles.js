@@ -21,6 +21,7 @@ export const Navbar = styled.div`
                 ?styleVals.color.bestOrange
                 :styleVals.color.ogBlue}
             }
+    transition: 0.5s all linear;
 `
 export const NavbarBrand = styled.span`
     font-size: ${styleVals.dimensions.spacing22};
@@ -31,6 +32,7 @@ export const NavbarBrand = styled.span`
     &: hover{
         cursor: pointer;        
     }
+    transition: 0.5s all linear;
 `
 export const ActionButtons = styled.div`
     margin-left: auto;
@@ -45,6 +47,7 @@ export const Divider = styled.span`
     color: ${props => props.theme === 'dark'
     ?styleVals.color.bestOrange
     :styleVals.color.ogBlue};
+    transition: 0.5s all linear;
 `
 export const ThemeName = styled.span`
     font-family: ${styleVals.fonts.wordFont};
@@ -52,4 +55,5 @@ export const ThemeName = styled.span`
     color: ${props => props.theme === 'dark'
     ?styleVals.color.bestOrange
     :styleVals.color.ogBlue} !important;
+    transition: 0.5s all linear;
 `

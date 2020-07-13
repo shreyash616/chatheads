@@ -1,5 +1,4 @@
 import React from 'react'
-import styleVals from '../../styleVals/global'
 import PropTypes from 'prop-types'
 import {
     StyledButton

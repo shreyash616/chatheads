@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import Button from '../button/index'
 import PropTypes from 'prop-types'
 import {

@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
-import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
+import {Switch, Route, Redirect} from 'react-router-dom'
 import './App.css';
 import appConstants from './common/constants/appConstants'
 
 //common components
 import NavBar from './common/components/navigation-bar/index'
+
+//components
+import Home from './components/home/index'
 
 function App() {
 
@@ -16,7 +19,6 @@ function App() {
     } else{
       setTheme('light')
     }
-
   }
 
   const commonProps = {
@@ -29,14 +31,13 @@ function App() {
     <React.Fragment>
       <NavBar 
         {...commonProps}
-        />
-      <Router>
+      />      
         <Switch>
-          <Redirect from='/' to='/home'/>
-          <Route key='home' path='/home'/>
+          <Route key='home' path='/home' render={()=><Home {...commonProps}/>}/>
           <Route key='signUp' path='/signUp'/>
+          <Redirect from='/' to='/home'/>          
         </Switch>
-      </Router>
+      
     </React.Fragment>
   );
 }
