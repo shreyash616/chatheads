@@ -7,9 +7,11 @@ import {
     ActionButtons
 } from './styles'
 import styleVals from '../../styleVals/global'
+import Switch from '@material-ui/core/Switch';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const AppNavbar = (props) => {
-
     return (        
     <Navbar {...props}>            
     <NavbarBrand {...props}>{props.title}</NavbarBrand>
@@ -21,6 +23,14 @@ const AppNavbar = (props) => {
           Sign Up                  
         </Button>
     </ActionButtons>
+    <FormGroup>
+    <FormControlLabel
+        control={
+          <Switch />
+        }
+        label="Mode"
+      />
+    </FormGroup>
     </Navbar>        
     )
 }
