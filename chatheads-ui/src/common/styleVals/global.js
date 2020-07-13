@@ -12,6 +12,7 @@ export default {
         spacing18: '18px',
         spacing20: '20px',
         spacing22: '22px',
+        spacing24: '24px',
     },
     color: {
         dark: '#1c272b',

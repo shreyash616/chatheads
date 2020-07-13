@@ -4,7 +4,8 @@ import PropTypes from 'prop-types'
 import {
     Navbar,
     NavbarBrand,
-    ActionButtons
+    ActionButtons,
+    Divider
 } from './styles'
 import styleVals from '../../styleVals/global'
 import Switch from '@material-ui/core/Switch';
@@ -23,12 +24,16 @@ const AppNavbar = (props) => {
           Sign Up                  
         </Button>
     </ActionButtons>
+    <Divider>
+      |
+    </Divider>
     <FormGroup>
     <FormControlLabel
         control={
           <Switch />
         }
-        label="Mode"
+        label={props.theme}
+        onChange = {props.switchTheme}
       />
     </FormGroup>
     </Navbar>        

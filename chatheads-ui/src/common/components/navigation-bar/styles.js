@@ -39,3 +39,9 @@ export const ActionButtons = styled.div`
     display: flex;
     flex-direction: row;    
 `
+export const Divider = styled.span`
+    font-size: ${styleVals.dimensions.spacing24};
+    margin-left: ${styleVals.dimensions.spacing4};
+    margin-top: ${styleVals.dimensions.spacing4};
+    margin-right: ${styleVals.dimensions.spacing12};
+`

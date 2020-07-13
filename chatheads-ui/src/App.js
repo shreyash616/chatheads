@@ -9,16 +9,25 @@ import NavBar from './common/components/navigation-bar/index'
 function App() {
 
   const [theme, setTheme] = useState('light')
+ 
+  const switchTheme = () => {
+    if (theme === 'light'){
+      setTheme('dark')
+    } else{
+      setTheme('light')
+    }
+
+  }
 
   const commonProps = {
-    setTheme
+    switchTheme,
+    title: appConstants.navBarTitle,
+    theme
   }
 
   return (
     <React.Fragment>
       <NavBar 
-        title={appConstants.navBarTitle} 
-        theme={theme}
         {...commonProps}
         />
       <Router>
