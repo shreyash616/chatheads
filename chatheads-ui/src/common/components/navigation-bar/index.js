@@ -5,12 +5,30 @@ import {
     Navbar,
     NavbarBrand,
     ActionButtons,
-    Divider
+    Divider,
+    ThemeName
 } from './styles'
 import styleVals from '../../styleVals/global'
+import {withStyles} from '@material-ui/core/styles'
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+const navbarMaterialStyle = {
+  switchBase: {
+    color: styleVals.color.ogBlue,
+    '&$checked': {
+      color: styleVals.color.bestOrange,
+    },
+    '&$checked + $track': {
+      backgroundColor: styleVals.color.bestOrange,
+    },
+  },
+  checked: {},
+  track: {},
+}
+
+const ThemeSwitch = withStyles(navbarMaterialStyle)(Switch)
 
 const AppNavbar = (props) => {
     return (        
@@ -24,15 +42,15 @@ const AppNavbar = (props) => {
           Sign Up                  
         </Button>
     </ActionButtons>
-    <Divider>
+    <Divider {...props}>
       |
     </Divider>
     <FormGroup>
     <FormControlLabel
         control={
-          <Switch />
+          <ThemeSwitch />
         }
-        label={props.theme}
+        label={<ThemeName {...props}>{props.theme}</ThemeName>}
         onChange = {props.switchTheme}
       />
     </FormGroup>

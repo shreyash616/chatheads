@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 import './App.css';
 import appConstants from './common/constants/appConstants'
 
@@ -20,9 +20,9 @@ function App() {
   }
 
   const commonProps = {
+    theme,
     switchTheme,
-    title: appConstants.navBarTitle,
-    theme
+    title: appConstants.navBarTitle
   }
 
   return (
@@ -32,6 +32,8 @@ function App() {
         />
       <Router>
         <Switch>
+          <Redirect from='/' to='/home'/>
+          <Route key='home' path='/home'/>
           <Route key='signUp' path='/signUp'/>
         </Switch>
       </Router>

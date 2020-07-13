@@ -6,7 +6,6 @@ export const Navbar = styled.div`
     flex-direction: row;    
     font-family: ${styleVals.fonts.wordFont};
     font-weight: bold;
-
     padding: ${styleVals.dimensions.spacing16};
     ${props => props.theme === 'dark'
     ? ({
@@ -33,7 +32,6 @@ export const NavbarBrand = styled.span`
         cursor: pointer;        
     }
 `
-
 export const ActionButtons = styled.div`
     margin-left: auto;
     display: flex;
@@ -44,4 +42,14 @@ export const Divider = styled.span`
     margin-left: ${styleVals.dimensions.spacing4};
     margin-top: ${styleVals.dimensions.spacing4};
     margin-right: ${styleVals.dimensions.spacing12};
+    color: ${props => props.theme === 'dark'
+    ?styleVals.color.bestOrange
+    :styleVals.color.ogBlue};
+`
+export const ThemeName = styled.span`
+    font-family: ${styleVals.fonts.wordFont};
+    font-weight: bold;
+    color: ${props => props.theme === 'dark'
+    ?styleVals.color.bestOrange
+    :styleVals.color.ogBlue} !important;
 `

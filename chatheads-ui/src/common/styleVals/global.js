@@ -25,5 +25,16 @@ export default {
     fonts: {
         segoeUI: 'Segoe UI Light',
         wordFont: 'Ubuntu, sans-serif'
+    },
+    breakpoints: {
+        desktop_xl: '(min-width: 1281px)',
+        desktop_l: '(min-width: 961px) and (max-width: 1280px)',
+        desktop: '(min-width: 769px) and (max-width: 960px)',
+        mobile: '(max-width: 479px)',
+        tablet: '(min-width: 480px) and (max-width: 768px)',
+        tabletPortrait: '(min-width: 769px) and (max-width: 1024px)',
+        tabletLandscape: '(min-width: 1025px)',
+        mobile_sm: '(max-width: 320px)',
+        desktop_sm: '(max-width: 1024px)'
     }
 }
