@@ -23,6 +23,25 @@ chatheadsService.signUp = (signUpDetails) => {
     }    
 }
 
+chatheadsService.updateUserId = (userIdDetails) => {
+    if(validator.validateToken(userIdDetails.jwtToken)){
+        if(validator.validateUserId(userIdDetails.data.newUserId)){
+            return chatheadsModel.updateUserId(userIdDetails.data).then((response)=>{                
+                return response
+            }).catch((err)=>{                
+                if(err.message){
+                    throw err;
+                }
+                else{
+                    let error = new Error("Couldn't connect to database");
+                    error.status = 400;
+                    throw error;
+                }
+            })                
+            }
+        }
+    }    
+
 
 chatheadsService.signIn = (signInDetails) => {
     if(validator.validateToken(signInDetails.jwtToken)){

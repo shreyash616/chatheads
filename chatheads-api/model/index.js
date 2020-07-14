@@ -48,4 +48,32 @@ chatheadsModel.signIn = (signInDetailsData) => {
     })
 }
 
+chatheadsModel.updateUserId = (userIdDetails) => {
+    return connection.getUserModel().then((userDb)=>{
+        return userDb.findOne({userId: userIdDetails.newUserId}).then((userIdAlreadyFound)=>{
+            if(userIdAlreadyFound){
+                let userIdAlreadyFoundError = new Error('We already have this username registered with us. Please try another one.')
+                userIdAlreadyFoundError.status = 400
+                throw userIdAlreadyFoundError
+            }
+            else{
+                return userDb.updateOne({userId: userIdDetails.userId},{$set : {userId: userIdDetails.newUserId}}).then((confirmation)=>{
+                    if(confirmation.nModified > 0){
+                        return {data : {
+                            message: 'Username successfully updated'
+                        }}
+                    }
+                    else{
+                        let updateFailure = new Error('Failed to update username');
+                        updateFailure.status = 500;
+                        throw updateFailure
+                    }
+                })
+            }
+        })        
+    }).catch((err)=>{
+        throw err
+    })
+}
+
 module.exports = chatheadsModel

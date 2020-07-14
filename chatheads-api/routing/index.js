@@ -19,4 +19,12 @@ router.post('/signIn',(req,res,next)=>{
     })
 })
 
+router.post('/updateUsername',(req,res,next)=>{      
+    chatheadsService.updateUserId(req.body).then((response)=>{
+        res.send({...response, status: 200})
+    }).catch((err)=>{        
+        next(err)
+    })
+})
+
 module.exports = router
