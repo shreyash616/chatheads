@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '../button/index'
 import PropTypes from 'prop-types'
 import {
-    Navbar,
+    StyledNavbar,
     NavbarBrand,
     ActionButtons,
     Divider,
@@ -32,7 +32,7 @@ const ThemeSwitch = withStyles(navbarMaterialStyle)(Switch)
 
 const AppNavbar = (props) => {
     return (        
-    <Navbar {...props}>            
+    <StyledNavbar {...props}>            
     <NavbarBrand {...props}>{props.title}</NavbarBrand>
     <ActionButtons>
         <Button {...props}>
@@ -54,7 +54,7 @@ const AppNavbar = (props) => {
         onChange = {props.switchTheme}
       />
     </FormGroup>
-    </Navbar>        
+    </StyledNavbar>        
     )
 }
 

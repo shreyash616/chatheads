@@ -34,7 +34,7 @@ function App() {
       />      
         <Switch>
           <Route key='home' path='/home' render={()=><Home {...commonProps}/>}/>
-          <Route key='signUp' path='/signUp'/>
+          {/* <Route key='signUp' path='/signUp'/> */}
           <Redirect from='/' to='/home'/>          
         </Switch>
       

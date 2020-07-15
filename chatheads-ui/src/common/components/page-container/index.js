@@ -1,16 +1,20 @@
 import React from 'react'
 import{
+    Divider,
     Container,
-    Page
+    ContentContainer
 } from './styles'
 
 const PageContainer = (props) => {
     return (
-      <Page {...props}>
+      <React.Fragment>
+        <Divider {...props}></Divider>
         <Container {...props}>
-          {props.children}
+          <ContentContainer>
+            {props.children}
+          </ContentContainer>
         </Container>
-      </Page>
+      </React.Fragment>
     )
 }
 

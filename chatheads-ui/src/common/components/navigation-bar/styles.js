@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import styleVals from '../../styleVals/global'
 
-export const Navbar = styled.div`  
+export const StyledNavbar = styled.div`  
     display: flex;
     flex-direction: row;    
     font-family: ${styleVals.fonts.wordFont};
-    font-weight: bold;
-    padding: ${styleVals.dimensions.spacing16};
+    font-weight: bold;    
+    padding: ${styleVals.dimensions.spacing16};    
     ${props => props.theme === 'dark'
     ? ({
         backgroundColor: styleVals.color.dark,
