@@ -1,6 +1,8 @@
 import React from 'react'
+import {} from "react-router-dom";
 import Button from '../button/index'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import {
     StyledNavbar,
     NavbarBrand,
@@ -31,16 +33,24 @@ const navbarMaterialStyle = {
 const ThemeSwitch = withStyles(navbarMaterialStyle)(Switch)
 
 const AppNavbar = (props) => {
+
+  const goToHome = () => {
+    window.location.href = 'http://localhost:3000/home'
+  }
     return (        
     <StyledNavbar {...props}>            
-    <NavbarBrand {...props}>{props.title}</NavbarBrand>
+    <NavbarBrand onClick={goToHome} {...props}>{props.title}</NavbarBrand>
     <ActionButtons>
+      <Link to='/signIn'>
         <Button {...props}>
           Log In                  
         </Button>
+      </Link>
+      <Link to='/signUp'>
         <Button {...props}>
           Sign Up                  
         </Button>
+      </Link>
     </ActionButtons>
     <Divider {...props}>
       |
@@ -50,6 +60,7 @@ const AppNavbar = (props) => {
         control={
           <ThemeSwitch />
         }
+        checked={props.theme === 'dark'}
         label={<ThemeName {...props}>{props.theme}</ThemeName>}
         onChange = {props.switchTheme}
       />

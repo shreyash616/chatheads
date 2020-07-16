@@ -2,17 +2,17 @@ import React from 'react'
 import{
     Divider,
     Container,
-    ContentContainer
+    Content
 } from './styles'
 
-const PageContainer = (props) => {
+const PageContainer = (props) => {  
     return (
       <React.Fragment>
-        <Divider {...props}></Divider>
+        <Divider theme={props.theme}></Divider>
         <Container {...props}>
-          <ContentContainer>
+          <Content {...props}>
             {props.children}
-          </ContentContainer>
+          </Content>
         </Container>
       </React.Fragment>
     )

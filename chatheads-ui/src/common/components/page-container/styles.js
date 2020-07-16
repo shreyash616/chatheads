@@ -1,19 +1,20 @@
 import styled from 'styled-components'
 import styleVals from '../../styleVals/global'
 
-export const Divider = styled.div`
+export const Divider = styled.div`    
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
     border-radius: ${styleVals.dimensions.spacing10};
 `
-
 export const Container = styled.div`
-    background-color: ${props=>props.theme==='dark'?styleVals.color.dark:styleVals.color.light};
-    height: 100vh;
+    background-color: ${props=>props.theme==='dark'?styleVals.color.dark:styleVals.color.light};     
+    padding: ${styleVals.dimensions.spacing48}; 
+    min-height: 100vh;  
 `
-
-export const ContentContainer = styled.div`    
+export const Content = styled.div`    
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    margin-left: ${styleVals.dimensions.spacing36};
+    margin-right: ${styleVals.dimensions.spacing36};
+    margin-top: ${styleVals.dimensions.spacing20};
     border-radius: ${styleVals.dimensions.spacing10};
-    margin-top: ${styleVals.dimensions.spacing10};
-    min-height: 70vh;
+    min-height: 70vh;   
 `

@@ -3,15 +3,17 @@ import {Switch, Route, Redirect} from 'react-router-dom'
 import './App.css';
 import appConstants from './common/constants/appConstants'
 
+
 //common components
 import NavBar from './common/components/navigation-bar/index'
 
 //components
 import Home from './components/home/index'
+import SignIn from './components/sign-in/index'
 
 function App() {
 
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState('dark')
  
   const switchTheme = () => {
     if (theme === 'light'){
@@ -34,7 +36,8 @@ function App() {
       />      
         <Switch>
           <Route key='home' path='/home' render={()=><Home {...commonProps}/>}/>
-          {/* <Route key='signUp' path='/signUp'/> */}
+          <Route key='signUp' path='/signUp'/>
+          <Route key='signIn' path='/signIn' render={()=><SignIn {...commonProps}/>}/>
           <Redirect from='/' to='/home'/>          
         </Switch>
       

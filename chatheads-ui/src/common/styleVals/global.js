@@ -19,6 +19,17 @@ export default {
         spacing32: '32px',
         spacing34: '34px',
         spacing36: '36px',
+        spacing38: '38px',
+        spacing40: '40px',
+        spacing42: '42px',
+        spacing44: '44px',
+        spacing46: '46px',
+        spacing48: '48px',
+        spacing50: '50px',
+        spacing52: '52px',
+        spacing54: '54px',
+        spacing56: '56px',
+        spacing80: '80px',
     },
     color: {
         dark: '#1c272b',
@@ -26,7 +37,8 @@ export default {
         bestOrange: '#fd6d03',
         dullOrange: '#ad3205',
         ogBlue: '#1976d2',
-        dullBlue: '#2c6eb0'
+        dullBlue: '#2c6eb0',
+        shadowColor: '5px 5px 4px 0px rgba(0,0,0,0.5)'
     },
     fonts: {
         segoeUI: 'Segoe UI Light',
