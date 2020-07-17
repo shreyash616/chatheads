@@ -26,7 +26,7 @@ const SignIn = (props) =>{
                   requiredField={true}                
                 />
               </InputFieldsWrapper>
-              <SignInButtonWrapper>
+              <SignInButtonWrapper {...props}>
                 Sign In
               </SignInButtonWrapper>
             </LoginWrapper>
