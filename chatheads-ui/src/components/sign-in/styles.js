@@ -24,7 +24,7 @@ export const LoginWrapper = styled.div`
     -moz-box-shadow: ${styleVals.color.shadowColor};
     border-radius: ${styleVals.dimensions.spacing12};
     color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
-    min-height: 65vh;
-    width: 30%;
+    min-height: 70vh;
+    width: 25%;
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};        
 `
