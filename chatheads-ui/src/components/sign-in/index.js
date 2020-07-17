@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import PageContainer from '../../common/components/page-container/index'
 import TextInput from "../../common/components/text-input/index"
+import signInConstants from '../../common/constants/signInConstants'
 import { 
     PageWrapper,      
     LoginWrapper,
@@ -17,20 +18,20 @@ const SignIn = (props) =>{
               <UsernameWrapper>
                 <TextInput
                   {...props}
-                  label={'Username'}
+                  label={signInConstants.USERNAME}
                   requiredField={true}                               
                 />
               </UsernameWrapper>
               <PasswordWrapper>
                 <TextInput
                   {...props}
-                  label={'Password'}
+                  label={signInConstants.PASSWORD}
                   requiredField={true}
                   isPassword={true}                
                 /> 
               </PasswordWrapper>            
             <SignInButtonWrapper {...props}>
-              Sign In
+              {signInConstants.SIGN_IN}
             </SignInButtonWrapper>
           </LoginWrapper>
         </PageWrapper>

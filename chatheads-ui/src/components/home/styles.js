@@ -28,16 +28,17 @@ export const ImageWrapper = styled.div`
 export const Logo = styled.span`
     font-size: ${styleVals.dimensions.spacing56};
     font-family: ${styleVals.fonts.wordFont};
-    margin-top: ${styleVals.dimensions.spacing56};    
+    margin-top: ${styleVals.dimensions.spacing120};    
     color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
     text-align: center;     
 `
 
 export const Slogan = styled.span`
+    text-align: center;
     margin-top: ${styleVals.dimensions.spacing40};
     font-size: ${styleVals.dimensions.spacing20};
-    margin-right: ${styleVals.dimensions.spacing80};
-    margin-left: ${styleVals.dimensions.spacing80}; 
+    margin-right: ${styleVals.dimensions.spacing150};
+    margin-left: ${styleVals.dimensions.spacing150}; 
     font-family: ${styleVals.fonts.wordFont};  
     color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
 `

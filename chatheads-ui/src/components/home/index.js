@@ -1,5 +1,6 @@
 import React from 'react'
 import PageContainer from '../../common/components/page-container/index'
+import homeConstants from '../../common/constants/homeConstants'
 import {
     PageWrapper,
     LogoWrapper,
@@ -13,12 +14,13 @@ const Home = (props) => {
     return(
         <PageContainer {...props}>
             <PageWrapper>
-                <LogoWrapper>
-                    <Logo theme = {props.theme}>Chatheads</Logo>
-                    <Slogan theme = {props.theme}>A Free messaging service for all</Slogan>
-                </LogoWrapper>
-                <ImageWrapper>
-                </ImageWrapper>
+              <LogoWrapper>
+                <Logo theme = {props.theme}>{homeConstants.LOGO}</Logo>
+                <Slogan theme = {props.theme}>{homeConstants.SLOGAN_PART1}</Slogan>
+                <Slogan theme = {props.theme}>{homeConstants.SLOGAN_PART2}</Slogan>
+              </LogoWrapper>
+              <ImageWrapper>
+              </ImageWrapper>
             </PageWrapper>
         </PageContainer>
     )

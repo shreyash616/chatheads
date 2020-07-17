@@ -4,8 +4,7 @@ import {
     FooterContent
 } from './styles'
 
-const Footer = (props) => {
-    console.log(props)
+const Footer = (props) => {    
     return (        
       <StyledFooter {...props}>
         <FooterContent>

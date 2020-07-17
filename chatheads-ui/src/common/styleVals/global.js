@@ -30,6 +30,9 @@ export default {
         spacing54: '54px',
         spacing56: '56px',
         spacing80: '80px',
+        spacing100: '100px',
+        spacing120: '120px',
+        spacing150: '150px',
     },
     color: {
         dark: '#1c272b',
