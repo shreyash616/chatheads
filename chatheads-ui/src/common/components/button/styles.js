@@ -12,5 +12,5 @@ export const StyledButton = styled.button`
     &: hover {
         background-color: ${props => props.theme === 'dark'? styleVals.color.dullOrange : styleVals.color.dullBlue};
     }
-    transition: 0.5s all linear;
+    
 `
