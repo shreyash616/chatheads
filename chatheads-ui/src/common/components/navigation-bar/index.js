@@ -45,7 +45,7 @@ const AppNavbar = (props) => {
       <ActionButtonsWrapper>
         <Link to='/signIn'>
           <Button {...props}>
-            Log In                  
+            Sign In                  
           </Button>
         </Link>
       </ActionButtonsWrapper>
