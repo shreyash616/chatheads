@@ -16,6 +16,7 @@ import {withStyles} from '@material-ui/core/styles'
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import appConstants from '../../constants/appConstants'
 
 const navbarMaterialStyle = {
   switchBase: {
@@ -45,14 +46,14 @@ const AppNavbar = (props) => {
       <ActionButtonsWrapper>
         <Link to='/signIn'>
           <Button {...props}>
-            Sign In                  
+            {appConstants.SIGN_IN}                  
           </Button>
         </Link>
       </ActionButtonsWrapper>
       <ActionButtonsWrapper>
         <Link to='/signUp'>
           <Button {...props}>
-            Sign Up                  
+            {appConstants.SIGN_UP}                                   
           </Button>
         </Link>
       </ActionButtonsWrapper>

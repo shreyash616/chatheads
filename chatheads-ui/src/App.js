@@ -6,6 +6,7 @@ import appConstants from './common/constants/appConstants'
 
 //common components
 import NavBar from './common/components/navigation-bar/index'
+import Footer from './common/components/page-footer'
 
 //components
 import Home from './components/home/index'
@@ -26,7 +27,7 @@ function App() {
   const commonProps = {
     theme,
     switchTheme,
-    title: appConstants.navBarTitle
+    title: appConstants.NAVBAR_BRAND
   }
 
   return (
@@ -39,8 +40,10 @@ function App() {
           <Route key='signUp' path='/signUp'/>
           <Route key='signIn' path='/signIn' render={()=><SignIn {...commonProps}/>}/>
           <Redirect from='/' to='/home'/>          
-        </Switch>
-      
+        </Switch>      
+      <Footer        
+        {...commonProps}
+      />  
     </React.Fragment>
   );
 }

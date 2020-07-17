@@ -1,3 +1,5 @@
 export default {
-    navBarTitle: 'Chatheads'
+    NAVBAR_BRAND: 'Chatheads',
+    SIGN_IN: 'Sign In',
+    SIGN_UP: 'Sign Up'
 }

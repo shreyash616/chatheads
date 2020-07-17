@@ -9,7 +9,7 @@ export const Divider = styled.div`
 export const Container = styled.div`
     background-color: ${props=>props.theme==='dark'?styleVals.color.dark:styleVals.color.light};     
     padding: ${styleVals.dimensions.spacing20}; 
-    min-height: 100vh;  
+    min-height: 90vh;  
 `
 export const Content = styled.div`    
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
