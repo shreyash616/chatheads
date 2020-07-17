@@ -10,6 +10,7 @@ import NavBar from './common/components/navigation-bar/index'
 //components
 import Home from './components/home/index'
 import SignIn from './components/sign-in/index'
+import SignUp from './components/sign-up/index'
 
 function App() {
 
@@ -36,7 +37,7 @@ function App() {
       />      
         <Switch>
           <Route key='home' path='/home' render={()=><Home {...commonProps}/>}/>
-          <Route key='signUp' path='/signUp'/>
+          <Route key='signUp' path='/signUp' render={()=><SignUp {...commonProps}/>}/>
           <Route key='signIn' path='/signIn' render={()=><SignIn {...commonProps}/>}/>
           <Redirect from='/' to='/home'/>          
         </Switch>
