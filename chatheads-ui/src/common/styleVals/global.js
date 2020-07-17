@@ -38,7 +38,8 @@ export default {
         dullOrange: '#ad3205',
         ogBlue: '#1976d2',
         dullBlue: '#2c6eb0',
-        shadowColor: '5px 5px 10px 0px rgba(0,0,0,0.5)'
+        shadowColor: '5px 5px 10px 0px rgba(0,0,0,0.5)',
+        red: '#ef5350'
     },
     fonts: {
         segoeUI: 'Segoe UI Light',

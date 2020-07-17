@@ -7,6 +7,7 @@ export const StyledButton = styled.button`
     font-size: ${styleVals.dimensions.spacing18};
     border: ${styleVals.dimensions.spacing4};
     border-radius: ${styleVals.dimensions.spacing4};
+    outline: none;
     background-color: ${props => props.theme === 'dark'? styleVals.color.bestOrange : styleVals.color.ogBlue};
     background-color: ${props => props.theme === 'dark'? styleVals.color.bestOrange : styleVals.color.ogBlue};
     &: hover {

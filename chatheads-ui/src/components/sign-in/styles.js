@@ -31,9 +31,13 @@ export const LoginWrapper = styled.div`
     width: 25%;
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};        
 `
-export const InputFieldsWrapper = styled.div `
-
+export const UsernameWrapper = styled.div `
+    margin-top: ${styleVals.dimensions.spacing12};
 `
-export const SignInButtonWrapper = styled(Button)`  
+export const PasswordWrapper = styled.div `
+    margin-top: ${styleVals.dimensions.spacing12};
+`
+export const SignInButtonWrapper = styled(Button)`
+    margin-top: ${styleVals.dimensions.spacing20};  
     width: 100%;      
 `

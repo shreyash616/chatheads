@@ -20,5 +20,27 @@ export const StyledTextInput = styled.input`
     font-weight: bold;
     padding: ${styleVals.dimensions.spacing12};
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    border-radius: ${styleVals.dimensions.spacing8};    
+    outline: none;
+`
+export const PasswordWrapper = styled.div`
+    display: flex;
+    position:relative;    
+`
+export const PasswordInputWithToggleSwitch = styled.input`
+    font-family: ${styleVals.fonts.wordFont};
+    font-weight: bold;
+    border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
     border-radius: ${styleVals.dimensions.spacing8};
+    padding: ${styleVals.dimensions.spacing12};    
+    width:100%;                
+`
+export const ShowPasswordToggleSwitchWrapper = styled.button`
+    position: absolute;
+    height: ${styleVals.dimensions.spacing0};
+    right: ${styleVals.dimensions.spacing4};
+    top: ${styleVals.dimensions.spacing8};
+    background: white;    
+    border:none;
+    outline: none;     
 `
