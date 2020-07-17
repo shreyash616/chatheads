@@ -37,12 +37,12 @@ export const NavbarBrand = styled.span`
 export const ActionButtons = styled.div`
     margin-left: auto;
     display: flex;
-    flex-direction: row;    
+    flex-direction: row;        
 `
 export const Divider = styled.span`
-    font-size: ${styleVals.dimensions.spacing24};
+    font-size: ${styleVals.dimensions.spacing20};
     margin-left: ${styleVals.dimensions.spacing4};
-    margin-top: ${styleVals.dimensions.spacing4};
+    margin-top: ${styleVals.dimensions.spacing6};
     margin-right: ${styleVals.dimensions.spacing12};
     color: ${props => props.theme === 'dark'
     ?styleVals.color.bestOrange
@@ -56,4 +56,9 @@ export const ThemeName = styled.span`
     ?styleVals.color.bestOrange
     :styleVals.color.ogBlue} !important;
     transition: 0.5s all linear;
+`
+export const ActionButtonsWrapper = styled.div`
+    margin-left: ${styleVals.dimensions.spacing8};
+    margin-right: ${styleVals.dimensions.spacing8};
+    margin-top: ${styleVals.dimensions.spacing2};
 `

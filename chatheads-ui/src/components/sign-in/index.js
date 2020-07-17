@@ -3,7 +3,9 @@ import PageContainer from '../../common/components/page-container/index'
 import TextInput from '../../common/components/text-input'
 import { 
     PageWrapper,      
-    LoginWrapper
+    LoginWrapper,
+    InputFieldsWrapper,
+    SignInButtonWrapper
 } from "./styles";
 
 const SignIn = (props) =>{
@@ -12,16 +14,21 @@ const SignIn = (props) =>{
         <PageContainer {...props}>
           <PageWrapper {...props}>
             <LoginWrapper {...props}>   
-              <TextInput
-                {...props}
-                label={'Username'}
-                requiredField={true}                                
-              />
-              <TextInput
-                {...props}
-                label={'Password'}
-                requiredField={true}                
-              />
+              <InputFieldsWrapper>
+                <TextInput
+                  {...props}
+                  label={'Username'}
+                  requiredField={true}                                
+                />
+                <TextInput
+                  {...props}
+                  label={'Password'}
+                  requiredField={true}                
+                />
+              </InputFieldsWrapper>
+              <SignInButtonWrapper>
+                Sign In
+              </SignInButtonWrapper>
             </LoginWrapper>
           </PageWrapper>
         </PageContainer>

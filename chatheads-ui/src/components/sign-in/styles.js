@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import styleVals from '../../common/styleVals/global'
+import Button from '../../common/components/button'
 
 export const PageWrapper = styled.div`
     display: flex;
@@ -18,7 +19,9 @@ export const PageWrapper = styled.div`
 // `
 export const LoginWrapper = styled.div`
     margin-left: auto;
-    margin-right: ${styleVals.dimensions.spacing20};    
+    margin-right: ${styleVals.dimensions.spacing20};
+    padding-left: ${styleVals.dimensions.spacing12};  
+    padding-right: ${styleVals.dimensions.spacing12};  
     box-shadow: ${styleVals.color.shadowColor};
     -webkit-box-shadow: ${styleVals.color.shadowColor};
     -moz-box-shadow: ${styleVals.color.shadowColor};
@@ -27,4 +30,10 @@ export const LoginWrapper = styled.div`
     min-height: 70vh;
     width: 25%;
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};        
+`
+export const InputFieldsWrapper = styled.div `
+
+`
+export const SignInButtonWrapper = styled(Button)`  
+    width: 100%;      
 `

@@ -8,7 +8,8 @@ import {
     NavbarBrand,
     ActionButtons,
     Divider,
-    ThemeName
+    ThemeName,
+    ActionButtonsWrapper
 } from './styles'
 import styleVals from '../../styleVals/global'
 import {withStyles} from '@material-ui/core/styles'
@@ -41,16 +42,20 @@ const AppNavbar = (props) => {
     <StyledNavbar {...props}>            
     <NavbarBrand onClick={goToHome} {...props}>{props.title}</NavbarBrand>
     <ActionButtons>
-      <Link to='/signIn'>
-        <Button {...props}>
-          Log In                  
-        </Button>
-      </Link>
-      <Link to='/signUp'>
-        <Button {...props}>
-          Sign Up                  
-        </Button>
-      </Link>
+      <ActionButtonsWrapper>
+        <Link to='/signIn'>
+          <Button {...props}>
+            Log In                  
+          </Button>
+        </Link>
+      </ActionButtonsWrapper>
+      <ActionButtonsWrapper>
+        <Link to='/signUp'>
+          <Button {...props}>
+            Sign Up                  
+          </Button>
+        </Link>
+      </ActionButtonsWrapper>
     </ActionButtons>
     <Divider {...props}>
       |

@@ -6,8 +6,6 @@ export const InputTextWrapper = styled.div`
     flex-direction: column;    
     margin-top: ${styleVals.dimensions.spacing24};
     margin-bottom: ${styleVals.dimensions.spacing24};
-    margin-left: ${styleVals.dimensions.spacing12};
-    margin-right: ${styleVals.dimensions.spacing12};
 `
 export const Label = styled.span`
     font-family: ${styleVals.fonts.wordFont};

@@ -3,8 +3,6 @@ import styleVals from '../../styleVals/global'
 
 export const StyledButton = styled.button`
     padding: ${styleVals.dimensions.spacing6};
-    margin-left: ${styleVals.dimensions.spacing8};
-    margin-right: ${styleVals.dimensions.spacing8};
     font-family: ${styleVals.fonts.wordFont};
     font-size: ${styleVals.dimensions.spacing18};
     border: ${styleVals.dimensions.spacing4};
