@@ -32,6 +32,7 @@ export const LoginWrapper = styled.div`
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
     @media ${styleVals.breakpoints.tablet},${styleVals.breakpoints.tabletPortrait},${styleVals.breakpoints.mobile}{
         margin-left: ${styleVals.dimensions.spacing20};
+        margin-right: ${styleVals.dimensions.spacing20};
         width: 100%;
     }       
 `
