@@ -25,7 +25,8 @@ export const StyledTextInput = styled.input`
 `
 export const PasswordWrapper = styled.div`
     display: flex;
-    position:relative;    
+    flex-direction: row;
+    position: relative;    
 `
 export const PasswordInputWithToggleSwitch = styled.input`
     font-family: ${styleVals.fonts.wordFont};

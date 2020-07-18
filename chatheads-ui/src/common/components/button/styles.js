@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import styleVals from '../../styleVals/global'
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.button`    
     padding: ${styleVals.dimensions.spacing6};
     font-family: ${styleVals.fonts.wordFont};
     font-size: ${styleVals.dimensions.spacing18};

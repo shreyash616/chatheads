@@ -29,6 +29,8 @@ export default {
         spacing52: '52px',
         spacing54: '54px',
         spacing56: '56px',
+        spacing60: '60px',
+        spacing64: '64px',
         spacing80: '80px',
         spacing100: '100px',
         spacing120: '120px',

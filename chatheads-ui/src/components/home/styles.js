@@ -4,16 +4,11 @@ import styled from 'styled-components';
 
 export const PageWrapper = styled.div`
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: row;    
 `
 
 export const LogoWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;         
+    display: table-cell;
     width: 50%;            
 `
 
@@ -27,10 +22,11 @@ export const ImageWrapper = styled.div`
 
 export const Logo = styled.span`
     font-size: ${styleVals.dimensions.spacing56};
-    font-family: ${styleVals.fonts.wordFont};
-    margin-top: ${styleVals.dimensions.spacing120};    
-    color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
-    text-align: center;     
+    font-family: ${styleVals.fonts.wordFont};        
+    color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};    
+    @media ${styleVals.breakpoints.tablet}, ${styleVals.breakpoints.tabletPortrait}, ${styleVals.breakpoints.mobile}{
+        
+    }     
 `
 
 export const Slogan = styled.span`
