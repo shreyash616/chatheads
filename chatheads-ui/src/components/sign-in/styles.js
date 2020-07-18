@@ -12,15 +12,17 @@ export const PageWrapper = styled.div`
     }       
 `
 export const LoginWrapper = styled.div`
-      width: 25%;
-      margin-left: auto;
-      border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
-      border-radius: ${styleVals.dimensions.spacing10};
-      min-height: 70vh;
-      @media ${styleVals.breakpoints.tablet},${styleVals.breakpoints.tabletPortrait},${styleVals.breakpoints.mobile}{        
-        width: 100%;
-      }
-      text-align: center; 
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    border-radius: ${styleVals.dimensions.spacing10};
+    min-height: 70vh;
+    box-shadow: ${styleVals.color.shadowColor};
+    @media ${styleVals.breakpoints.tablet},${styleVals.breakpoints.tabletPortrait},${styleVals.breakpoints.mobile}{        
+    width: 100%;
+    }
 `
 export const UsernameWrapper = styled.div `
     margin-top: ${styleVals.dimensions.spacing56};
@@ -34,5 +36,7 @@ export const PasswordWrapper = styled.div `
 `
 export const SignInButtonWrapper = styled(Button)`
     margin-top: ${styleVals.dimensions.spacing48};  
-    width: 90%;
+    width: auto;
+    margin-left: ${styleVals.dimensions.spacing12};
+    margin-right: ${styleVals.dimensions.spacing12};
 `
