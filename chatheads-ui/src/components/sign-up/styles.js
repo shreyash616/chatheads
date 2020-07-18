@@ -29,11 +29,25 @@ export const LoginWrapper = styled.div`
     color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
     min-height: 70vh;
     width: 25%;
-    border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};        
+    border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    @media ${styleVals.breakpoints.tablet},${styleVals.breakpoints.tabletPortrait},${styleVals.breakpoints.mobile}{
+        margin-left: ${styleVals.dimensions.spacing20};
+        width: 100%;
+    }       
 `
-export const InputFieldsWrapper = styled.div `
-
+export const UsernameWrapper = styled.div `
+    margin-top: ${styleVals.dimensions.spacing12};
 `
-export const SignUpButtonWrapper = styled(Button)`  
+export const NameWrapper = styled.div `
+    margin-top: ${styleVals.dimensions.spacing12};
+`
+export const PhoneNumberWrapper = styled.div `
+    margin-top: ${styleVals.dimensions.spacing12};
+`
+export const PasswordWrapper = styled.div `
+    margin-top: ${styleVals.dimensions.spacing12};
+`
+export const SignUpButtonWrapper = styled(Button)`
+    margin-top: ${styleVals.dimensions.spacing20};  
     width: 100%;      
 `

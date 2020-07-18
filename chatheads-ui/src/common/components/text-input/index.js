@@ -43,7 +43,7 @@ const TextInput = (props) => {
             ?<PasswordWrapper>
                 <PasswordInputWithToggleSwitch
                  {...props}
-                 type={showPassword?'password':'text'}
+                 type={showPassword?'text':'password'}
                 />
                 <ShowPasswordToggleSwitchWrapper>
                   <ShowPasswordToggleSwitch

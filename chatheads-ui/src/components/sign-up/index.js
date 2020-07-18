@@ -1,47 +1,57 @@
 import React, {useState} from "react";
 import PageContainer from '../../common/components/page-container/index'
 import TextInput from "../../common/components/text-input/index"
+import signUpConstants from '../../common/constants/signUpConstants'
 import { 
     PageWrapper,      
     LoginWrapper,
-    InputFieldsWrapper,
-    SignUpButtonWrapper
+    UsernameWrapper,
+    PasswordWrapper,
+    SignUpButtonWrapper,
+    NameWrapper,
+    PhoneNumberWrapper
 } from "./styles";
 
 const SignUp = (props) =>{
     return (
-        <PageContainer {...props}>
-          <PageWrapper {...props}>
-            <LoginWrapper {...props}>   
-              <InputFieldsWrapper>
-              <TextInput
-                  {...props}
-                  label={'Name'}
-                  requiredField={true}                                
-                />
+      <PageContainer {...props}>
+        <PageWrapper {...props}>
+          <LoginWrapper {...props}>   
+              <NameWrapper>
                 <TextInput
                   {...props}
-                  label={'Username'}
-                  requiredField={true}                                
+                  label={signUpConstants.NAME}
+                  requiredField={true}  
                 />
+              </NameWrapper>
+              <PhoneNumberWrapper>
                 <TextInput
                   {...props}
-                  label={'Password'}
-                  requiredField={true}                
-                />
+                  label={signUpConstants.PHONE_NUMBER}
+                  requiredField={true}
+                  />
+              </PhoneNumberWrapper>
+              <UsernameWrapper>
                 <TextInput
                   {...props}
-                  label={'Phone Number'}
-                  requiredField={true} 
-                                 
+                  label={signUpConstants.USERNAME}
+                  requiredField={true}                               
                 />
-              </InputFieldsWrapper>
-              <SignUpButtonWrapper>
-                Sign Up
-              </SignUpButtonWrapper>
-            </LoginWrapper>
-          </PageWrapper>
-        </PageContainer>
+              </UsernameWrapper>
+              <PasswordWrapper>
+                <TextInput
+                  {...props}
+                  label={signUpConstants.PASSWORD}
+                  requiredField={true}
+                  isPassword={true}                
+                /> 
+              </PasswordWrapper>            
+            <SignUpButtonWrapper {...props}>
+              {signUpConstants.SIGN_UP}
+            </SignUpButtonWrapper>
+          </LoginWrapper>
+        </PageWrapper>
+      </PageContainer>
     )
 }
 export default SignUp
