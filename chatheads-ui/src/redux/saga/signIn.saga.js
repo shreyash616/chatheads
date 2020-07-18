@@ -15,7 +15,7 @@ function * handleSignIn(action){
     }
 }
 
-export function * catchInitiateSignIn(action){
+export function * catchInitiateSignIn(){
     yield takeEvery(actionTypes.INITIATE_SIGN_IN, handleSignIn)
 }
 
