@@ -34,7 +34,8 @@ export const PasswordInputWithToggleSwitch = styled.input`
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
     border-radius: ${styleVals.dimensions.spacing8};
     padding: ${styleVals.dimensions.spacing12};    
-    width:100%;                
+    width:100%;    
+    outline: none;            
 `
 export const ShowPasswordToggleSwitchWrapper = styled.button`
     position: absolute;

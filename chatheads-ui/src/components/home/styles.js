@@ -3,13 +3,21 @@ import styled from 'styled-components';
  
 
 export const PageWrapper = styled.div`
+    width: 100%;  
     display: flex;
-    flex-direction: row;    
+    flex-direction: row;
+    @media ${styleVals.breakpoints.tablet},${styleVals.breakpoints.tabletPortrait},${styleVals.breakpoints.mobile}{
+        flex-direction: column;
+    }
 `
 
 export const LogoWrapper = styled.div`
-    display: table-cell;
-    width: 50%;            
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    @media ${styleVals.breakpoints.tablet},${styleVals.breakpoints.tabletPortrait},${styleVals.breakpoints.mobile}{
+        width: 100%;
+    }         
 `
 
 export const ImageWrapper = styled.div`
@@ -21,20 +29,28 @@ export const ImageWrapper = styled.div`
 `
 
 export const Logo = styled.span`
+    margin-left: ${styleVals.dimensions.spacing56};
+    margin-top: ${styleVals.dimensions.spacing56};
     font-size: ${styleVals.dimensions.spacing56};
     font-family: ${styleVals.fonts.wordFont};        
     color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};    
     @media ${styleVals.breakpoints.tablet}, ${styleVals.breakpoints.tabletPortrait}, ${styleVals.breakpoints.mobile}{
-        
+        margin-top: ${styleVals.dimensions.spacing30};
+        margin-left: ${styleVals.dimensions.spacing30};
+        margin-right: ${styleVals.dimensions.spacing30};
     }     
 `
 
 export const Slogan = styled.span`
-    text-align: center;
-    margin-top: ${styleVals.dimensions.spacing40};
+    margin-top: ${styleVals.dimensions.spacing20};
+    margin-left: ${styleVals.dimensions.spacing56};
+    margin-bottom: ${styleVals.dimensions.spacing20};
     font-size: ${styleVals.dimensions.spacing20};
-    margin-right: ${styleVals.dimensions.spacing150};
-    margin-left: ${styleVals.dimensions.spacing150}; 
     font-family: ${styleVals.fonts.wordFont};  
     color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    @media ${styleVals.breakpoints.tablet}, ${styleVals.breakpoints.tabletPortrait}, ${styleVals.breakpoints.mobile}{
+        margin-top: ${styleVals.dimensions.spacing30};
+        margin-left: ${styleVals.dimensions.spacing30};
+        margin-right: ${styleVals.dimensions.spacing30};
+    }  
 `
