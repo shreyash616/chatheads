@@ -1,19 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {connect} from 'react-redux'
 
 import signInConstants from '../../common/constants/signInConstants'
 import actions from '../../redux/actions/index'
+import styleVals from '../../common/styleVals/global'
+import {withStyles} from '@material-ui/core/styles'
 
 import PageContainer from '../../common/components/page-container/index'
 import TextInput from "../../common/components/text-input/index"
 
 import { 
     PageWrapper,      
+    AlertWithLoginWrapper,
     LoginWrapper,
     UsernameWrapper,
     PasswordWrapper,
-    SignInButtonWrapper
+    SignInButtonWrapper,
+    Loader
 } from "./styles";
+import AlertBox from "../../common/components/alert-box";
 
 const mapStateToProps = store => {
   return {
@@ -29,9 +34,34 @@ const mapDispatchToProps = dispatch => {
 
 const SignIn = (props) =>{
 
+  const loaderStyle = {
+    colorPrimary: props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue
+  }
+  const AppLoader = withStyles(loaderStyle)(Loader)
+
+  //useState
+  const [alert, triggerAlert] = useState({
+    showAlert: false,
+    data: ''
+  })
+
+  const [showLoader, setShowLoader] = useState(false)
+
   //useEffects
   useEffect(()=> {
     console.log(props.signInData)
+    if(props.signInData.data){
+      if(props.signInData.data.status === 400){
+        triggerAlert({
+          showAlert: true,
+          data: props.signInData.data.data
+        })
+      }
+    }
+  },[props.signInData])
+
+  useEffect(()=>{
+    setShowLoader(props.signInData.loading)
   },[props.signInData])
   
   //functionality
@@ -47,33 +77,40 @@ const SignIn = (props) =>{
   }
 
   return (
-    <PageContainer {...props}>
-      <PageWrapper {...props}>
-        <LoginWrapper {...props}>   
-            <UsernameWrapper>
-              <TextInput
+    <React.Fragment>
+      <PageContainer {...props}>
+        <PageWrapper {...props}>
+          <AlertWithLoginWrapper>
+            {alert.showAlert?
+            <AlertBox theme={props.theme}>{alert.data}</AlertBox>:null}
+            {showLoader && <AppLoader color='primary' theme={props.theme}/>}
+            <LoginWrapper {...props}>   
+                <UsernameWrapper>
+                  <TextInput
+                    {...props}
+                    label={signInConstants.USERNAME}
+                    requiredField={true}                               
+                  />
+                </UsernameWrapper>
+                <PasswordWrapper>
+                  <TextInput
+                    {...props}
+                    label={signInConstants.PASSWORD}
+                    requiredField={true}
+                    isPassword={true}                
+                  /> 
+                </PasswordWrapper>            
+              <SignInButtonWrapper
+                onClick={handleSignIn}
                 {...props}
-                label={signInConstants.USERNAME}
-                requiredField={true}                               
-              />
-            </UsernameWrapper>
-            <PasswordWrapper>
-              <TextInput
-                {...props}
-                label={signInConstants.PASSWORD}
-                requiredField={true}
-                isPassword={true}                
-              /> 
-            </PasswordWrapper>            
-          <SignInButtonWrapper
-            onClick={handleSignIn}
-            {...props}
-          >
-            {signInConstants.SIGN_IN}
-          </SignInButtonWrapper>
-        </LoginWrapper>
-      </PageWrapper>
-    </PageContainer>
+              >
+                {signInConstants.SIGN_IN}
+              </SignInButtonWrapper>              
+            </LoginWrapper>
+          </AlertWithLoginWrapper>
+        </PageWrapper>
+      </PageContainer>
+    </React.Fragment>
   )
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn)

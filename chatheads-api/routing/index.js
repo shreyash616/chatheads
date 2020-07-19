@@ -13,7 +13,9 @@ router.post('/signUp',(req,res,next)=>{
 
 router.post('/signIn',(req,res,next)=>{      
     chatheadsService.signIn(req.body).then((response)=>{
-        res.send({...response, status: 200})
+        setTimeout(()=>{
+            res.send({...response, status: 200})
+        },2000)
     }).catch((err)=>{        
         next(err)
     })

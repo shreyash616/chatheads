@@ -13,7 +13,7 @@ validator.validateToken = (token) => {
         return true
     }
     else{
-        let error = new Error('Invalid Token')
+        let error = new Error('You could not be signed in at this moment. Try again later.')
         error.status = 400
         throw error        
     }
@@ -24,7 +24,7 @@ validator.validateUserId = (userId) => {
         return true
     }
     else{
-        let error = new Error('Invalid User Id')
+        let error = new Error('The username entered is invalid. Please enter a valid username for signing up.')
         error.status = 400
         throw error
     }
@@ -35,7 +35,7 @@ validator.validatePassword = (password) => {
         return true
     }
     else{
-        let error = new Error('Invalid password')
+        let error = new Error('The password entered is invalid. Please enter a valid password for signing up.')
         error.status = 400
         throw error
     }
