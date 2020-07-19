@@ -54,6 +54,7 @@ export const SignInButtonWrapper = styled(Button)`
 export const Loader = styled(LinearProgress)`
     width: auto;    
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    box-shadow: ${styleVals.color.shadowColor};
     border-radius: ${styleVals.dimensions.spacing6};
     margin-bottom: ${styleVals.dimensions.spacing6};
 `

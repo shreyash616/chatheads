@@ -51,10 +51,10 @@ const SignIn = (props) =>{
   useEffect(()=> {
     console.log(props.signInData)
     if(props.signInData.data){
-      if(props.signInData.data.status === 400){
+      if(props.signInData.error){
         triggerAlert({
           showAlert: true,
-          data: props.signInData.data.data
+          data: props.signInData.data.data?props.signInData.data.data:props.signInData.data
         })
       }
     }
