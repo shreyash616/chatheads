@@ -7,7 +7,7 @@ const INITIAL_STATE ={
     loading: false
 }
 
-const homeReducer = (state = INITIAL_STATE, action) =>{
+export const homeReducer = (state = INITIAL_STATE, action) =>{
     switch(action.type){
         case actionTypes.GET_JWT_TOKEN:
             let loadingState = {...state,loading: true}
