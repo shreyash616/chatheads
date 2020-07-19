@@ -8,6 +8,7 @@ import {withStyles} from '@material-ui/core/styles'
 
 import PageContainer from '../../common/components/page-container/index'
 import TextInput from "../../common/components/text-input/index"
+import AlertBox from "../../common/components/alert-box";
 
 import { 
     PageWrapper,      
@@ -18,7 +19,6 @@ import {
     SignInButtonWrapper,
     Loader
 } from "./styles";
-import AlertBox from "../../common/components/alert-box";
 
 const mapStateToProps = store => {
   return {
@@ -40,68 +40,94 @@ const SignIn = (props) =>{
   const AppLoader = withStyles(loaderStyle)(Loader)
 
   //useState
-  const [alert, triggerAlert] = useState({
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [showLoader, setShowLoader] = useState(false)
+  const [alert, setAlert] = useState({
     showAlert: false,
-    data: ''
+    message: ''
   })
 
-  const [showLoader, setShowLoader] = useState(false)
-
   //useEffects
-  useEffect(()=> {
+  useEffect(()=>{
     console.log(props.signInData)
-    if(props.signInData.data){
-      if(props.signInData.error){
-        triggerAlert({
-          showAlert: true,
-          data: props.signInData.data.data?props.signInData.data.data:props.signInData.data
-        })
-      }
+    if(props.signInData.loading){
+      setShowLoader(true)
+    }
+    else{
+      setShowLoader(false)
     }
   },[props.signInData])
 
   useEffect(()=>{
-    setShowLoader(props.signInData.loading)
+    if(props.signInData.data){
+      if(props.signInData.error){
+        if(props.signInData.data.data){
+          setAlert({
+            showAlert:true,
+            message: props.signInData.data.data
+          })
+
+        }
+        else{
+          setAlert({
+            showAlert:true,
+            message: props.signInData.data
+          })
+        }
+      }
+    }
   },[props.signInData])
+
   
   //functionality
+  const handleUsername = (event) => {    
+    setUsername(event.target.value)
+  }
+  const handlePassword = (event) => {
+    setPassword(event.target.value)
+  }
   const handleSignIn = () => {
     let signInDetails = {
       jwtToken: 'bxc',
       data: {
-        userId: 'Ankit616',
-        password: '12345'
+        userId: username,
+        password
       }
     }
     props.initiateSignIn(signInDetails)
   }
 
+
   return (
-    <React.Fragment>
+    <React.Fragment>      
       <PageContainer {...props}>
         <PageWrapper {...props}>
           <AlertWithLoginWrapper>
-            {alert.showAlert?
-            <AlertBox theme={props.theme}>{alert.data}</AlertBox>:null}
-            {showLoader && <AppLoader color='primary' theme={props.theme}/>}
+            {alert.showAlert && <AlertBox>{alert.message}</AlertBox>}
+            {showLoader && <AppLoader theme={props.theme}/>} 
             <LoginWrapper {...props}>   
                 <UsernameWrapper>
                   <TextInput
                     {...props}
+                    value={username}
                     label={signInConstants.USERNAME}
-                    requiredField={true}                               
+                    requiredField={true}
+                    onChange={handleUsername}                                                 
                   />
                 </UsernameWrapper>
                 <PasswordWrapper>
                   <TextInput
-                    {...props}
+                    {...props}    
+                    value={password}                
                     label={signInConstants.PASSWORD}
                     requiredField={true}
-                    isPassword={true}                
+                    isPassword={true}
+                    onChange={handlePassword}                
                   /> 
                 </PasswordWrapper>            
               <SignInButtonWrapper
-                onClick={handleSignIn}
+                onClick= {handleSignIn}
                 {...props}
               >
                 {signInConstants.SIGN_IN}

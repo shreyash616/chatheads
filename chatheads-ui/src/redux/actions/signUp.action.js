@@ -1,6 +1,6 @@
 import actionType from './actionTypes'
 
-export const initiatesignUp = (signUpDetails) => {
+export const initiateSignUp = (signUpDetails) => {
     return {
         type: actionType.INITIATE_SIGN_UP,
         signUpDetails

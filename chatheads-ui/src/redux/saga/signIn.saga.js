@@ -5,6 +5,7 @@ import actionTypes from '../actions/actionTypes'
 
 function * handleSignIn(action){
     const signInResponseData = yield axios.post('http://localhost:3001/signIn',action.signInDetails).then(response => response.data).catch(error => error)    
+    console.log(signInResponseData)
     if(signInResponseData instanceof Error){
         if(signInResponseData.response){
             yield put(actions.signInActions.signInFailure(signInResponseData.response))
