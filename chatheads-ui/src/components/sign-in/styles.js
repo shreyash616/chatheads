@@ -23,30 +23,32 @@ export const AlertWithLoginWrapper = styled.div`
     }
 `
 export const LoginWrapper = styled.div`
-    width:100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin-left: auto;
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
     border-radius: ${styleVals.dimensions.spacing10};
-    min-height: 70vh;
+    min-height: 35vh;
+    margin-top: ${styleVals.dimensions.spacing0};
     box-shadow: ${styleVals.color.shadowColor};
-    @media ${styleVals.breakpoints.tablet},${styleVals.breakpoints.tabletPortrait},${styleVals.breakpoints.mobile}{        
-    width: 100%;
+    @media ${styleVals.breakpoints.tablet},${styleVals.breakpoints.tabletPortrait},${styleVals.breakpoints.mobile}{    
+        margin-top: ${styleVals.dimensions.spacing0};
+        width: 100%;
     }
 `
 export const UsernameWrapper = styled.div `
-    margin-top: ${styleVals.dimensions.spacing56};
+    margin-top: ${styleVals.dimensions.spacing12};
     margin-left: ${styleVals.dimensions.spacing12};
     margin-right: ${styleVals.dimensions.spacing12};
 `
 export const PasswordWrapper = styled.div `
-    margin-top: ${styleVals.dimensions.spacing48};
+    margin-top: ${styleVals.dimensions.spacing12};
     margin-left: ${styleVals.dimensions.spacing12};
     margin-right: ${styleVals.dimensions.spacing12};
 `
 export const SignInButtonWrapper = styled(Button)`
-    margin-top: ${styleVals.dimensions.spacing48};  
+    margin-top: ${styleVals.dimensions.spacing20};  
     width: auto;
     margin-left: ${styleVals.dimensions.spacing12};
     margin-right: ${styleVals.dimensions.spacing12};

@@ -12,6 +12,5 @@ export const StyledButton = styled.button`
     background-color: ${props => props.theme === 'dark'? styleVals.color.bestOrange : styleVals.color.ogBlue};
     &: hover {
         background-color: ${props => props.theme === 'dark'? styleVals.color.dullOrange : styleVals.color.dullBlue};
-    }
-    
+    } 
 `

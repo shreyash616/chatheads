@@ -1,6 +1,8 @@
 const validator = {}
 const userIdPattern = /^[A-z0-9]+$/
 const passwordPattern = /^[A-Z]{1}[A-z0-9]+$/
+const namePattern = /^[A-z]+$/
+const phoneNumberPattern = /^[0-9]{10}$/
 
 validator.generateToken = () => {
     return 'jbassbf3523kjbdfkjb214n'
@@ -41,4 +43,30 @@ validator.validatePassword = (password) => {
     }
 }
 
-module.exports = validator
+validator.validateName = (name) => {
+    if(namePattern.test(name)){
+        return true
+    }
+    else{
+        let error = new Error('The name entered is invalid. Please enter a valid name for signing up.')
+        error.status = 400
+        throw error
+    }
+}
+
+validator.validatePhoneNumber = (phoneNumber) => {
+    if(phonenumberPattern.test(phoneNumber)){
+        return true
+    }
+    else{
+        let error = new Error('The phone number entered is invalid. Please enter a valid phone number for signing up.')
+        error.status = 400
+        throw error
+    }
+}
+
+
+module.exports = {
+    validator,
+    jwtToken
+}

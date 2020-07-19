@@ -104,7 +104,7 @@ const SignIn = (props) =>{
       <PageContainer {...props}>
         <PageWrapper {...props}>
           <AlertWithLoginWrapper>
-            {alert.showAlert && <AlertBox>{alert.message}</AlertBox>}
+            {alert.showAlert && <AlertBox theme={props.theme}>{alert.message}</AlertBox>}
             {showLoader && <AppLoader theme={props.theme}/>} 
             <LoginWrapper {...props}>   
                 <UsernameWrapper>
