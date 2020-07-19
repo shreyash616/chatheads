@@ -3,7 +3,6 @@ import {Switch, Route, Redirect} from 'react-router-dom'
 import './App.css';
 import appConstants from './common/constants/appConstants'
 
-
 //common components
 import NavBar from './common/components/navigation-bar/index'
 import Footer from './common/components/page-footer'
@@ -13,7 +12,7 @@ import Home from './components/home/index'
 import SignIn from './components/sign-in/index'
 import SignUp from './components/sign-up/index'
 
-function App() {
+function App(props) {
 
   const [theme, setTheme] = useState('dark')
  
@@ -28,7 +27,9 @@ function App() {
   const commonProps = {
     theme,
     switchTheme,
-    title: appConstants.NAVBAR_BRAND
+    title: appConstants.NAVBAR_BRAND,
+    signIn: props.signIn,
+    initiateSignIn: props.initiateSignIn
   }
 
   return (
@@ -49,4 +50,4 @@ function App() {
   );
 }
 
-export default App;
+export default (App);

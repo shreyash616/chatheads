@@ -9,7 +9,8 @@ export const Label = styled.span`
     font-family: ${styleVals.fonts.wordFont};
     color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
     font-size: ${styleVals.dimensions.spacing16};
-    margin-bottom: ${styleVals.dimensions.spacing12};
+    margin-bottom: ${styleVals.dimensions.spacing6};
+    font-weight: bold;
 `
 export const Starred = styled.sup`
     color: red;

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import PageContainer from '../../common/components/page-container/index'
 import TextInput from "../../common/components/text-input/index"
 import signUpConstants from '../../common/constants/signUpConstants'

@@ -4,14 +4,17 @@ import actions from '../actions/index'
 import actionTypes from '../actions/actionTypes'
 
 function * handleSignIn(action){
-    console.log(action)
-    const signInResponseData = yield axios.post('http://localhost:3001/signIn',action.signInDetails).then(response => response.data).catch(error => error.response.data)
-    console.log(signInResponseData)
+    const signInResponseData = yield axios.post('http://localhost:3001/signIn',action.signInDetails).then(response => response.data).catch(error => error)    
     if(signInResponseData instanceof Error){
-        yield put(actions.signInActions.signInFailure())
+        if(signInResponseData.response){
+            yield put(actions.signInActions.signInFailure(signInResponseData.response))
+        }
+        else{
+            yield put(actions.signInActions.signInFailure(signInResponseData.message))
+        }
     }
     else{
-        yield put(actions.signInActions.signInSuccess())
+        yield put(actions.signInActions.signInSuccess(signInResponseData))
     }
 }
 

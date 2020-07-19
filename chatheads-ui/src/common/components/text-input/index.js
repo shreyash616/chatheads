@@ -12,7 +12,6 @@ import {
     PasswordInputWithToggleSwitch,
     PasswordWrapper    
 } from './styles'
-import { red } from '@material-ui/core/colors'
 
 const navbarMaterialStyle = {
     switchBase: {
