@@ -1,5 +1,6 @@
 import styleVals from '../../common/styleVals/global';
 import styled from 'styled-components';
+import LinearProgress from '@material-ui/core/LinearProgress'
  
 
 export const PageWrapper = styled.div`
@@ -53,4 +54,17 @@ export const Slogan = styled.span`
         margin-left: ${styleVals.dimensions.spacing30};
         margin-right: ${styleVals.dimensions.spacing30};
     }  
+`
+
+export const Loader = styled(LinearProgress)`
+    width: 100%;    
+    border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    box-shadow: ${styleVals.color.shadowColor};    
+    margin-bottom: ${styleVals.dimensions.spacing6};
+`
+
+export const AlertWrapper = styled.div`
+    width: 20%;
+    margin-top: ${styleVals.dimensions.spacing4};
+    margin-left: ${styleVals.dimensions.spacing40};
 `

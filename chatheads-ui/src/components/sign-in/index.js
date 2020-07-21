@@ -68,7 +68,11 @@ const SignIn = (props) =>{
             showAlert:true,
             message: props.signInData.data.data
           })
-
+          if(props.signInData.data.data === 'We couldn\'t find this username. Please sign up.'){
+            setTimeout(()=>{
+              redirectToSignUp()
+            },2000)
+          }
         }
         else{
           setAlert({
@@ -90,6 +94,9 @@ const SignIn = (props) =>{
 
   
   //functionality
+  const redirectToSignUp = () => {
+    window.location.href = 'http://localhost:3000/signUp'
+  }
   const handleUsername = (event) => {    
     setUsername(event.target.value)
   }

@@ -87,6 +87,11 @@ const SignUp = (props) =>{
             showAlert:true,
             message: props.signUpData.data.data.message
           })
+          if(props.signUpData.data.data.message === 'Sign up successful.'){
+            setTimeout(()=>{
+              window.location.href='http://localhost:3000/signIn'
+            },2000)
+          }
         }
       }
     }

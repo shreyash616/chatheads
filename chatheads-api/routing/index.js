@@ -10,7 +10,9 @@ router.post('/getJwtToken', (req,res,next) => {
             }, 
             status: 200
         }
-        res.send(response)
+        setTimeout(()=>{
+            res.send(response)
+        },2000)
     }).catch((err)=>{
         next(err)
     })
