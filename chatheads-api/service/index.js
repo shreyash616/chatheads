@@ -5,13 +5,16 @@ const validator = service.validator
 const jwtToken = service.jwtToken
 
 
-chatheadsService.getJwtToken = (authHeader) => {    
+chatheadsService.getJwtToken = (authHeader) => {  
+    console.log(authHeader)  
     return new Promise((resolve, reject)=> {
         if(authHeader === 'codered516'){
             return resolve(jwtToken)
         }
         else{
-            return reject(new Error('There was some problem with your session. Please refresh the page.'))
+            let invalidAuthHeader = new Error('There was some problem with your session. Please refresh the page.')
+            invalidAuthHeader.status = 400
+            return reject(invalidAuthHeader)
         }        
     })
 }

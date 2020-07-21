@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import {connect} from 'react-redux'
+import actions from '../../redux/actions/index'
 import PageContainer from '../../common/components/page-container/index'
 import homeConstants from '../../common/constants/homeConstants'
 import {
@@ -9,10 +11,26 @@ import {
     Slogan
 } from './styles'
 
+const mapStateToProps = store => {
+  return {
+    homeData: store.homeData
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getJwtToken: () => dispatch(actions.homeActions.getJwtToken())
+  }
+}
 
 const Home = (props) => {
+
+    useEffect(()=> {
+      props.getJwtToken()
+    },[])
+
     return(
-        <PageContainer {...props}>
+        <PageContainer {...props}>            
             <PageWrapper>
               <LogoWrapper>
                 <Logo theme = {props.theme}>{homeConstants.LOGO}</Logo>
@@ -26,4 +44,4 @@ const Home = (props) => {
     )
 }
 
-export default Home
+export default connect(mapStateToProps,mapDispatchToProps)(Home)

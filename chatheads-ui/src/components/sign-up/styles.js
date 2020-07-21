@@ -28,8 +28,7 @@ export const LoginWrapper = styled.div`
     flex-direction: column;
     margin-left: auto;
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
-    border-radius: ${styleVals.dimensions.spacing10};
-    min-height: 70vh;
+    border-radius: ${styleVals.dimensions.spacing10};    
     box-shadow: ${styleVals.color.shadowColor};
     @media ${styleVals.breakpoints.tablet},${styleVals.breakpoints.tabletPortrait},${styleVals.breakpoints.mobile}{        
     width: 100%;
@@ -60,6 +59,7 @@ export const SignUpButtonWrapper = styled(Button)`
     width: auto;
     margin-left: ${styleVals.dimensions.spacing12};
     margin-right: ${styleVals.dimensions.spacing12};
+    margin-bottom: ${styleVals.dimensions.spacing20};
 `
 export const Loader = styled(LinearProgress)`
     width: auto;    

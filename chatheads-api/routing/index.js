@@ -5,7 +5,9 @@ const chatheadsService = require('../service/index')
 router.post('/getJwtToken', (req,res,next) => {
     chatheadsService.getJwtToken(req.body.authHeader).then((resp)=>{
         let response = {
-            jwtToken: resp, 
+            data: {
+                jwtToken: resp
+            }, 
             status: 200
         }
         res.send(response)

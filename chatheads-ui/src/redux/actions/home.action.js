@@ -3,7 +3,9 @@ import actionTypes from './actionTypes'
 export const getJwtToken = () =>{
     return{
         type: actionTypes.GET_JWT_TOKEN,
-        authHeader: 'codered516'
+        authHeader: {
+            authHeader: 'codered516'
+        }
     }
 }
 

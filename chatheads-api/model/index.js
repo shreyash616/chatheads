@@ -1,16 +1,28 @@
 const connection = require('../utilities/connection')
+const e = require('express')
 const chatheadsModel = {}
 
 chatheadsModel.signUp = (signUpDetails) => {
     return connection.getUserModel().then((userDb)=>{
         signUpDetails.userType='Ordinary'
         signUpDetails.chats = []
-        return userDb.insertMany([signUpDetails]).then((confirmation)=>{
-            if(confirmation){
-                let confirmedDetails = {...signUpDetails}
-                return {
-                    data: confirmedDetails
-                }
+        return userDb.findOne({userId: signUpDetails.userId}).then((usernameFound)=>{
+            if(!usernameFound){
+                return userDb.insertMany([signUpDetails]).then((confirmation)=>{
+                    if(confirmation){
+                        let confirmedDetails = {...signUpDetails}
+                        return {
+                            data: {
+                                message: 'Sign up successful.'
+                            }
+                        }
+                    }
+                })
+            }
+            else{
+                let userIdAlreadyFoundError = new Error('You\'ve already signed up. Please sign in.')
+                userIdAlreadyFoundError.status = 400
+                throw userIdAlreadyFoundError
             }
         })
     }).catch((error)=>{
@@ -38,7 +50,7 @@ chatheadsModel.signIn = (signInDetailsData) => {
                 })
             }
             else{
-                let userIdNotFoundError = new Error('We couldn\'t find this userId. Please sign up.')
+                let userIdNotFoundError = new Error('We couldn\'t find this username. Please sign up.')
                 userIdNotFoundError.status = 404
                 throw userIdNotFoundError
             }

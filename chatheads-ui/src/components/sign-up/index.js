@@ -24,7 +24,8 @@ import {
 
 const mapStateToProps = store => {
   return {
-    signUpData: store.signUp
+    signUpData: store.signUp,
+    homeData: store.homeData
   }
 }
 
@@ -65,7 +66,7 @@ const SignUp = (props) =>{
 
   useEffect(()=>{
     if(props.signUpData.data){
-      if(props.signUpData.error){
+      if(props.signUpData.status === 'failure'){
         if(props.signUpData.data.data){
           setAlert({
             showAlert:true,
@@ -77,6 +78,14 @@ const SignUp = (props) =>{
           setAlert({
             showAlert:true,
             message: props.signUpData.data
+          })
+        }
+      }
+      else{
+        if(props.signUpData.data.data.message){
+          setAlert({
+            showAlert:true,
+            message: props.signUpData.data.data.message
           })
         }
       }
@@ -99,10 +108,12 @@ const SignUp = (props) =>{
   }
   const handleSignUp = () => {
     let signUpDetails = {
-      jwtToken: 'bxc',
+      jwtToken: props.homeData.data ? props.homeData.data.data.jwtToken: null ,
       data: {
         userId: username,
-        password
+        password,
+        phoneNumber,
+        name
       }
     }
     props.initiateSignUp(signUpDetails)
@@ -110,7 +121,8 @@ const SignUp = (props) =>{
 
 
   return (
-    <React.Fragment>      
+    <React.Fragment>
+      {console.log(props)}      
       <PageContainer {...props}>
         <PageWrapper {...props}>
           <AlertWithLoginWrapper>

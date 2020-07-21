@@ -8,7 +8,8 @@ const sagaMiddleware = createSagaMiddleware()
 const rootReducer = combineReducers(
     {
         signIn: reducers.signInReducer,
-        signUp: reducers.signUpReducer
+        signUp: reducers.signUpReducer,
+        homeData: reducers.homeReducer
     }
 )
 

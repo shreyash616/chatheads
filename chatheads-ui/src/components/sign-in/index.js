@@ -22,7 +22,8 @@ import {
 
 const mapStateToProps = store => {
   return {
-    signInData: store.signIn
+    signInData: store.signIn,
+    homeData: store.homeData
   }
 }
 
@@ -50,7 +51,6 @@ const SignIn = (props) =>{
 
   //useEffects
   useEffect(()=>{
-    console.log(props.signInData)
     if(props.signInData.loading){
       setShowLoader(true)
     }
@@ -61,7 +61,8 @@ const SignIn = (props) =>{
 
   useEffect(()=>{
     if(props.signInData.data){
-      if(props.signInData.error){
+      console.log(props.signInData)
+      if(props.signInData.status === 'failure'){
         if(props.signInData.data.data){
           setAlert({
             showAlert:true,
@@ -73,6 +74,14 @@ const SignIn = (props) =>{
           setAlert({
             showAlert:true,
             message: props.signInData.data
+          })
+        }
+      }
+      else{
+        if(props.signInData.data.data.message){
+          setAlert({
+            showAlert:true,
+            message: props.signInData.data.data.message
           })
         }
       }
@@ -89,7 +98,7 @@ const SignIn = (props) =>{
   }
   const handleSignIn = () => {
     let signInDetails = {
-      jwtToken: 'bxc',
+      jwtToken: props.homeData.data ? props.homeData.data.data.jwtToken: null ,
       data: {
         userId: username,
         password
@@ -100,7 +109,8 @@ const SignIn = (props) =>{
 
 
   return (
-    <React.Fragment>      
+    <React.Fragment>
+      {console.log(alert.message)}      
       <PageContainer {...props}>
         <PageWrapper {...props}>
           <AlertWithLoginWrapper>

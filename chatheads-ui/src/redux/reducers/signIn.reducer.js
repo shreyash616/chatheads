@@ -7,7 +7,7 @@ const INITIAL_STATE = {
     loading: false
 }
 
-export const signInReducer = (state = INITIAL_STATE, action) => {
+export const signInReducer = (state = INITIAL_STATE, action) => {    
     switch(action.type){
         case actionTypes.INITIATE_SIGN_IN:
             let loadingState = {...state, loading: true}

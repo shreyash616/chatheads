@@ -55,7 +55,7 @@ validator.validateName = (name) => {
 }
 
 validator.validatePhoneNumber = (phoneNumber) => {
-    if(phonenumberPattern.test(phoneNumber)){
+    if(phoneNumberPattern.test(phoneNumber)){
         return true
     }
     else{
