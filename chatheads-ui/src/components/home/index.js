@@ -25,22 +25,24 @@ const mapDispatchToProps = dispatch => {
 
 const Home = (props) => {
 
-    useEffect(()=> {
+    useEffect(()=>{
       props.getJwtToken()
     },[])
 
     return(
+      <React.Fragment>
         <PageContainer {...props}>            
-            <PageWrapper>
-              <LogoWrapper>
-                <Logo theme = {props.theme}>{homeConstants.LOGO}</Logo>
-                <Slogan theme = {props.theme}>{homeConstants.SLOGAN_PART1}</Slogan>
-                <Slogan theme = {props.theme}>{homeConstants.SLOGAN_PART2}</Slogan>
-              </LogoWrapper>
-              <ImageWrapper>
-              </ImageWrapper>
-            </PageWrapper>
+          <PageWrapper>
+            <LogoWrapper>
+              <Logo theme = {props.theme}>{homeConstants.LOGO}</Logo>
+              <Slogan theme = {props.theme}>{homeConstants.SLOGAN_PART1}</Slogan>
+              <Slogan theme = {props.theme}>{homeConstants.SLOGAN_PART2}</Slogan>
+            </LogoWrapper>
+            <ImageWrapper>
+            </ImageWrapper>
+          </PageWrapper>
         </PageContainer>
+      </React.Fragment>
     )
 }
 
