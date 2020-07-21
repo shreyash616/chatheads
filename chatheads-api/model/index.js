@@ -9,8 +9,7 @@ chatheadsModel.signUp = (signUpDetails) => {
         return userDb.findOne({userId: signUpDetails.userId}).then((usernameFound)=>{
             if(!usernameFound){
                 return userDb.insertMany([signUpDetails]).then((confirmation)=>{
-                    if(confirmation){
-                        let confirmedDetails = {...signUpDetails}
+                    if(confirmation){                        
                         return {
                             data: {
                                 message: 'Sign up successful.'
