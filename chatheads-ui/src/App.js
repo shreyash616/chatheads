@@ -13,6 +13,7 @@ import Footer from './common/components/page-footer'
 import Home from './components/home/index'
 import SignIn from './components/sign-in/index'
 import SignUp from './components/sign-up/index'
+import Chats from './components/chats'
 
 const Divider = styled.div`    
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
@@ -57,6 +58,7 @@ function App(props) {
           <Route key='home' path='/home' render={()=><Home {...commonProps}/>}/>
           <Route key='signUp' path='/signUp' render={()=><SignUp {...commonProps}/>}/>
           <Route key='signIn' path='/signIn' render={()=><SignIn {...commonProps}/>}/>
+          <Route key='chats' path='/chats' render={()=><Chats {...commonProps}/>}/>
           <Redirect from='/' to='/home'/>          
         </Switch>      
         <Footer        

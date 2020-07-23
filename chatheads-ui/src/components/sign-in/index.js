@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {connect} from 'react-redux'
+import { Redirect } from "react-router-dom";
 
 import signInConstants from '../../common/constants/signInConstants'
 import actions from '../../redux/actions/index'
@@ -19,6 +20,7 @@ import {
     SignInButtonWrapper,
     Loader
 } from "./styles";
+
 
 const mapStateToProps = store => {
   return {
@@ -48,6 +50,7 @@ const SignIn = (props) =>{
     showAlert: false,
     message: ''
   })
+  const [redirect, setRedirect] = useState(false)
 
   //useEffects
   useEffect(()=>{
@@ -84,9 +87,10 @@ const SignIn = (props) =>{
       else{
         if(props.signInData.data.data.message){
           setAlert({
-            showAlert:true,
-            message: props.signInData.data.data.message
+            showAlert:false,
+            message: ''
           })
+          setRedirect(true)                    
         }
       }
     }
@@ -117,6 +121,7 @@ const SignIn = (props) =>{
 
   return (
     <React.Fragment>
+      {!redirect?<React.Fragment>
       {console.log(alert.message)}      
       <PageContainer {...props}>
         <PageWrapper {...props}>
@@ -153,6 +158,8 @@ const SignIn = (props) =>{
           </AlertWithLoginWrapper>
         </PageWrapper>
       </PageContainer>
+    </React.Fragment>
+    : <Redirect to='/chats'/>}
     </React.Fragment>
   )
 }
