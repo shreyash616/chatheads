@@ -38,7 +38,8 @@ chatheadsModel.signIn = (signInDetailsData) => {
                     if(passwordFound){
                         return {
                             data: {
-                                message: 'Sign in successful.'
+                                message: 'Sign in successful.',
+                                userData: passwordFound
                             }                                                      
                         }
                     }else{

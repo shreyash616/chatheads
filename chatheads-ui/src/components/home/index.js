@@ -16,7 +16,8 @@ import {
 
 const mapStateToProps = store => {
   return {
-    homeData: store.homeData
+    homeData: store.homeData,
+    signInData: store.signIn
   }
 }
 

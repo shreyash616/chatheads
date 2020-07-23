@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import chatConstants from '../../common/constants/chatConstants'
-import {withStyles} from '@material-ui/core/styles'
 import PageContainer from '../../common/components/page-container/index'
 
 import {
@@ -12,33 +12,33 @@ import {
     ChatWrapper
 } from './styles'
 
-const Chat = (props) => {
+const mapStateToProps = store => ({
+  signInData: store.signIn   
+})
+
+const Chats = (props) => {  
+  
     return(
         <React.Fragment>
-          <PageContainer {...props}>            
-            <PageWrapper >
-              <DetailsWrapper >
-                <h1>Details</h1>
-              </DetailsWrapper>
-              <ConversationWrapper >
-                <ChatheadWrapper >
-                  <h1>Chatheads</h1>
-                  <h3>Sona</h3>
-                  <h3>Ankit</h3>
-                  <h3>Nalu</h3>
-                  <h3>Srinu</h3>
-                  <h3>Ankit Whatsapp</h3>
-                </ChatheadWrapper>
-                <ChatWrapper >
-                  <h1>Chats</h1>
-                  <h3>Sona</h3>
-                  <h3>Ankit</h3>
-                </ChatWrapper>
-              </ConversationWrapper>
-            </PageWrapper>
-          </PageContainer>
+          {props.signInData.data
+            ?props.signInData.data.data.userData             
+            ?<React.Fragment>
+              <PageContainer {...props}>            
+                <PageWrapper {...props}>
+                  <DetailsWrapper {...props}>                                
+                  </DetailsWrapper>
+                  <ConversationWrapper {...props}>
+                    <ChatheadWrapper {...props}>                  
+                    </ChatheadWrapper>
+                    <ChatWrapper {...props}>
+                    </ChatWrapper>
+                  </ConversationWrapper>
+                </PageWrapper>
+              </PageContainer>
+            </React.Fragment>
+            :<Redirect to='/home'/>:<Redirect to='/home'/>}
         </React.Fragment>
       )
   }
   
-export default Chat
+export default connect(mapStateToProps,null)(Chats)

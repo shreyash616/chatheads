@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
 import './App.css';
 import appConstants from './common/constants/appConstants'
 import styled from 'styled-components'
@@ -26,6 +27,13 @@ const Container = styled.div`
     background-color: ${props=>props.theme==='dark'?styleVals.color.dark:styleVals.color.light};      
     min-height: 80vh;
 `
+// //
+// const f1 = state => {
+//   return state[0]
+// }
+
+// const f1 = state => state[0]
+
 
 function App(props) {
 
@@ -42,10 +50,9 @@ function App(props) {
   const commonProps = {
     theme,
     switchTheme,
-    title: appConstants.NAVBAR_BRAND,
-    signIn: props.signIn,
-    initiateSignIn: props.initiateSignIn
+    title: appConstants.NAVBAR_BRAND,        
   }
+
 
   return (
     <React.Fragment>
