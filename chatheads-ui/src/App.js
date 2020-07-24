@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Switch, Route, Redirect} from 'react-router-dom'
+import React, {useState, useEffect} from 'react';
+import {Switch, Route, Redirect, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import './App.css';
 import appConstants from './common/constants/appConstants'
@@ -34,10 +34,23 @@ const Container = styled.div`
 
 // const f1 = state => state[0]
 
+const mapStateToProps = store => ({
+  homeData: store.homeData
+})
+
 
 function App(props) {
-
+  
   const [theme, setTheme] = useState('dark')
+  const [signInRoute, setSignInRoute] = useState(false)
+  const [signUpRoute, setSignUpRoute] = useState(false)
+
+  useEffect(()=>{
+    if(props.homeData.status === 'success'){
+      setSignInRoute(true)
+      setSignUpRoute(true)
+    }
+  })
  
   const switchTheme = () => {
     if (theme === 'light'){
@@ -50,7 +63,9 @@ function App(props) {
   const commonProps = {
     theme,
     switchTheme,
-    title: appConstants.NAVBAR_BRAND,        
+    title: appConstants.NAVBAR_BRAND,
+    signInRoute,
+    signUpRoute       
   }
 
 
@@ -63,8 +78,8 @@ function App(props) {
       <Container {...commonProps}>
         <Switch>
           <Route key='home' path='/home' render={()=><Home {...commonProps}/>}/>
-          <Route key='signUp' path='/signUp' render={()=><SignUp {...commonProps}/>}/>
-          <Route key='signIn' path='/signIn' render={()=><SignIn {...commonProps}/>}/>
+          {signUpRoute && <Route key='signUp' path='/signUp' render={()=><SignUp {...commonProps}/>}/>}
+          {signInRoute && <Route key='signIn' path='/signIn' render={()=><SignIn {...commonProps}/>}/>}
           <Route key='chats' path='/chats' render={()=><Chats {...commonProps}/>}/>
           <Redirect from='/' to='/home'/>          
         </Switch>      
@@ -76,4 +91,4 @@ function App(props) {
   );
 }
 
-export default (App);
+export default connect(mapStateToProps,null)(withRouter(App));

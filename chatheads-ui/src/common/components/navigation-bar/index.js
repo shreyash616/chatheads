@@ -9,7 +9,8 @@ import {
     ActionButtons,
     Divider,
     ThemeName,
-    ActionButtonsWrapper
+    ActionButtonsWrapper,
+    SwitchWrapper
 } from './styles'
 import styleVals from '../../styleVals/global'
 import {withStyles} from '@material-ui/core/styles'
@@ -41,18 +42,18 @@ const AppNavbar = (props) => {
   }
     return (        
     <StyledNavbar {...props}>            
-    <NavbarBrand onClick={goToHome} {...props}>{props.title}</NavbarBrand>
+    <NavbarBrand onClick={goToHome}  {...props}>{props.title}</NavbarBrand>
     <ActionButtons>
       <ActionButtonsWrapper>
         <Link to='/signIn'>
-          <Button {...props}>
+          <Button disabled={!props.signInRoute} {...props}>
             {appConstants.SIGN_IN}                  
           </Button>
         </Link>
       </ActionButtonsWrapper>
       <ActionButtonsWrapper>
         <Link to='/signUp'>
-          <Button {...props}>
+          <Button disabled={!props.signUpRoute} {...props}>
             {appConstants.SIGN_UP}                                   
           </Button>
         </Link>
@@ -61,16 +62,18 @@ const AppNavbar = (props) => {
     <Divider {...props}>
       |
     </Divider>
+    <SwitchWrapper>
     <FormGroup>
-    <FormControlLabel
-        control={
-          <ThemeSwitch />
-        }
-        checked={props.theme === 'dark'}
-        label={<ThemeName {...props}>{props.theme}</ThemeName>}
-        onChange = {props.switchTheme}
-      />
-    </FormGroup>
+      <FormControlLabel
+          control={
+            <ThemeSwitch size='small' />
+          }
+          checked={props.theme === 'dark'}
+          label={<ThemeName {...props}>{props.theme}</ThemeName>}
+          onChange = {props.switchTheme}
+        />
+      </FormGroup>
+    </SwitchWrapper>
     </StyledNavbar>        
     )
 }

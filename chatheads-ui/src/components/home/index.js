@@ -43,7 +43,10 @@ const Home = (props) => {
     })
 
     useEffect(()=>{
-      props.getJwtToken()
+      console.log(props.history)
+      if(props.homeData.status === 'failure' || props.homeData.status === '' ){
+        props.getJwtToken()
+      }
     },[])
 
     useEffect(() => {

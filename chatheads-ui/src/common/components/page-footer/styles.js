@@ -6,5 +6,5 @@ export const StyledFooter = styled.div`
 `
 
 export const FooterContent = styled.div`    
-    padding: ${styleVals.dimensions.spacing40};
+    padding: ${styleVals.dimensions.spacing30};
 `
