@@ -65,7 +65,8 @@ function App(props) {
     switchTheme,
     title: appConstants.NAVBAR_BRAND,
     signInRoute,
-    signUpRoute       
+    signUpRoute,
+    history: props.history       
   }
 
 

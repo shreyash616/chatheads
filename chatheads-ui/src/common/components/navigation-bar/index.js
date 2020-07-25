@@ -38,7 +38,7 @@ const ThemeSwitch = withStyles(navbarMaterialStyle)(Switch)
 const AppNavbar = (props) => {
 
   const goToHome = () => {
-    window.location.href = 'http://localhost:3000/home'
+    props.history.push('/home')
   }
     return (        
     <StyledNavbar {...props}>            
