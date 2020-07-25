@@ -65,6 +65,6 @@ export const Loader = styled(LinearProgress)`
 
 export const AlertWrapper = styled.div`
     width: 20%;
-    margin-top: ${styleVals.dimensions.spacing4};
+    margin-top: ${styleVals.dimensions.spacing12};
     margin-left: ${styleVals.dimensions.spacing40};
 `

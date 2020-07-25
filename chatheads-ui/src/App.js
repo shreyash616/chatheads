@@ -50,7 +50,7 @@ function App(props) {
       setSignInRoute(true)
       setSignUpRoute(true)
     }
-  })
+  },[])
  
   const switchTheme = () => {
     if (theme === 'light'){
