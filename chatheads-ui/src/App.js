@@ -46,11 +46,12 @@ function App(props) {
   const [signUpRoute, setSignUpRoute] = useState(false)
 
   useEffect(()=>{
+    console.log(props.homeData)
     if(props.homeData.status === 'success'){
       setSignInRoute(true)
       setSignUpRoute(true)
     }
-  },[])
+  },[props.homeData])
  
   const switchTheme = () => {
     if (theme === 'light'){
@@ -71,8 +72,8 @@ function App(props) {
 
 
   return (
-    <React.Fragment>
-      <NavBar 
+    <React.Fragment>      
+      <NavBar
         {...commonProps}
       />
       <Divider {...commonProps}/>
