@@ -48,6 +48,7 @@ export const Divider = styled.span`
 `
 export const ThemeName = styled.span`
     font-family: ${styleVals.fonts.wordFont};
+    margin-left: ${styleVals.dimensions.spacing4};
     font-weight: bold;
     color: ${props => props.theme === 'dark'
     ?styleVals.color.bestOrange
@@ -58,4 +59,8 @@ export const ActionButtonsWrapper = styled.div`
     margin-left: ${styleVals.dimensions.spacing8};
     margin-right: ${styleVals.dimensions.spacing8};
     margin-top: ${styleVals.dimensions.spacing2};
+`
+
+export const SwitchWrapper = styled.div`
+    margin-top: ${styleVals.dimensions.spacing6};
 `

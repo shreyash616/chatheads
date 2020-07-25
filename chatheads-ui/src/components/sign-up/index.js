@@ -89,7 +89,7 @@ const SignUp = (props) =>{
           })
           if(props.signUpData.data.data.message === 'Sign up successful.'){
             setTimeout(()=>{
-              window.location.href='http://localhost:3000/signIn'
+              props.history.push('/signIn')
             },2000)
           }
         }

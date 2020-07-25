@@ -42,8 +42,10 @@ const Home = (props) => {
       message: ''
     })
 
-    useEffect(()=>{
-      props.getJwtToken()
+    useEffect(()=>{      
+      if(props.homeData.status === 'failure' || props.homeData.status === '' ){
+        props.getJwtToken()
+      }
     },[])
 
     useEffect(() => {
@@ -72,8 +74,7 @@ const Home = (props) => {
 
     return(
       <React.Fragment>
-        {showLoader && <Loader {...props}/>}
-        <br/>
+        {showLoader && <Loader {...props}/>}        
         <AlertWrapper>{error.isAlert && <AlertBox theme={props.theme}>{error.message}</AlertBox>}</AlertWrapper>
         <PageContainer {...props}>            
           <PageWrapper>

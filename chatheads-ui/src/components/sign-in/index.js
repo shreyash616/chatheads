@@ -98,7 +98,11 @@ const SignIn = (props) =>{
   
   //functionality
   const redirectToSignUp = () => {
-    window.location.href = 'http://localhost:3000/signUp'
+    setTimeout(()=>{
+      if(window.confirm('Do you want to sign up?')){
+        props.history.push('/signUp')
+      }
+    },2000)
   }
   const handleUsername = (event) => {    
     setUsername(event.target.value)
@@ -120,45 +124,45 @@ const SignIn = (props) =>{
 
   return (
     <React.Fragment>
-      {!redirect?<React.Fragment>
-      {console.log(alert.message)}      
-      <PageContainer {...props}>
-        <PageWrapper {...props}>
-          <AlertWithLoginWrapper>
-            {alert.showAlert && <AlertBox theme={props.theme}>{alert.message}</AlertBox>}
-            {showLoader && <AppLoader theme={props.theme}/>} 
-            <LoginWrapper {...props}>   
-                <UsernameWrapper>
-                  <TextInput
-                    {...props}
-                    value={username}
-                    label={signInConstants.USERNAME}
-                    requiredField={true}
-                    onChange={handleUsername}                                                 
-                  />
-                </UsernameWrapper>
-                <PasswordWrapper>
-                  <TextInput
-                    {...props}    
-                    value={password}                
-                    label={signInConstants.PASSWORD}
-                    requiredField={true}
-                    isPassword={true}
-                    onChange={handlePassword}                
-                  /> 
-                </PasswordWrapper>            
-              <SignInButtonWrapper
-                onClick= {handleSignIn}
-                {...props}
-              >
-                {signInConstants.SIGN_IN}
-              </SignInButtonWrapper>              
-            </LoginWrapper>
-          </AlertWithLoginWrapper>
-        </PageWrapper>
-      </PageContainer>
-    </React.Fragment>
-    : <Redirect to='/chats'/>}
+      {!redirect
+      ?<React.Fragment>                  
+        <PageContainer {...props}>
+          <PageWrapper {...props}>
+            <AlertWithLoginWrapper>
+              {alert.showAlert && <AlertBox theme={props.theme}>{alert.message}</AlertBox>}
+              {showLoader && <AppLoader theme={props.theme}/>} 
+              <LoginWrapper {...props}>   
+                  <UsernameWrapper>
+                    <TextInput
+                      {...props}
+                      value={username}
+                      label={signInConstants.USERNAME}
+                      requiredField={true}
+                      onChange={handleUsername}                                                 
+                    />
+                  </UsernameWrapper>
+                  <PasswordWrapper>
+                    <TextInput
+                      {...props}    
+                      value={password}                
+                      label={signInConstants.PASSWORD}
+                      requiredField={true}
+                      isPassword={true}
+                      onChange={handlePassword}                
+                    /> 
+                  </PasswordWrapper>            
+                <SignInButtonWrapper
+                  onClick= {handleSignIn}
+                  {...props}
+                >
+                  {signInConstants.SIGN_IN}
+                </SignInButtonWrapper>              
+              </LoginWrapper>
+            </AlertWithLoginWrapper>
+          </PageWrapper>
+        </PageContainer>
+      </React.Fragment>
+     : <Redirect to='/chats'/>}
     </React.Fragment>
   )
 }

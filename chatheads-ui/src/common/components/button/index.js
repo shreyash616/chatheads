@@ -16,13 +16,15 @@ const Button = (props) => {
 Button.defaultProps = {
     type: 'primary',
     theme: 'dark',
-    onClick: null
+    onClick: null,
+    disabled: false
 }
 
 Button.propTypes = {
     type: PropTypes.string,
     theme: PropTypes.string,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    disabled: PropTypes.bool
 }
 
 export default Button
