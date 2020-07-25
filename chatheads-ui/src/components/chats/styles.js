@@ -33,5 +33,21 @@ export const ChatWrapper = styled.div`
     width:80%;
     display: flex;
     flex-direction: column; 
-
+`
+export const ChatsTitle = styled.span`
+    margin-left: auto;
+    margin-top: ${styleVals.dimensions.spacing16};
+    font-size: ${styleVals.dimensions.spacing20};
+    font-family: ${styleVals.fonts.wordFont};        
+    color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};    
+  
+`
+export const Profile = styled.span`
+    margin-left: auto;
+    margin-right: ${styleVals.dimensions.spacing20};
+    margin-top: ${styleVals.dimensions.spacing16};
+    font-size: ${styleVals.dimensions.spacing30};
+    font-family: ${styleVals.fonts.wordFont};        
+    color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};    
+  
 `

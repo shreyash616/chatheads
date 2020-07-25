@@ -9,7 +9,9 @@ import {
     DetailsWrapper,
     ConversationWrapper,
     ChatheadWrapper,
-    ChatWrapper
+    ChatWrapper,
+    ChatsTitle,
+    Profile
 } from './styles'
 
 const mapStateToProps = store => ({
@@ -25,7 +27,9 @@ const Chats = (props) => {
             ?<React.Fragment>
               <PageContainer {...props}>            
                 <PageWrapper {...props}>
-                  <DetailsWrapper {...props}>                                
+                  <DetailsWrapper {...props}>
+                  <ChatsTitle theme = {props.theme}>{chatConstants.CHATS_TITLE}</ChatsTitle> 
+                  <Profile theme = {props.theme}>{chatConstants.PROFILE}</Profile>                             
                   </DetailsWrapper>
                   <ConversationWrapper {...props}>
                     <ChatheadWrapper {...props}>                  
