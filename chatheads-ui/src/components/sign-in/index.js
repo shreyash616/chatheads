@@ -63,6 +63,15 @@ const SignIn = (props) =>{
   },[props.signInData])
 
   useEffect(()=>{
+    
+    const redirectToSignUp = () => {
+      setTimeout(()=>{
+        if(window.confirm('Do you want to sign up?')){
+          props.history.push('/signUp')
+        }
+      },2000)
+    }
+
     if(props.signInData.data){      
       if(props.signInData.status === 'failure'){
         if(props.signInData.data.data){
@@ -95,15 +104,6 @@ const SignIn = (props) =>{
     }
   },[props.signInData])
 
-  
-  //functionality
-  const redirectToSignUp = () => {
-    setTimeout(()=>{
-      if(window.confirm('Do you want to sign up?')){
-        props.history.push('/signUp')
-      }
-    },2000)
-  }
   const handleUsername = (event) => {    
     setUsername(event.target.value)
   }

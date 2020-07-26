@@ -95,7 +95,7 @@ const SignUp = (props) =>{
         }
       }
     }
-  },[props.signUpData])
+  },[props.signUpData,props.history])
 
   
   //functionality

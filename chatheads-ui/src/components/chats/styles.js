@@ -1,5 +1,6 @@
 import styleVals from '../../common/styleVals/global';
 import styled from 'styled-components';
+import LinearProgress from '@material-ui/core/LinearProgress'
 
 export const PageWrapper = styled.div`
     display:flex;
@@ -29,7 +30,7 @@ export const ChatheadWrapper = styled.div`
     display: flex;
     flex-direction: column; 
     height: 100%;
-    overflow: scroll;
+    overflow: auto;
     border-right: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};   
 `
 
@@ -46,13 +47,16 @@ export const ProfileTitle = styled.span`
     outline: none;
     padding: ${styleVals.dimensions.spacing2}; 
     font-size: ${styleVals.dimensions.spacing20};
-    font-family: ${styleVals.fonts.wordFont};        
+    font-family: ${styleVals.fonts.wordFont};            
     color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};    
     ${props => props.isClicked
     ? ({
         borderBottom: `2px solid ${props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue}`
     })
     :null
+    }
+    &:hover{
+        cursor: pointer;
     }
 `
 export const ChatsTitle = styled.span`
@@ -71,6 +75,9 @@ export const ChatsTitle = styled.span`
     })
     :null
     }    
+    &:hover{
+        cursor: pointer;
+    }
 `
 export const ProfileWrapper = styled.div`
     width: 60%;
@@ -95,7 +102,6 @@ export const ChatheadsName = styled.span`
     margin-top: ${styleVals.dimensions.spacing10};
     color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
     font-family: ${styleVals.fonts.wordFont};
-
 `
 
 export const ChatWindow = styled.div`
@@ -117,4 +123,19 @@ export const NoChatSelectedMessage = styled.h1`
     margin-bottom: auto;
     color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
     font-family: ${styleVals.fonts.wordFont};
+`
+export const NoChatheadsMessage = styled.h2`
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    font-family: ${styleVals.fonts.wordFont};
+`
+export const Loader = styled(LinearProgress)`
+    width: auto;    
+    border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    box-shadow: ${styleVals.color.shadowColor};
+    border-radius: ${styleVals.dimensions.spacing6};
+    margin-bottom: ${styleVals.dimensions.spacing6};
 `

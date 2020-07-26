@@ -10,9 +10,7 @@ router.post('/getJwtToken', (req,res,next) => {
             }, 
             status: 200
         }
-        setTimeout(()=>{
-            res.send(response)
-        },2000)
+        res.send(response)
     }).catch((err)=>{
         next(err)
     })
@@ -20,7 +18,9 @@ router.post('/getJwtToken', (req,res,next) => {
 
 router.post('/signUp',(req,res,next)=>{      
     chatheadsService.signUp(req.body).then((response)=>{
-        res.send({...response, status: 200})
+        setTimeout(()=>{
+            res.send({...response, status: 200})
+        },2000)
     }).catch((err)=>{        
         next(err)
     })

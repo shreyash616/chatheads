@@ -1,7 +1,7 @@
 const validator = {}
 const userIdPattern = /^[A-z0-9]+$/
-const passwordPattern = /^[A-Z]{1}[A-z0-9]+$/
-const namePattern = /^[A-z]+$/
+const passwordPattern = /^[A-z0-9]+$/
+const namePattern = /^[A-z\s]+$/
 const phoneNumberPattern = /^[0-9]{10}$/
 
 validator.generateToken = () => {
