@@ -63,8 +63,7 @@ const SignIn = (props) =>{
   },[props.signInData])
 
   useEffect(()=>{
-    if(props.signInData.data){
-      console.log(props.signInData)
+    if(props.signInData.data){      
       if(props.signInData.status === 'failure'){
         if(props.signInData.data.data){
           setAlert({

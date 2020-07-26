@@ -1,7 +1,13 @@
 import actionTypes from '../actions/actionTypes'
 
 const INITIAL_STATE = {
-    data: null,
+    data: {
+        data: {
+            userData: {
+            
+            }
+        }
+    },
     status: '',
     error: false,
     loading: false
