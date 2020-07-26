@@ -9,7 +9,8 @@ const rootReducer = combineReducers(
     {
         signIn: reducers.signInReducer,
         signUp: reducers.signUpReducer,
-        homeData: reducers.homeReducer
+        homeData: reducers.homeReducer,
+        searchChatheadsData: reducers.searchChatheadsReducer
     }
 )
 
