@@ -59,6 +59,30 @@ export const ProfileTitle = styled.span`
         cursor: pointer;
     }
 `
+export const ProfileName = styled.h1`
+    margin-top: ${styleVals.dimensions.spacing36};
+    margin-right: auto;
+    margin-left: ${styleVals.dimensions.spacing24};   
+    color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    font-size: ${styleVals.dimensions.spacing60};
+    font-family: ${styleVals.fonts.wordFont};      
+`
+export const UsernameLabel = styled.p`    
+    margin-right: auto;
+    margin-left: ${styleVals.dimensions.spacing24};   
+    color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    font-size: ${styleVals.dimensions.spacing18};
+    font-family: ${styleVals.fonts.wordFont}; 
+`
+export const Username = styled.p`    
+    margin-right: auto;
+    font-weight: bold;
+    margin-left: ${styleVals.dimensions.spacing24};   
+    font-size: ${styleVals.dimensions.spacing24};
+    color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};    
+    font-family: ${styleVals.fonts.wordFont}; 
+`
+
 export const ChatsTitle = styled.span`
     margin-left: ${styleVals.dimensions.spacing20};
     margin-top: auto;

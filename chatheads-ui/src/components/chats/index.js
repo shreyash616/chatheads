@@ -23,7 +23,10 @@ import {
     InputWrapper,
     NoChatSelectedMessage,
     Loader,
-    NoChatheadsMessage
+    NoChatheadsMessage,
+    ProfileName,
+    UsernameLabel,
+    Username
 } from './styles'
 
 
@@ -127,6 +130,16 @@ const Chats = (props) => {
         }
     }
 
+    const getProfile = () => {
+      return (
+        <React.Fragment>
+          <ProfileName theme={props.theme}>{userDetails.name}</ProfileName>
+          <UsernameLabel theme={props.theme}>{chatConstants.USERNAME_LABEL}</UsernameLabel>
+          <Username theme={props.theme}>{userDetails.userId}</Username>
+        </React.Fragment>
+      )
+    }
+
     return(
         <React.Fragment>
           {props.signInData.data
@@ -191,6 +204,7 @@ const Chats = (props) => {
                   </ConversationWrapper>
                  :<ConversationWrapper {...props}>
                     <ProfileWrapper {...props}>
+                      {getProfile()}
                     </ProfileWrapper>
                   </ConversationWrapper>}                  
                 </PageWrapper>
