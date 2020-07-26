@@ -35,27 +35,27 @@ export const LoginWrapper = styled.div`
     }
 `
 export const UsernameWrapper = styled.div `
-    margin-top: ${styleVals.dimensions.spacing30};
+    margin-top: ${styleVals.dimensions.spacing12};
     margin-left: ${styleVals.dimensions.spacing12};
     margin-right: ${styleVals.dimensions.spacing12};
 `
 export const NameWrapper = styled.div `
-    margin-top: ${styleVals.dimensions.spacing30};
+    margin-top: ${styleVals.dimensions.spacing12};
     margin-left: ${styleVals.dimensions.spacing12};
     margin-right: ${styleVals.dimensions.spacing12};
 `
 export const PhoneNumberWrapper = styled.div `
-    margin-top: ${styleVals.dimensions.spacing30};
+    margin-top: ${styleVals.dimensions.spacing12};
     margin-left: ${styleVals.dimensions.spacing12};
     margin-right: ${styleVals.dimensions.spacing12};
 `
 export const PasswordWrapper = styled.div `
-    margin-top: ${styleVals.dimensions.spacing24};
+    margin-top: ${styleVals.dimensions.spacing12};
     margin-left: ${styleVals.dimensions.spacing12};
     margin-right: ${styleVals.dimensions.spacing12};
 `
 export const SignUpButtonWrapper = styled(Button)`
-    margin-top: ${styleVals.dimensions.spacing36};  
+    margin-top: ${styleVals.dimensions.spacing24};  
     width: auto;
     margin-left: ${styleVals.dimensions.spacing12};
     margin-right: ${styleVals.dimensions.spacing12};
