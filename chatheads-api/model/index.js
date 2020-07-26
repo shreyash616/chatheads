@@ -88,4 +88,25 @@ chatheadsModel.updateUserId = (userIdDetails) => {
     })
 }
 
+chatheadsModel.searchChatheads = (searchText) => {
+    return connection.getUserModel().then((userDb)=>{
+        console.log(searchText)
+        let searchRegex = new RegExp(searchText)
+        return userDb.find({$or: [{userId: {$regex: searchRegex, $options: 'i'}, name: {$regex: searchRegex, $options: 'i'}}]},{_id: 0, name:1, userId: 1}).then((searchResult)=>{
+            if(searchResult.length > 0){
+                return {
+                    data: searchResult,
+                }
+            }
+            else{
+                let noResultError = new Error('No chathead found');
+                noResultError.status = 404;
+                throw noResultError
+            }
+        }).catch((err)=>{
+            throw err
+        })
+    })
+}
+
 module.exports = chatheadsModel

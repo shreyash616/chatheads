@@ -45,4 +45,12 @@ router.post('/updateUsername',(req,res,next)=>{
     })
 })
 
+router.post('/searchChatheads',(req,res,next)=>{
+    chatheadsService.searchChatheads(req.body).then((response)=>{
+        res.send({...response, status: 200})
+    }).catch((err)=>{
+        next(err)
+    })
+})
+
 module.exports = router
