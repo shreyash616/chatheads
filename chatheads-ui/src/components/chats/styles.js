@@ -29,6 +29,7 @@ export const ChatheadWrapper = styled.div`
     display: flex;
     flex-direction: column; 
     height: 100%;
+    overflow: scroll;
     border-right: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};   
 `
 
@@ -37,29 +38,39 @@ export const ChatWrapper = styled.div`
     display: flex;
     flex-direction: column; 
 `
-export const ChatsTitle = styled.span`
-    margin-left: ${styleVals.dimensions.spacing20};
-    margin-top: ${styleVals.dimensions.spacing24};
-    margin-right: ${styleVals.dimensions.spacing20};
-    font-size: ${styleVals.dimensions.spacing20};
-    font-family: ${styleVals.fonts.wordFont};        
-    color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
-    &: active{
-        border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
-        border-radius: ${styleVals.dimensions.spacing10};
-    }
-`
 export const ProfileTitle = styled.span`
     margin-left: auto;
     margin-right: ${styleVals.dimensions.spacing24};
-    margin-top: ${styleVals.dimensions.spacing24};
+    margin-top: auto;
+    margin-bottom: auto;
+    outline: none;
+    padding: ${styleVals.dimensions.spacing2}; 
     font-size: ${styleVals.dimensions.spacing20};
     font-family: ${styleVals.fonts.wordFont};        
     color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};    
-    &: active{
-        border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
-        border-radius: ${styleVals.dimensions.spacing10};
-    }  
+    ${props => props.isClicked
+    ? ({
+        borderBottom: `2px solid ${props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue}`
+    })
+    :null
+    }
+`
+export const ChatsTitle = styled.span`
+    margin-left: ${styleVals.dimensions.spacing20};
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: ${styleVals.dimensions.spacing20};
+    padding: ${styleVals.dimensions.spacing2}; 
+    font-size: ${styleVals.dimensions.spacing20};
+    font-family: ${styleVals.fonts.wordFont};        
+    color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    outline: none;    
+    ${props => props.isClicked
+    ? ({
+        borderBottom: `2px solid ${props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue}`
+    })
+    :null
+    }    
 `
 export const ProfileWrapper = styled.div`
     width: 60%;
