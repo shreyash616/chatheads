@@ -54,7 +54,7 @@ router.post('/searchChatheads',(req,res,next)=>{
     })
 })
 
-router.post('/sendMessages',(req,res,next)=>{
+router.post('/sendMessage',(req,res,next)=>{
     chatheadsService.sendMessage(req.body).then((response)=>{
         res.send({...response,status:200})
     }).catch((err)=>{

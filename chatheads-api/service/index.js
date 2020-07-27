@@ -98,9 +98,9 @@ chatheadsService.searchChatheads = (searchDetails) => {
     }
 }
 
-chatheadsService.sendMessages = (messageDetails) =>{
+chatheadsService.sendMessage = (messageDetails) =>{
     if(validator.validateToken(messageDetails.jwtToken)){
-        return chatheadsModel.sendMessages(messageDetails.data.sentMessage).then((response)=>{
+        return chatheadsModel.sendMessage(messageDetails.data).then((response)=>{
             return response
         }).catch((err)=>{
             if(err.message){
