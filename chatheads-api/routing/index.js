@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const chatheadsService = require('../service/index')
+const { response } = require('express')
 
 router.post('/getJwtToken', (req,res,next) => {
     chatheadsService.getJwtToken(req.body.authHeader).then((resp)=>{
@@ -48,6 +49,14 @@ router.post('/updateUsername',(req,res,next)=>{
 router.post('/searchChatheads',(req,res,next)=>{
     chatheadsService.searchChatheads(req.body).then((response)=>{
         res.send({...response, status: 200})
+    }).catch((err)=>{
+        next(err)
+    })
+})
+
+router.post('/sendMessages',(req,res,next)=>{
+    chatheadsService.sendMessage(req.body).then((response)=>{
+        res.send({...response,status:200})
     }).catch((err)=>{
         next(err)
     })

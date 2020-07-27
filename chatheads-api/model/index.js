@@ -109,4 +109,25 @@ chatheadsModel.searchChatheads = (searchText) => {
     })
 }
 
+chatheadsModel.sendMessages = (sentMessage) => {
+    return connection.getUserModel().then((userDb)=>{
+        console.log(sentMessage)
+        let searchRegex = new RegExp(sentMessage)
+        return userDb.find({userId: {$regex: searchRegex, $options: 'i'}, {_id: 0, chats:1}}).then((messageIsSent)=>{
+            if(messageIsSent){
+                return {
+                    data: messageIsSent,
+                }
+            }
+            else{
+                let noMessageSentError = new Error('No message is send');
+                noMessageSentError.status = 400;
+                throw noMessageSentError
+            }
+        }).catch((err)=>{
+            throw err
+        })
+    })
+}
+
 module.exports = chatheadsModel
