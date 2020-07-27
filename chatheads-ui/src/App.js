@@ -45,8 +45,7 @@ function App(props) {
   const [signInRoute, setSignInRoute] = useState(false)
   const [signUpRoute, setSignUpRoute] = useState(false)
 
-  useEffect(()=>{
-    console.log(props.homeData)
+  useEffect(()=>{    
     if(props.homeData.status === 'success'){
       setSignInRoute(true)
       setSignUpRoute(true)

@@ -46,7 +46,7 @@ const Home = (props) => {
       if(props.homeData.status === 'failure' || props.homeData.status === '' ){
         props.getJwtToken()
       }
-    },[])
+    },[props])
 
     useEffect(() => {
       if(props.homeData.loading){
@@ -70,7 +70,7 @@ const Home = (props) => {
           })
         }
       }
-    },[props.homeData.status])
+    },[props.homeData.status,props.homeData.data])
 
     return(
       <React.Fragment>
