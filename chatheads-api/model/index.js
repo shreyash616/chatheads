@@ -111,12 +111,14 @@ chatheadsModel.searchChatheads = (searchText) => {
 
 
 
-chatheadsModel.sendMessages = (messageDetails) => {
+chatheadsModel.sendMessage = (messageDetails) => {
     return connection.getUserModel().then((userDb)=>{
         console.log(messageDetails)
-        return userDb.find({userId: messageDetails.senderUserId},{chats:1,_id:0}).then((senderDetailsFound)=>{
+        return userDb.findOne({userId: messageDetails.senderUserId},{chats:1,_id:0}).then((senderDetailsFound)=>{
+            console.log(senderDetailsFound)
             if(senderDetailsFound){
                 let chats = [...senderDetailsFound.chats]
+                let receiverFoundFlag = false
                 for(let i=0;i<chats.length;i++){
                     if(chats[i].userId === messageDetails.receiverUserId){
                         let messageObj = {
@@ -125,14 +127,29 @@ chatheadsModel.sendMessages = (messageDetails) => {
                             userId: messageDetails.senderUserId
                         }
                         chats[i].messages.push(messageObj)
+                        chats[i].updateTime = new Date()
+                        receiverFoundFlag = true
                         break
+                    }                    
+                }
+                if(!receiverFoundFlag){
+                    let messageObj = {
+                        time: new Date(),
+                        message: messageDetails.message,
+                        userId: messageDetails.senderUserId
                     }
+                    chats.push({
+                        userId: messageDetails.receiverUserId,
+                        messages: [{...messageObj}],
+                        updateTime: new Date()
+                    })
                 }
                 return userDb.updateOne({userId: messageDetails.senderUserId}, {$set: {chats: chats}}).then((conf)=>{
                     if(conf.nModified > 0){
-                        return userDb.find({userId: messageDetails.receiverUserId},{chats:1,_id:0}).then((receiverDetailsFound)=>{
+                        return userDb.findOne({userId: messageDetails.receiverUserId},{chats:1,_id:0}).then((receiverDetailsFound)=>{
                             if(receiverDetailsFound){
-                                let text = [...senderDetailsFound.chats]
+                                let senderFoundFlag = false
+                                let text = [...receiverDetailsFound.chats]
                                 for(let i=0;i<text.length;i++){
                                     if(text[i].userId === messageDetails.senderUserId){
                                         let messageObject = {
@@ -141,25 +158,48 @@ chatheadsModel.sendMessages = (messageDetails) => {
                                             userId: messageDetails.senderUserId
                                         }
                                         text[i].messages.push(messageObject)
+                                        text[i].updateTime = new Date()
+                                        senderFoundFlag = true
                                         break
                                     }
                                 }
+                                if(!senderFoundFlag){
+                                    let messageObject = {
+                                        time: new Date(),
+                                        message: messageDetails.message,
+                                        userId: messageDetails.senderUserId
+                                    }
+                                    text.push({
+                                        userId: messageDetails.senderUserId,
+                                        messages: [{...messageObject}],
+                                        updateTime: new Date()
+                                    })
+                                }
                                 return userDb.updateOne({userId: messageDetails.receiverUserId}, {$set: {chats: text}}).then((conf)=>{
                                     if(conf.nModified > 0){
-                                        console.log("message sent successfully")
+                                        return connection.getUserModel().then((updatedUserDb)=>{
+                                            return updatedUserDb.findOne({userId: messageDetails.senderUserId},{chats:1,_id:0}).then((updatedChats)=>{
+                                                return {data: updatedChats}
+                                            })
+                                        })
                                     } 
                                     else{
-                                        let cantSendMessageError = new Error('couldnt send the message');
+                                        let cantSendMessageError = new Error('Couldn\'t send the message.');
                                         noResultError.status = 400;
-                                        throw cant cantSendMessageError
+                                        throw cantSendMessageError
                                     }
+                                })
+                            }
+                        })
                     }
                 })
             }
-        }).catch((err)=>{
-            throw err
         })
-    })
+   
+    }).catch((err)=>{
+        throw err
+})
 }
+                        
 
 module.exports = chatheadsModel
