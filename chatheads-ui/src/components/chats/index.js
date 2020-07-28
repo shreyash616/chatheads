@@ -124,7 +124,7 @@ const Chats = (props) => {
               <ChatheadsCircles 
                 onClick={(chat)=>setSelectedChat(chat)}
               {...props}/>
-              <ChatheadsName {...props}>{chat.name}</ChatheadsName>
+              <ChatheadsName {...props}>{chat.userId}</ChatheadsName>
             </React.Fragment>        
             })
         }
