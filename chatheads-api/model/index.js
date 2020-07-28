@@ -109,16 +109,52 @@ chatheadsModel.searchChatheads = (searchText) => {
     })
 }
 
+
+
 chatheadsModel.sendMessages = (messageDetails) => {
     return connection.getUserModel().then((userDb)=>{
         console.log(messageDetails)
-        return userDb.find({userId: messageDetails.userId}).then((userIdFound)=>{
-            
-
-            else{
-                let noMessageSentError = new Error('No message is send');
-                noMessageSentError.status = 400;
-                throw noMessageSentError
+        return userDb.find({userId: messageDetails.senderUserId},{chats:1,_id:0}).then((senderDetailsFound)=>{
+            if(senderDetailsFound){
+                let chats = [...senderDetailsFound.chats]
+                for(let i=0;i<chats.length;i++){
+                    if(chats[i].userId === messageDetails.receiverUserId){
+                        let messageObj = {
+                            time: new Date(),
+                            message: messageDetails.message,
+                            userId: messageDetails.senderUserId
+                        }
+                        chats[i].messages.push(messageObj)
+                        break
+                    }
+                }
+                return userDb.updateOne({userId: messageDetails.senderUserId}, {$set: {chats: chats}}).then((conf)=>{
+                    if(conf.nModified > 0){
+                        return userDb.find({userId: messageDetails.receiverUserId},{chats:1,_id:0}).then((receiverDetailsFound)=>{
+                            if(receiverDetailsFound){
+                                let text = [...senderDetailsFound.chats]
+                                for(let i=0;i<text.length;i++){
+                                    if(text[i].userId === messageDetails.senderUserId){
+                                        let messageObject = {
+                                            time: new Date(),
+                                            message: messageDetails.message,
+                                            userId: messageDetails.senderUserId
+                                        }
+                                        text[i].messages.push(messageObject)
+                                        break
+                                    }
+                                }
+                                return userDb.updateOne({userId: messageDetails.receiverUserId}, {$set: {chats: text}}).then((conf)=>{
+                                    if(conf.nModified > 0){
+                                        console.log("message sent successfully")
+                                    } 
+                                    else{
+                                        let cantSendMessageError = new Error('couldnt send the message');
+                                        noResultError.status = 400;
+                                        throw cant cantSendMessageError
+                                    }
+                    }
+                })
             }
         }).catch((err)=>{
             throw err
