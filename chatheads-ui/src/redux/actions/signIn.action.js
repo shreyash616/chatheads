@@ -20,3 +20,9 @@ export const signInFailure = (signInFailureData) => {
         signInFailureData
     }
 }
+
+export const signOut = () => {
+    return {
+        type: actionType.SIGN_OUT
+    }
+}
