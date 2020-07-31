@@ -163,3 +163,20 @@ export const Loader = styled(LinearProgress)`
     border-radius: ${styleVals.dimensions.spacing6};
     margin-bottom: ${styleVals.dimensions.spacing6};
 `
+export const UsernameWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+
+export const UsernameEditWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+export const UpdateButtonWrapper = styled.div`
+    margin-left: auto;
+    margin-right: ${styleVals.dimensions.spacing24}; 
+    margin-top: ${styleVals.dimensions.spacing12};
+`
+export const UpdateFieldWrapper = styled.div`
+    margin-left: ${styleVals.dimensions.spacing24}; 
+`

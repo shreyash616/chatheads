@@ -37,6 +37,12 @@ const ThemeSwitch = withStyles(navbarMaterialStyle)(Switch)
 
 const AppNavbar = (props) => {
 
+  const handleLogOut = ()=>{
+    if(window.confirm('Do you want to sign out?')){
+      props.signOut()
+    }
+  }
+
   const goToHome = () => {
     props.history.push('/home')
   }
@@ -45,18 +51,25 @@ const AppNavbar = (props) => {
     <NavbarBrand onClick={goToHome}  {...props}>{props.title}</NavbarBrand>
     <ActionButtons>
       <ActionButtonsWrapper>
-        <Link to='/signIn'>
+        {!props.loginState && <Link to='/signIn'>
           <Button disabled={!props.signInRoute} {...props}>
             {appConstants.SIGN_IN}                  
           </Button>
-        </Link>
+        </Link>}
       </ActionButtonsWrapper>
       <ActionButtonsWrapper>
-        <Link to='/signUp'>
+        {!props.loginState && <Link to='/signUp'>
           <Button disabled={!props.signUpRoute} {...props}>
             {appConstants.SIGN_UP}                                   
           </Button>
-        </Link>
+        </Link>}
+      </ActionButtonsWrapper>
+      <ActionButtonsWrapper>
+        {props.loginState && 
+          <Button {...props} onClick = {handleLogOut}>
+            {appConstants.SIGN_OUT}                  
+          </Button>
+        }
       </ActionButtonsWrapper>
     </ActionButtons>
     <Divider {...props}>

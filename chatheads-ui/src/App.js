@@ -5,6 +5,7 @@ import './App.css';
 import appConstants from './common/constants/appConstants'
 import styled from 'styled-components'
 import styleVals from './common/styleVals/global'
+import actions from './redux/actions/index'
 
 //common components
 import NavBar from './common/components/navigation-bar/index'
@@ -32,10 +33,15 @@ const Container = styled.div`
 //   return state[0]
 // }
 
-// const f1 = state => state[0]
+// const f1 = state => (state[0])
 
 const mapStateToProps = store => ({
-  homeData: store.homeData
+  homeData: store.homeData,
+  signInData: store.signIn
+})
+
+const mapDispatchToProps = dispatch => ({
+  signOut: () => dispatch(actions.signInActions.signOut())
 })
 
 
@@ -44,6 +50,15 @@ function App(props) {
   const [theme, setTheme] = useState('dark')
   const [signInRoute, setSignInRoute] = useState(false)
   const [signUpRoute, setSignUpRoute] = useState(false)
+  const [loginState, setLoginState] = useState(false)
+
+  useEffect(()=>{
+    if(props.signInData.status === 'success'){
+      setLoginState(true)
+    } else{
+      setLoginState(false)
+    }
+  },[props.signInData])
 
   useEffect(()=>{    
     if(props.homeData.status === 'success'){
@@ -66,7 +81,9 @@ function App(props) {
     title: appConstants.NAVBAR_BRAND,
     signInRoute,
     signUpRoute,
-    history: props.history       
+    history: props.history,
+    loginState,
+    signOut: () => props.signOut()       
   }
 
 
@@ -92,4 +109,4 @@ function App(props) {
   );
 }
 
-export default connect(mapStateToProps,null)(withRouter(App));
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(App));

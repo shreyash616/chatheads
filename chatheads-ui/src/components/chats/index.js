@@ -7,6 +7,7 @@ import chatConstants from '../../common/constants/chatConstants'
 
 import PageContainer from '../../common/components/page-container/index'
 import TextInput from '../../common/components/text-input'
+import Button from '../../common/components/button'
 
 import {
     PageWrapper,
@@ -26,7 +27,11 @@ import {
     NoChatheadsMessage,
     ProfileName,
     UsernameLabel,
-    Username
+    Username,
+    UsernameWrapper,
+    UsernameEditWrapper,
+    UpdateButtonWrapper,
+    UpdateFieldWrapper
 } from './styles'
 
 
@@ -50,7 +55,9 @@ const Chats = (props) => {
     const [selectedChat, setSelectedChat] = useState(null)
     const [searchText, setSearchText] = useState('')
     const [searchedChatheads, setSearchedChatheads] = useState([])  
-    const [searchError, setSearchError] = useState('')  
+    const [searchError, setSearchError] = useState('') 
+    const [showUpdateField, setShowUpdateField] = useState(false) 
+    const [updateField, setUpdateField] = useState('')
 
     useEffect(()=>{
       if(props.signInData.status === 'success'){
@@ -96,6 +103,10 @@ const Chats = (props) => {
     },[props.searchData])
 
     //functionalities
+    const triggerUpdateField = () => {
+      setShowUpdateField(!showUpdateField)
+
+    }
     const handleMessage = (event) => {
       setMessage(event.target.value)
     }
@@ -124,7 +135,7 @@ const Chats = (props) => {
               <ChatheadsCircles 
                 onClick={(chat)=>setSelectedChat(chat)}
               {...props}/>
-              <ChatheadsName {...props}>{chat.name}</ChatheadsName>
+              <ChatheadsName {...props}>{chat.userId}</ChatheadsName>
             </React.Fragment>        
             })
         }
@@ -134,8 +145,21 @@ const Chats = (props) => {
       return (
         <React.Fragment>
           <ProfileName theme={props.theme}>{userDetails.name}</ProfileName>
-          <UsernameLabel theme={props.theme}>{chatConstants.USERNAME_LABEL}</UsernameLabel>
-          <Username theme={props.theme}>{userDetails.userId}</Username>
+          <UsernameWrapper>
+            <UsernameEditWrapper>
+            <UsernameLabel theme={props.theme}>{chatConstants.USERNAME_LABEL}</UsernameLabel>
+            {showUpdateField 
+            ? <UpdateFieldWrapper>
+                <TextInput
+                  value={userDetails.userId}
+                />
+              </UpdateFieldWrapper>  
+            : <Username theme={props.theme}>{userDetails.userId}</Username>
+            }
+            </UsernameEditWrapper>
+            {!showUpdateField && <UpdateButtonWrapper theme={props.theme}><Button onClick={triggerUpdateField}>{chatConstants.UPDATE_USER_NAME}</Button></UpdateButtonWrapper>}
+            {showUpdateField && <UpdateButtonWrapper theme={props.theme}><Button onClick={triggerUpdateField}>{chatConstants.SAVE_USER_NAME}</Button></UpdateButtonWrapper>}
+          </UsernameWrapper>
         </React.Fragment>
       )
     }
@@ -199,7 +223,7 @@ const Chats = (props) => {
                             onChange={handleMessage}/>
                           </InputWrapper>
                         </React.Fragment>
-                      : <NoChatSelectedMessage theme={props.theme}>No Chat Selected</NoChatSelectedMessage>}
+                      : <NoChatSelectedMessage theme={props.theme}>{chatConstants.NO_CHAT_SELECTED_MESSAGE}</NoChatSelectedMessage>}
                     </ChatWrapper>
                   </ConversationWrapper>
                  :<ConversationWrapper {...props}>
