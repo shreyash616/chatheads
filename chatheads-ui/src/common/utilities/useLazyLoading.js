@@ -10,12 +10,12 @@ const scrollDown = (fnc, delayTime) => {
     }
 }
 
-const lazyLoading = loadItems => {
+const LazyLoading = loadItems => {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(()=>{
         window.addEventListener('scroll', scrollDown(handleScrolling, 500))
-        return () => window.removeEventListener('scroll', debounce(handleScrolling, 500))
+        return () => window.removeEventListener('scroll', scrollDown(handleScrolling, 500))
     }, [])
     
     useEffect(()=>{
@@ -25,7 +25,7 @@ const lazyLoading = loadItems => {
     }, [isLoading])
 
     const handleScrolling = () => {
-        if(!((window.innerHeight + window.scrollY) < document.body.offsetHeight || isFetching)){
+        if(!((window.innerHeight + window.scrollY) < document.body.offsetHeight || isLoading)){
             setIsLoading(true)
         }
     }
@@ -33,5 +33,5 @@ const lazyLoading = loadItems => {
     return [isLoading, setIsLoading]
 }
 
-export default lazyLoading
+export default LazyLoading
 

@@ -36,3 +36,35 @@
     transform: rotate(360deg);
   }
 }
+
+.svg-icon-orange {
+  width: 1em;
+  height: 1em;
+}
+
+.svg-icon-orange path,
+.svg-icon-orange polygon,
+.svg-icon-orange rect {
+  fill: #fd6d03;
+}
+
+.svg-icon-orange circle {
+  stroke: #fd6d03;
+  stroke-width: 1;
+}
+
+.svg-icon-blue {
+  width: 1em;
+  height: 1em;
+}
+
+.svg-icon-blue path,
+.svg-icon-blue polygon,
+.svg-icon-blue rect {
+  fill: #1976d2;
+}
+
+.svg-icon-blue circle {
+  stroke: #1976d2;
+  stroke-width: 1;
+}

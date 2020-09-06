@@ -113,12 +113,17 @@ export const ProfileWrapper = styled.div`
 export const ChatheadsCircles = styled.div`
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue}; 
     border-radius: 50%;
-    margin-top: ${styleVals.dimensions.spacing24};
-    margin-bottom: ${props => props.index === props.chatheadsLength-1?styleVals.dimensions.spacing24:styleVals.dimensions.spacing0};
+    margin-top: ${styleVals.dimensions.spacing12};
+    margin-bottom: ${props => props.index === props.chatheadsLength-1?styleVals.dimensions.spacing12:styleVals.dimensions.spacing0};
     margin-left: auto;
     margin-right: auto;
     height: ${styleVals.dimensions.spacing36};
     width: ${styleVals.dimensions.spacing36};
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.1,1.1);
+    }
+    transition: 0.2s all linear;
 `
 export const ChatheadsName = styled.span`
     margin-left: auto;
@@ -129,17 +134,36 @@ export const ChatheadsName = styled.span`
 `
 
 export const ChatWindow = styled.div`
+    display: flex;
+    flex-direction: column;
     height: 90%;
     width: auto;
     padding: ${styleVals.dimensions.spacing16};
     overflow: auto;
+    ::-webkit-scrollbar {
+        display:none;
+    }
 `
-export const InputWrapper = styled.div`
+export const SearchInputWrapper = styled.div`
     height: 10%;
     width: auto;
+    padding: ${styleVals.dimensions.spacing12};
+    padding-bottom: ${styleVals.dimensions.spacing8};
+`
+export const MessageInputWrapper = styled.div`
+    height: 10%;
+    width: 100%;
     padding: ${styleVals.dimensions.spacing16};
 `
-
+export const IconWrapper = styled.div`
+    margin:auto;
+    margin-right: ${styleVals.dimensions.spacing16};
+     
+`
+export const MessageWrapper = styled.div`       
+    display: flex;
+    flex-direction: row;    
+`
 export const NoChatSelectedMessage = styled.h1`
     margin-left: auto;
     margin-right: auto;
@@ -180,3 +204,61 @@ export const UpdateButtonWrapper = styled.div`
 export const UpdateFieldWrapper = styled.div`
     margin-left: ${styleVals.dimensions.spacing24}; 
 `
+export const SentMessage = styled.div`
+    display: inline-flex;    
+    margin-left: auto;
+    width: auto;
+    background-color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    padding: ${styleVals.dimensions.spacing12};
+    border-radius: 10px; 
+    margin-top: ${styleVals.dimensions.spacing12};
+`
+export const ReceivedMessage = styled.div`
+    display: inline-flex;
+    margin-right: auto;
+    width: auto;
+    background-color: ${props=>props.theme==='dark'?styleVals.color.dullOrange:styleVals.color.dullBlue};
+    padding: ${styleVals.dimensions.spacing12};  
+    border-radius: 10px;
+    margin-top: ${styleVals.dimensions.spacing12};    
+`
+
+export const ReceivedTrDown = styled.div`   
+    width: 0; 
+    height: 0; 
+    margin-right: auto;
+    margin-left: ${styleVals.dimensions.spacing12};
+    border-left: 10px solid transparent;    
+    border-right: 10px solid transparent;    
+    border-top: 10px solid ${props=>props.theme==='dark'?styleVals.color.dullOrange:styleVals.color.dullBlue};
+    margin-bottom: ${styleVals.dimensions.spacing12};
+`
+
+export const SentTrDown = styled.div`   
+    width: 0; 
+    height: 0; 
+    margin-left: auto;
+    margin-right: ${styleVals.dimensions.spacing12};
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;    
+    border-top: 10px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    margin-bottom: ${styleVals.dimensions.spacing12};
+`
+
+export const ChatBottom = styled.div`
+`
+
+export const ChatWindowHeader = styled.div` 
+    background-color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};           
+    margin: ${styleVals.dimensions.spacing12};
+    width: 20%;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+`
+
+export const ChatWindowHeaderName = styled.p`
+    text-align: center;   
+    font-weight: bold; 
+`
+

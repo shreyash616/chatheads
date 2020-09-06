@@ -34,7 +34,7 @@ chatheadsModel.signIn = (signInDetailsData) => {
     return connection.getUserModel().then((userDb)=>{
         return userDb.findOne({userId: signInDetailsData.userId}).then((userIdFound)=>{
             if(userIdFound){
-                return userDb.findOne({password: signInDetailsData.password}).then((passwordFound)=>{
+                return userDb.findOne({userId: signInDetailsData.userId,password: signInDetailsData.password}).then((passwordFound)=>{
                     if(passwordFound){
                         return {
                             data: {
@@ -178,7 +178,7 @@ chatheadsModel.sendMessage = (messageDetails) => {
                                 return userDb.updateOne({userId: messageDetails.receiverUserId}, {$set: {chats: text}}).then((conf)=>{
                                     if(conf.nModified > 0){
                                         return connection.getUserModel().then((updatedUserDb)=>{
-                                            return updatedUserDb.findOne({userId: messageDetails.senderUserId},{chats:1,_id:0}).then((updatedChats)=>{
+                                            return updatedUserDb.findOne({userId: messageDetails.senderUserId},{_id:0}).then((updatedChats)=>{
                                                 return {data: updatedChats}
                                             })
                                         })

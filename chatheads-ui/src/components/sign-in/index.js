@@ -6,6 +6,7 @@ import signInConstants from '../../common/constants/signInConstants'
 import actions from '../../redux/actions/index'
 import styleVals from '../../common/styleVals/global'
 import {withStyles} from '@material-ui/core/styles'
+import useLazyLoading from '../../common/utilities/useLazyLoading'
 
 import PageContainer from '../../common/components/page-container/index'
 import TextInput from "../../common/components/text-input/index"
@@ -41,6 +42,12 @@ const SignIn = (props) =>{
     colorPrimary: props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue
   }
   const AppLoader = withStyles(loaderStyle)(Loader)
+
+  const [isLoading, setIsLoading] = useLazyLoading(()=>{
+    setTimeout(()=>{
+      setIsLoading(false)
+    },2000)
+  })
 
   //useState
   const [username, setUsername] = useState('')
@@ -124,6 +131,7 @@ const SignIn = (props) =>{
 
   return (
     <React.Fragment>
+      {console.log(isLoading)}
       {!redirect
       ?<React.Fragment>                  
         <PageContainer {...props}>

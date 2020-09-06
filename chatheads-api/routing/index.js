@@ -29,8 +29,10 @@ router.post('/signUp',(req,res,next)=>{
 
 
 router.post('/signIn',(req,res,next)=>{      
+    console.log(req.body)
     chatheadsService.signIn(req.body).then((response)=>{
         setTimeout(()=>{
+            console.log(response)
             res.send({...response, status: 200})
         },2000)
     }).catch((err)=>{        
@@ -56,6 +58,14 @@ router.post('/searchChatheads',(req,res,next)=>{
 
 router.post('/sendMessage',(req,res,next)=>{
     chatheadsService.sendMessage(req.body).then((response)=>{
+        res.send({...response,status:200})
+    }).catch((err)=>{
+        next(err)
+    })
+})
+
+router.post('/getMessages', (req,res,next)=>{
+    chatheadsService.getMessages(req.body).then((response)=>{
         res.send({...response,status:200})
     }).catch((err)=>{
         next(err)
