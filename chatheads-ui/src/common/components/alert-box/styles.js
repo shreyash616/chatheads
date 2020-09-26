@@ -9,5 +9,6 @@ export const StyledAlertContainer = styled.div`
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
     border-radius: ${styleVals.dimensions.spacing10};
     font-family: ${styleVals.fonts.wordFont};
-    margin-bottom: ${styleVals.dimensions.spacing12}; 
+    margin-bottom: ${styleVals.dimensions.spacing12};
+    margin-top: ${styleVals.dimensions.spacing12}; 
 `

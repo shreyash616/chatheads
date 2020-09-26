@@ -4,12 +4,10 @@ import{
 } from './styles'
 
 const PageContainer = (props) => {  
-    return (
-      <React.Fragment>
-          <Content {...props}>
-            {props.children}
-          </Content>        
-      </React.Fragment>
+    return (      
+      <Content {...props}>
+        {props.children}
+      </Content>              
     )
 }
 

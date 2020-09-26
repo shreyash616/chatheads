@@ -2,9 +2,6 @@ import styled from 'styled-components'
 import styleVals from '../../styleVals/global'
 
 export const Content = styled.div`
-    margin-left: ${styleVals.dimensions.spacing40};
-    margin-right: ${styleVals.dimensions.spacing40};
-    margin-top: ${styleVals.dimensions.spacing38};
     margin-bottom: ${styleVals.dimensions.spacing100};    
     width: auto;
     display: flex;      

@@ -22,11 +22,13 @@ export const LogoWrapper = styled.div`
 `
 
 export const ImageWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 50%;      
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    img {
+        margin: auto;
+        height: 300px;
+    }
 `
 
 export const Logo = styled.span`
@@ -57,14 +59,12 @@ export const Slogan = styled.span`
 `
 
 export const Loader = styled(LinearProgress)`
-    width: 100%;    
+    width: auto;    
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    border-radius: 10px;
     box-shadow: ${styleVals.color.shadowColor};    
-    margin-bottom: ${styleVals.dimensions.spacing6};
 `
 
 export const AlertWrapper = styled.div`
-    width: 20%;
-    margin-top: ${styleVals.dimensions.spacing12};
-    margin-left: ${styleVals.dimensions.spacing40};
+    width: auto;
 `

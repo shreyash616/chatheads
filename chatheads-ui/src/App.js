@@ -25,15 +25,12 @@ const Divider = styled.div`
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${props=>props.theme==='dark'?styleVals.color.dark:styleVals.color.light};      
+    background-color: ${props=>props.theme==='dark'?styleVals.color.dark:styleVals.color.light};
+    padding-top: ${styleVals.dimensions.spacing40};
+    padding-left: ${styleVals.dimensions.spacing40};
+    padding-right: ${styleVals.dimensions.spacing40};   
     min-height: 80vh;
 `
-// //
-// const f1 = state => {
-//   return state[0]
-// }
-
-// const f1 = state => (state[0])
 
 const mapStateToProps = store => ({
   homeData: store.homeData,
@@ -101,10 +98,8 @@ function App(props) {
           <Route key='chats' path='/chats' render={()=><Chats {...commonProps}/>}/>
           <Redirect from='/' to='/home'/>          
         </Switch>      
-        <Footer        
-          {...commonProps}
-        />
-      </Container>                
+      </Container>
+      <Footer {...commonProps} />           
     </React.Fragment>
   );
 }

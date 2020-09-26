@@ -4,6 +4,9 @@ import actions from '../../redux/actions/index'
 import PageContainer from '../../common/components/page-container/index'
 import AlertBox from '../../common/components/alert-box'
 import homeConstants from '../../common/constants/homeConstants'
+
+import ChatheadsIcon from '../../common/assets/homeImage.png'
+
 import {
     PageWrapper,
     LogoWrapper,
@@ -42,19 +45,16 @@ const Home = (props) => {
       message: ''
     })
 
-    useEffect(()=>{      
-      if(props.homeData.status === 'failure' || props.homeData.status === '' ){
+    useEffect(()=>{  
+      if(props.homeData.status === ''){
         props.getJwtToken()
       }
-    },[props])
-
-    useEffect(() => {
       if(props.homeData.loading){
         setShowLoader(true)
       }else{
         setShowLoader(false)
       }
-    },[props.homeData.loading])
+    },[props])
 
     useEffect(()=>{
       if(props.homeData.status==='failure'){
@@ -66,27 +66,30 @@ const Home = (props) => {
         } else{
           setError({
             isAlert: true,
-            message: props.homeData.data
+            message: homeConstants.ERROR
           })
         }
       }
     },[props.homeData.status,props.homeData.data])
 
     return(
-      <React.Fragment>
-        {showLoader && <Loader {...props}/>}        
-        <AlertWrapper>{error.isAlert && <AlertBox theme={props.theme}>{error.message}</AlertBox>}</AlertWrapper>
-        <PageContainer {...props}>            
-          <PageWrapper>
-            <LogoWrapper>
-              <Logo theme = {props.theme}>{homeConstants.LOGO}</Logo>
-              <Slogan theme = {props.theme}>{homeConstants.SLOGAN_PART1}</Slogan>
-              <Slogan theme = {props.theme}>{homeConstants.SLOGAN_PART2}</Slogan>
-            </LogoWrapper>
-            <ImageWrapper>
-            </ImageWrapper>
-          </PageWrapper>
-        </PageContainer>
+      <React.Fragment>                
+        {error.isAlert && <AlertWrapper increaseMargin={showLoader}><AlertBox theme={props.theme}>{error.message}</AlertBox></AlertWrapper>}        
+        <PageContainer {...props}>
+          <div>
+            {showLoader && <Loader {...props}/>}
+            <PageWrapper>
+              <LogoWrapper>
+                <Logo theme = {props.theme}>{homeConstants.LOGO}</Logo>
+                <Slogan theme = {props.theme}>{homeConstants.SLOGAN_PART1}</Slogan>
+                <Slogan theme = {props.theme}>{homeConstants.SLOGAN_PART2}</Slogan>
+              </LogoWrapper>
+              <ImageWrapper>
+                <img src={ChatheadsIcon} alt={'chatheads logo'} />
+              </ImageWrapper>
+            </PageWrapper>
+          </div>
+        </PageContainer>        
       </React.Fragment>
     )
 }
