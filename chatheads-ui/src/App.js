@@ -44,7 +44,7 @@ const mapDispatchToProps = dispatch => ({
 
 function App(props) {
   
-  const [theme, setTheme] = useState('dark')
+  const [theme, setTheme] = useState('light')
   const [signInRoute, setSignInRoute] = useState(false)
   const [signUpRoute, setSignUpRoute] = useState(false)
   const [loginState, setLoginState] = useState(false)

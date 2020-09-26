@@ -74,7 +74,7 @@ const Home = (props) => {
 
     return(
       <React.Fragment>                
-        {error.isAlert && <AlertWrapper increaseMargin={showLoader}><AlertBox theme={props.theme}>{error.message}</AlertBox></AlertWrapper>}        
+        {error.isAlert && <AlertWrapper><AlertBox theme={props.theme}>{error.message}</AlertBox></AlertWrapper>}        
         <PageContainer {...props}>
           <div>
             {showLoader && <Loader {...props}/>}
