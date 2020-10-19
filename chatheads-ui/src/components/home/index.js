@@ -3,7 +3,10 @@ import {connect} from 'react-redux'
 import actions from '../../redux/actions/index'
 import PageContainer from '../../common/components/page-container/index'
 import AlertBox from '../../common/components/alert-box'
+import Button from '../../common/components/button'
+import DialogModal from '../../common/components/dialog-modal'
 import homeConstants from '../../common/constants/homeConstants'
+import {P} from '../../common/components/typography'
 
 import ChatheadsIcon from '../../common/assets/homeImage.png'
 
@@ -40,6 +43,7 @@ const mapDispatchToProps = dispatch => {
 const Home = (props) => {
 
     const [showLoader, setShowLoader] = useState(false)
+    const [showModal, setShowModal] = useState(false)
     const [error, setError] = useState({
       isAlert: false,
       message: ''
@@ -72,6 +76,14 @@ const Home = (props) => {
       }
     },[props.homeData.status,props.homeData.data])
 
+    useEffect(()=>{
+      if(showModal){
+        document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+      } else {
+        document.getElementsByTagName('body')[0].style.overflow = 'auto';
+      }
+    }, [showModal])
+
     return(
       <React.Fragment>                
         {error.isAlert && <AlertWrapper><AlertBox theme={props.theme}>{error.message}</AlertBox></AlertWrapper>}        
@@ -81,6 +93,7 @@ const Home = (props) => {
             <PageWrapper>
               <LogoWrapper>
                 <Logo theme = {props.theme}>{homeConstants.LOGO}</Logo>
+                <Button onClick={() => setShowModal(true)}>{'Show Modal'}</Button>
                 <Slogan theme = {props.theme}>{homeConstants.SLOGAN_PART1}</Slogan>
                 <Slogan theme = {props.theme}>{homeConstants.SLOGAN_PART2}</Slogan>
               </LogoWrapper>
@@ -89,7 +102,8 @@ const Home = (props) => {
               </ImageWrapper>
             </PageWrapper>
           </div>
-        </PageContainer>        
+        </PageContainer>
+        {showModal && <DialogModal title={homeConstants.IMPORTANT_INFORMATION} id='sample-modal' isOpen={showModal} onClose={()=>setShowModal(false)} showTitle showClose></DialogModal>}       
       </React.Fragment>
     )
 }
