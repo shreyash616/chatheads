@@ -8,6 +8,7 @@ import chatConstants from '../../common/constants/chatConstants'
 import PageContainer from '../../common/components/page-container/index'
 import TextInput from '../../common/components/text-input'
 import Button from '../../common/components/button'
+import DialogModal from '../../common/components/dialog-modal'
 
 import {
     PageWrapper,
@@ -113,12 +114,6 @@ const Chats = (props) => {
         }
       }      
     },[props.sendMessageData])
-
-    // useEffect(()=>{
-    //   if(chatBottomRef){
-    //     chatBottomRef.current && chatBottomRef.current.scrollIntoView()
-    //   }
-    // })
 
     useEffect(()=>{
       if(props.searchData.status === 'success'){
@@ -239,10 +234,12 @@ const Chats = (props) => {
     const getProfile = () => {
       return (
         <React.Fragment>
-          <ProfileName theme={props.theme}>{userDetails.name}</ProfileName>
           <UsernameWrapper>
-            <UsernameEditWrapper>
-            <UsernameLabel theme={props.theme}>{chatConstants.USERNAME_LABEL}</UsernameLabel>
+            <UsernameLabel theme={props.theme}>{chatConstants.NAME_LABEL}</UsernameLabel>
+            <Username theme={props.theme}>{userDetails.name}</Username>
+          </UsernameWrapper>          
+          <UsernameWrapper>            
+            <UsernameLabel shiftDown={showUpdateField} theme={props.theme}>{chatConstants.USERNAME_LABEL}</UsernameLabel>
             {showUpdateField 
             ? <UpdateFieldWrapper>
                 <TextInput
@@ -251,10 +248,19 @@ const Chats = (props) => {
                 />
               </UpdateFieldWrapper>  
             : <Username theme={props.theme}>{userDetails.userId}</Username>
-            }
-            </UsernameEditWrapper>
-            {!showUpdateField && <UpdateButtonWrapper theme={props.theme}><Button onClick={triggerUpdateField}>{chatConstants.UPDATE_USER_NAME}</Button></UpdateButtonWrapper>}
-            {showUpdateField && <UpdateButtonWrapper theme={props.theme}><Button onClick={triggerUpdateField}>{chatConstants.SAVE_USER_NAME}</Button></UpdateButtonWrapper>}
+            }            
+            {!showUpdateField && <UpdateButtonWrapper><svg role='button' onClick={triggerUpdateField} class="svg-icon" viewBox="0 0 20 20">
+							<path fill="none" d="M19.404,6.65l-5.998-5.996c-0.292-0.292-0.765-0.292-1.056,0l-2.22,2.22l-8.311,8.313l-0.003,0.001v0.003l-0.161,0.161c-0.114,0.112-0.187,0.258-0.21,0.417l-1.059,7.051c-0.035,0.233,0.044,0.47,0.21,0.639c0.143,0.14,0.333,0.219,0.528,0.219c0.038,0,0.073-0.003,0.111-0.009l7.054-1.055c0.158-0.025,0.306-0.098,0.417-0.211l8.478-8.476l2.22-2.22C19.695,7.414,19.695,6.941,19.404,6.65z M8.341,16.656l-0.989-0.99l7.258-7.258l0.989,0.99L8.341,16.656z M2.332,15.919l0.411-2.748l4.143,4.143l-2.748,0.41L2.332,15.919z M13.554,7.351L6.296,14.61l-0.849-0.848l7.259-7.258l0.423,0.424L13.554,7.351zM10.658,4.457l0.992,0.99l-7.259,7.258L3.4,11.715L10.658,4.457z M16.656,8.342l-1.517-1.517V6.823h-0.003l-0.951-0.951l-2.471-2.471l1.164-1.164l4.942,4.94L16.656,8.342z"></path>
+						</svg></UpdateButtonWrapper>}
+
+            {showUpdateField && <UpdateButtonWrapper shiftDown><svg role='button' onClick={triggerUpdateField} class="svg-icon" viewBox="0 0 20 20">
+							<path fill="none" d="M17.222,5.041l-4.443-4.414c-0.152-0.151-0.356-0.235-0.571-0.235h-8.86c-0.444,0-0.807,0.361-0.807,0.808v17.602c0,0.448,0.363,0.808,0.807,0.808h13.303c0.448,0,0.808-0.36,0.808-0.808V5.615C17.459,5.399,17.373,5.192,17.222,5.041zM15.843,17.993H4.157V2.007h7.72l3.966,3.942V17.993z"></path>
+							<path fill="none" d="M5.112,7.3c0,0.446,0.363,0.808,0.808,0.808h8.077c0.445,0,0.808-0.361,0.808-0.808c0-0.447-0.363-0.808-0.808-0.808H5.92C5.475,6.492,5.112,6.853,5.112,7.3z"></path>
+							<path fill="none" d="M5.92,5.331h4.342c0.445,0,0.808-0.361,0.808-0.808c0-0.446-0.363-0.808-0.808-0.808H5.92c-0.444,0-0.808,0.361-0.808,0.808C5.112,4.97,5.475,5.331,5.92,5.331z"></path>
+							<path fill="none" d="M13.997,9.218H5.92c-0.444,0-0.808,0.361-0.808,0.808c0,0.446,0.363,0.808,0.808,0.808h8.077c0.445,0,0.808-0.361,0.808-0.808C14.805,9.58,14.442,9.218,13.997,9.218z"></path>
+							<path fill="none" d="M13.997,11.944H5.92c-0.444,0-0.808,0.361-0.808,0.808c0,0.446,0.363,0.808,0.808,0.808h8.077c0.445,0,0.808-0.361,0.808-0.808C14.805,12.306,14.442,11.944,13.997,11.944z"></path>
+							<path fill="none" d="M13.997,14.67H5.92c-0.444,0-0.808,0.361-0.808,0.808c0,0.447,0.363,0.808,0.808,0.808h8.077c0.445,0,0.808-0.361,0.808-0.808C14.805,15.032,14.442,14.67,13.997,14.67z"></path>
+						</svg></UpdateButtonWrapper>}
           </UsernameWrapper>
         </React.Fragment>
       )
@@ -330,10 +336,15 @@ const Chats = (props) => {
                       : <NoChatSelectedMessage theme={props.theme}>{chatConstants.NO_CHAT_SELECTED_MESSAGE}</NoChatSelectedMessage>}
                     </ChatWrapper>
                   </ConversationWrapper>
-                 :<ConversationWrapper {...props}>
-                    <ProfileWrapper {...props}>
-                      {getProfile()}
-                    </ProfileWrapper>
+                 :<ConversationWrapper {...props}>                    
+                    <DialogModal
+                      title={'Your profile'}
+                      isOpen={!showChats}
+                      onClose={() => setShowChats(true)}
+                      showClose
+                      showTitle
+                    >{getProfile()}
+                    </DialogModal>                    
                   </ConversationWrapper>}                  
                 </PageWrapper>
               </PageContainer>

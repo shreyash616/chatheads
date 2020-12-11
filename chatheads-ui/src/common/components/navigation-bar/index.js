@@ -38,9 +38,7 @@ const ThemeSwitch = withStyles(navbarMaterialStyle)(Switch)
 const AppNavbar = (props) => {
 
   const handleLogOut = ()=>{
-    if(window.confirm('Do you want to sign out?')){
-      props.signOut()
-    }
+    props.showLogOutModal()
   }
 
   const goToHome = () => {

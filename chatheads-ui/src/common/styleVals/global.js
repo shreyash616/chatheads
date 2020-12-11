@@ -38,7 +38,7 @@ export default {
     },
     color: {
         dark: '#1c272b',
-        light: '#C0C0C0',
+        light: '#ffffff',
         bestOrange: '#fd6d03',
         dullOrange: '#ad3205',
         ogBlue: '#1976d2',

@@ -15,6 +15,7 @@ const Button = (props) => {
 
 Button.defaultProps = {    
     theme: 'dark',
+    appearance: 'primary',
     onClick: null,
     disabled: false
 }

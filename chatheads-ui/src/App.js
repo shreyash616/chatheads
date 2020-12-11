@@ -10,6 +10,7 @@ import actions from './redux/actions/index'
 //common components
 import NavBar from './common/components/navigation-bar/index'
 import Footer from './common/components/page-footer'
+import DialogModal from './common/components/dialog-modal/index'
 
 //components
 import Home from './components/home/index'
@@ -48,6 +49,7 @@ function App(props) {
   const [signInRoute, setSignInRoute] = useState(false)
   const [signUpRoute, setSignUpRoute] = useState(false)
   const [loginState, setLoginState] = useState(false)
+  const [showLogOutModal, setShowLogOutModal] = useState(false)
 
   useEffect(()=>{
     if(props.signInData.status === 'success'){
@@ -63,6 +65,14 @@ function App(props) {
       setSignUpRoute(true)
     }
   },[props.homeData.status])
+
+  useEffect(()=>{
+    if(showLogOutModal){
+      document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+    } else {
+      document.getElementsByTagName('body')[0].style.overflow = 'auto';
+    }
+  }, [showLogOutModal])
  
   const switchTheme = () => {
     if (theme === 'light'){
@@ -80,9 +90,14 @@ function App(props) {
     signUpRoute,
     history: props.history,
     loginState,
-    signOut: () => props.signOut()       
+    signOut: () => props.signOut(),
+    showLogOutModal: () => setShowLogOutModal(true)       
   }
 
+  const handleLogOut = () => {
+    setShowLogOutModal(false)
+    props.signOut()
+  }
 
   return (
     <React.Fragment>      
@@ -99,6 +114,22 @@ function App(props) {
           <Redirect from='/' to='/home'/>          
         </Switch>      
       </Container>
+      {showLogOutModal && <DialogModal
+          title={'Alert'} 
+          id='sample-modal' isOpen={showLogOutModal} 
+          onClose={()=>setShowLogOutModal(false)}
+          primaryButtonText={'OK'}
+          secondaryButtonText={'Cancel'}
+          onPrimaryButtonClick={handleLogOut}
+          onSecondaryButtonClick={()=>setShowLogOutModal(false)}
+          showTitle
+          showClose
+          showPrimaryButton
+          showSecondaryButton
+          {...commonProps}
+        >
+          {'Do you want to sign out?'}
+        </DialogModal>}
       <Footer {...commonProps} />           
     </React.Fragment>
   );

@@ -59,25 +59,18 @@ export const ProfileTitle = styled.span`
         cursor: pointer;
     }
 `
-export const ProfileName = styled.h1`
-    margin-top: ${styleVals.dimensions.spacing36};
-    margin-right: auto;
-    margin-left: ${styleVals.dimensions.spacing24};   
+export const UsernameLabel = styled.p`   
+    font-weight: bold; 
+    margin-top: ${props => props.shiftDown?styleVals.dimensions.spacing18:styleVals.dimensions.spacing0};
+    margin-left: ${styleVals.dimensions.spacing12};   
     color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
-    font-size: ${styleVals.dimensions.spacing60};
-    font-family: ${styleVals.fonts.wordFont};      
-`
-export const UsernameLabel = styled.p`    
-    margin-right: auto;
-    margin-left: ${styleVals.dimensions.spacing24};   
-    color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
-    font-size: ${styleVals.dimensions.spacing18};
+    font-size: ${styleVals.dimensions.spacing24};
     font-family: ${styleVals.fonts.wordFont}; 
 `
-export const Username = styled.p`    
-    margin-right: auto;
+export const Username = styled.p`
     font-weight: bold;
-    margin-left: ${styleVals.dimensions.spacing24};   
+    margin-top: 0px;        
+    margin-left: ${styleVals.dimensions.spacing18};   
     font-size: ${styleVals.dimensions.spacing24};
     color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};    
     font-family: ${styleVals.fonts.wordFont}; 
@@ -102,13 +95,6 @@ export const ChatsTitle = styled.span`
     &:hover{
         cursor: pointer;
     }
-`
-export const ProfileWrapper = styled.div`
-    width: 60%;
-    margin-left: auto;
-    margin-right:auto;
-    border-right: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};   
-    border-left: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};   
 `
 export const ChatheadsCircles = styled.div`
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue}; 
@@ -194,14 +180,19 @@ export const UsernameWrapper = styled.div`
 
 export const UsernameEditWrapper = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 `
 export const UpdateButtonWrapper = styled.div`
-    margin-left: auto;
-    margin-right: ${styleVals.dimensions.spacing24}; 
-    margin-top: ${styleVals.dimensions.spacing12};
+    margin-top: ${props => props.shiftDown?styleVals.dimensions.spacing24:styleVals.dimensions.spacing4};
+    margin-left: ${styleVals.dimensions.spacing6};    
+    border-radius: 50%;    
+    & :hover {
+        cursor: pointer;
+        background-color: #CDCDCD;
+    }    
 `
 export const UpdateFieldWrapper = styled.div`
+    margin-top: ${styleVals.dimensions.spacing6};
     margin-left: ${styleVals.dimensions.spacing24}; 
 `
 export const SentMessage = styled.div`
