@@ -37,11 +37,6 @@
   }
 }
 
-.svg-icon-orange {
-  width: 1em;
-  height: 1em;
-}
-
 .svg-icon-orange path,
 .svg-icon-orange polygon,
 .svg-icon-orange rect {
@@ -53,9 +48,8 @@
   stroke-width: 1;
 }
 
-.svg-icon-blue {
-  width: 1em;
-  height: 1em;
+.icon-margin-top {
+  margin-top: 10px;
 }
 
 .svg-icon-blue path,
@@ -67,11 +61,6 @@
 .svg-icon-blue circle {
   stroke: #1976d2;
   stroke-width: 1;
-}
-
-.svg-icon {
-  width: 1em;
-  height: 1em;
 }
 
 .svg-icon path,

@@ -72,7 +72,8 @@ chatheadsModel.updateUserId = (userIdDetails) => {
                 return userDb.updateOne({userId: userIdDetails.userId},{$set : {userId: userIdDetails.newUserId}}).then((confirmation)=>{
                     if(confirmation.nModified > 0){
                         return {data : {
-                            message: 'Username successfully updated'
+                            message: 'Username successfully updated',
+                            updatedUserId: userIdDetails.newUserId
                         }}
                     }
                     else{

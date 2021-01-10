@@ -11,7 +11,8 @@ const rootReducer = combineReducers(
         signUp: reducers.signUpReducer,
         homeData: reducers.homeReducer,
         searchChatheadsData: reducers.searchChatheadsReducer,
-        sendMessageData: reducers.sendMessageReducer
+        sendMessageData: reducers.sendMessageReducer,
+        updateUserIdData: reducers.updateUserIdReducer
     }
 )
 

@@ -54,6 +54,7 @@ const TextInput = (props) => {
             </PasswordWrapper>
             : <StyledTextInput
                 {...props}
+                id={props.id}
                 type={props.isPassword?showPassword?props.type:'password':props.type}              
                 value={props.value}           
               />

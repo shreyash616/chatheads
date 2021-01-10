@@ -44,4 +44,37 @@ export const sendingMessageFailure = (messageDetails) => {
     }
 }
 
+export const clearSendingMessageData = () => {
+    return {
+        type: actionTypes.CLEAR_SENDING_MESSAGE_DATA
+    }
+}
+
+export const updateUserId = (payload) => {
+    return {
+        type: actionTypes.UPDATE_USERID,
+        payload
+    }
+}
+
+export const updateUserIdSuccess = updateDetails => {
+    return {
+        type: actionTypes.UPDATE_USERID_SUCCESS,
+        updateDetails
+    }
+}
+
+export const updateUserIdFailure = updateDetails => {
+    return {
+        type: actionTypes.UPDATE_USERID_FAILURE,
+        updateDetails
+    }
+}
+
+export const clearUpdateUserIdData = () => {
+    return {
+        type: actionTypes.CLEAR_UPDATE_USERID_DATA
+    }
+}
+
 

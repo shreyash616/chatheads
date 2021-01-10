@@ -140,6 +140,7 @@ export const MessageInputWrapper = styled.div`
     height: 10%;
     width: 100%;
     padding: ${styleVals.dimensions.spacing16};
+    padding-right: ${styleVals.dimensions.spacing10};
 `
 export const IconWrapper = styled.div`
     margin:auto;
@@ -175,7 +176,10 @@ export const Loader = styled(LinearProgress)`
 `
 export const UsernameWrapper = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: ${props => props.persistent?'row':'column'};
+    @media ${styleVals.breakpoints.tabletLandscape} {
+        flex-direction: row;
+    }
 `
 
 export const UsernameEditWrapper = styled.div`
@@ -218,22 +222,24 @@ export const ReceivedTrDown = styled.div`
     width: 0; 
     height: 0; 
     margin-right: auto;
-    margin-left: ${styleVals.dimensions.spacing12};
-    border-left: 10px solid transparent;    
-    border-right: 10px solid transparent;    
-    border-top: 10px solid ${props=>props.theme==='dark'?styleVals.color.dullOrange:styleVals.color.dullBlue};
-    margin-bottom: ${styleVals.dimensions.spacing12};
+    margin-left: ${styleVals.dimensions.spacing8};
+    border-left: 5px solid transparent;    
+    border-right: 5px solid transparent;    
+    border-top: 5px solid ${props=>props.theme==='dark'?styleVals.color.dullOrange:styleVals.color.dullBlue};
+    margin-bottom: ${styleVals.dimensions.spacing10};
+    outline: none;
 `
 
 export const SentTrDown = styled.div`   
     width: 0; 
     height: 0; 
     margin-left: auto;
-    margin-right: ${styleVals.dimensions.spacing12};
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;    
-    border-top: 10px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    margin-right: ${styleVals.dimensions.spacing8};
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;    
+    border-top: 5px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
     margin-bottom: ${styleVals.dimensions.spacing12};
+    outline: none;
 `
 
 export const ChatBottom = styled.div`

@@ -39,3 +39,21 @@ function * handleSendMessage(action){
 export function * catchInitiateSendMessage(){
     yield takeEvery(actionTypes.INITIATE_SENDING_MESSAGE, handleSendMessage)
 }
+
+function * handleUpdateUserId(action){
+    const updateUserIdData = yield axios.post('http://localhost:3001/updateUsername',action.payload).then(response => response.data).catch(error => error);
+    if(updateUserIdData instanceof Error){
+        if(updateUserIdData.response){
+            yield put(actions.chatsActions.updateUserIdFailure(updateUserIdData.response))
+        } else {
+            yield put(actions.chatsActions.updateUserIdFailure(updateUserIdData.message))
+        }
+    }
+    else{
+        yield put(actions.chatsActions.updateUserIdSuccess(updateUserIdData))
+    }
+}
+
+export function * catchInitiateUpdateUserId(){
+    yield takeEvery(actionTypes.UPDATE_USERID, handleUpdateUserId)
+}

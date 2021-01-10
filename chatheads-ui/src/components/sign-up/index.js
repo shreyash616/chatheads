@@ -55,7 +55,7 @@ const SignUp = (props) =>{
 
   //useEffects
   useEffect(()=>{
-    console.log(props.signUpData)
+    
     if(props.signUpData.loading){
       setShowLoader(true)
     }
@@ -127,7 +127,7 @@ const SignUp = (props) =>{
 
   return (
     <React.Fragment>
-      {console.log(props)}      
+          
       <PageContainer {...props}>
         <PageWrapper {...props}>
           <AlertWithLoginWrapper>

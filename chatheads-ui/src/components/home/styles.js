@@ -27,7 +27,8 @@ export const ImageWrapper = styled.div`
     margin-bottom: 50px;
     img {
         margin: auto;
-        height: 300px;
+        height: auto;
+        width: auto;
     }
 `
 

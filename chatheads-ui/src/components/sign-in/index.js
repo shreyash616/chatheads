@@ -70,15 +70,6 @@ const SignIn = (props) =>{
   },[props.signInData])
 
   useEffect(()=>{
-    
-    const redirectToSignUp = () => {
-      setTimeout(()=>{
-        if(window.confirm('Do you want to sign up?')){
-          props.history.push('/signUp')
-        }
-      },2000)
-    }
-
     if(props.signInData.data){      
       if(props.signInData.status === 'failure'){
         if(props.signInData.data.data){
@@ -86,11 +77,6 @@ const SignIn = (props) =>{
             showAlert:true,
             message: props.signInData.data.data
           })
-          if(props.signInData.data.data === 'We couldn\'t find this username. Please sign up.'){
-            setTimeout(()=>{
-              redirectToSignUp()
-            },2000)
-          }
         }
         else{
           setAlert({
@@ -131,7 +117,7 @@ const SignIn = (props) =>{
 
   return (
     <React.Fragment>
-      {console.log(isLoading)}
+      
       {!redirect
       ?<React.Fragment>                  
         <PageContainer {...props}>
