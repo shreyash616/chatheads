@@ -63,3 +63,23 @@ export const updateUserIdReducer = (state = INITIAL_STATE,action) => {
             return state
     }
 }
+
+export const getMessagesReducer = (state = INITIAL_STATE,action) => {
+    switch(action.type){
+        case actionTypes.GET_MESSAGES:
+            let loadingState = {...state, loading:true}
+            return loadingState
+        case actionTypes.GET_MESSAGES_SUCCESS:
+            let successState ={...state, status: 'success',loading: false, error: false, data: action.userDetails}
+            return successState
+        case actionTypes.GET_MESSAGES_FAILURE:
+            let failureState = {...state, status: 'failure', loading: false, error: true, data: action.userDetails}
+            return failureState
+        case actionTypes.CLEAR_GET_MESSAGES:
+            return INITIAL_STATE
+        case actionTypes.SIGN_OUT:
+            return INITIAL_STATE
+        default:
+            return state
+    }
+}

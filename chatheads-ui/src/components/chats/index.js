@@ -10,6 +10,8 @@ import TextInput from '../../common/components/text-input'
 import Alert from '../../common/components/alert-box'
 import DialogModal from '../../common/components/dialog-modal'
 
+import Pusher from 'pusher-js'
+
 import {
     PageWrapper,
     DetailsWrapper,
@@ -48,7 +50,8 @@ const mapStateToProps = store => ({
   signInData: store.signIn,
   searchData: store.searchChatheadsData,
   sendMessageData: store.sendMessageData,
-  updateUserIdData: store.updateUserIdData 
+  updateUserIdData: store.updateUserIdData,
+  getMessagesData: store.getMessagesData
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -57,7 +60,8 @@ const mapDispatchToProps = dispatch => ({
   updateUserId: (userId) => dispatch(actions.chatsActions.updateUserId(userId)),
   initiateSignIn: (signInDetails) => dispatch(actions.signInActions.initiateSignIn(signInDetails)),
   clearUpdateUserIdData: () => dispatch(actions.chatsActions.clearUpdateUserIdData()),
-  clearSendingMessageData: () => dispatch(actions.chatsActions.clearSendingMessageData())
+  clearSendingMessageData: () => dispatch(actions.chatsActions.clearSendingMessageData()),
+  getMessages: (userDetails) => dispatch(actions.chatsActions.getMessages(userDetails))
 })
 
 const Chats = (props) => {  
@@ -79,6 +83,27 @@ const Chats = (props) => {
       const field = document.getElementById(id)
       field && field.focus()
     }
+
+    useEffect(()=>{
+      const pusher = new Pusher('93a108f8963680657f0b', {
+        cluster: 'us2'
+      });
+  
+      var channel = pusher.subscribe('chatheads-messages');
+      channel.bind('message-received', function(data) {
+        console.log('change received')
+        props.getMessages({
+          jwtToken: props.homeData.data?props.homeData.data.data.jwtToken:null,
+          data: {
+            userId: userDetails.userId
+          }
+        })
+      });
+      return () => {
+        channel.unbind_all()
+        channel.unsubscribe()
+      }
+    }, [userDetails])
 
     useEffect(()=>{
       setMessage('')
@@ -112,6 +137,24 @@ const Chats = (props) => {
       }
       props.clearUpdateUserIdData()
     }, [props.updateUserIdData])
+
+    useEffect(()=>{
+      const messagesStatus = getResponseKey(['status'], props.getMessagesData)
+      if(messagesStatus === 'success'){
+        setUserDetails({
+          ...userDetails,
+          chats: getResponseKey(['data', 'data', 'userData', 'chats'], props.getMessagesData)
+        })    
+        const selectedId = selectedChat.userId
+        const chats = getResponseKey(['data', 'data', 'userData', 'chats'], props.getMessagesData)
+        for(let i=0;i<chats.length;i++){
+          if(chats[i].userId === selectedId){
+            setSelectedChat(chats[i])                       
+            break
+          }
+        }    
+      }
+    }, [props.getMessagesData])
 
     useEffect(()=>{
       if(userDetails){

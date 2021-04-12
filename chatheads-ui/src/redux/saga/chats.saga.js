@@ -57,3 +57,22 @@ function * handleUpdateUserId(action){
 export function * catchInitiateUpdateUserId(){
     yield takeEvery(actionTypes.UPDATE_USERID, handleUpdateUserId)
 }
+
+function * handleGetMessages(action){
+    console.log(action)
+    const updateUserIdData = yield axios.post('http://localhost:3001/getMessages',action.userDetails).then(response => response.data).catch(error => error);
+    if(updateUserIdData instanceof Error){
+        if(updateUserIdData.response){
+            yield put(actions.chatsActions.getMessagesFailure(updateUserIdData.response))
+        } else {
+            yield put(actions.chatsActions.getMessagesFailure(updateUserIdData.message))
+        }
+    }
+    else{
+        yield put(actions.chatsActions.getMessagesSuccess(updateUserIdData))
+    }
+}
+
+export function * catchGetMessages(){
+    yield takeEvery(actionTypes.GET_MESSAGES, handleGetMessages)
+}

@@ -77,4 +77,25 @@ export const clearUpdateUserIdData = () => {
     }
 }
 
+export const getMessages = userDetails => {
+    console.log(userDetails)
+    return {
+        type: actionTypes.GET_MESSAGES,
+        userDetails
+    }
+}
+
+export const getMessagesSuccess = userDetails => {
+    return {
+        type: actionTypes.GET_MESSAGES_SUCCESS,
+        userDetails
+    }
+}
+
+export const getMessagesFailure = userDetails => {
+    return {
+        type: actionTypes.GET_MESSAGES_FAILURE,
+        userDetails
+    }
+}
 
