@@ -14,12 +14,12 @@ export const ModalWrapper = styled.div`
 export const ModalStyle = styled.div`
     display: flex;
     flex-direction: column;
-    max-width: 400;
+    max-width: 300px;
     min-height: 40vh;    
     padding: 10px;
     margin-top: 20vh;
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #fff;
     border: 5px solid ${props => props.theme === 'dark'? styleVals.color.bestOrange : styleVals.color.ogBlue};
     border-radius: 10px;
@@ -48,7 +48,8 @@ export const ButtonWrapper = styled.div`
     }
 `
 export const TitleSeparator = styled.div`
-    margin-top: ${styleVals.dimensions.spacing20};
+    position: relative;
+    margin-top: ${styleVals.dimensions.spacing40};
     margin-bottom: ${styleVals.dimensions.spacing16};
     border-bottom: 2px solid #CDCDCD;
 `

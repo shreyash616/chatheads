@@ -13,24 +13,19 @@ import Footer from './common/components/page-footer'
 import DialogModal from './common/components/dialog-modal/index'
 
 //components
-import Home from './components/home/index'
 import SignIn from './components/sign-in/index'
 import SignUp from './components/sign-up/index'
 import Chats from './components/chats'
 
-const Divider = styled.div`    
-    border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
-    border-radius: ${styleVals.dimensions.spacing10};
-    box-shadow: ${styleVals.color.shadowColor};
+const Wrapper = styled.div`     
+  background-color: ${props=>props.theme==='dark'?styleVals.color.dark:styleVals.color.light};
 `
 const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    background-color: ${props=>props.theme==='dark'?styleVals.color.dark:styleVals.color.light};
-    padding-top: ${styleVals.dimensions.spacing40};
+    margin-top: 70px;      
+    min-height: calc(100vh - 211px);
+    padding-top: ${styleVals.dimensions.spacing60};
     padding-left: ${styleVals.dimensions.spacing40};
-    padding-right: ${styleVals.dimensions.spacing40};   
-    min-height: 80vh;
+    padding-right: ${styleVals.dimensions.spacing40};    
 `
 
 const mapStateToProps = store => ({
@@ -45,9 +40,8 @@ const mapDispatchToProps = dispatch => ({
 
 function App(props) {
   
-  const [theme, setTheme] = useState('light')
-  const [signInRoute, setSignInRoute] = useState(false)
-  const [signUpRoute, setSignUpRoute] = useState(false)
+  const [theme, setTheme] = useState('dark')
+  const [signInRoute, setSignInRoute] = useState(false)  
   const [loginState, setLoginState] = useState(false)
   const [showLogOutModal, setShowLogOutModal] = useState(false)
 
@@ -61,8 +55,7 @@ function App(props) {
 
   useEffect(()=>{    
     if(props.homeData.status === 'success'){
-      setSignInRoute(true)
-      setSignUpRoute(true)
+      setSignInRoute(true)      
     }
   },[props.homeData.status])
 
@@ -86,8 +79,7 @@ function App(props) {
     theme,
     switchTheme,
     title: appConstants.NAVBAR_BRAND,
-    signInRoute,
-    signUpRoute,
+    signInRoute,    
     history: props.history,
     loginState,
     signOut: () => props.signOut(),
@@ -100,20 +92,17 @@ function App(props) {
   }
 
   return (
-    <React.Fragment>      
-      <NavBar
-        {...commonProps}
-      />
-      <Divider {...commonProps}/>
+    <Wrapper theme={commonProps.theme}>      
+      <NavBar {...commonProps}/>      
       <Container {...commonProps}>
-        <Switch>
-          <Route key='home' path='/home' render={()=><Home {...commonProps}/>}/>
-          {signUpRoute && <Route key='signUp' path='/signUp' render={()=><SignUp {...commonProps}/>}/>}
+        <Switch>          
+          <Route key='signUp' path='/signUp' render={()=><SignUp {...commonProps}/>}/>
           {signInRoute && <Route key='signIn' path='/signIn' render={()=><SignIn {...commonProps}/>}/>}
           <Route key='chats' path='/chats' render={()=><Chats {...commonProps}/>}/>
-          <Redirect from='/' to='/home'/>          
+          <Redirect from='/' to='/signUp'/>          
         </Switch>      
       </Container>
+      <Footer {...commonProps} /> 
       {showLogOutModal && <DialogModal
           title={'Alert'} 
           id='sample-modal' isOpen={showLogOutModal} 
@@ -129,9 +118,8 @@ function App(props) {
           {...commonProps}
         >
           {'Do you want to sign out?'}
-        </DialogModal>}
-      <Footer {...commonProps} />           
-    </React.Fragment>
+        </DialogModal>}                
+    </Wrapper>
   );
 }
 

@@ -30,7 +30,7 @@ export const StyledButton = styled.button`
         background-color: ${props => props.theme === 'dark'? styleVals.color.dullOrange : styleVals.color.dullBlue};
     } 
     &: hover{
-        cursor: pointer;        
+        cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};        
     }
     transition: all linear 0.1s;
 `

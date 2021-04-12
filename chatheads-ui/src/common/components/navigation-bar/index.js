@@ -56,13 +56,6 @@ const AppNavbar = (props) => {
         </Link>}
       </ActionButtonsWrapper>
       <ActionButtonsWrapper>
-        {!props.loginState && <Link to='/signUp'>
-          <Button disabled={!props.signUpRoute} {...props}>
-            {appConstants.SIGN_UP}                                   
-          </Button>
-        </Link>}
-      </ActionButtonsWrapper>
-      <ActionButtonsWrapper>
         {props.loginState && 
           <Button {...props} onClick = {handleLogOut}>
             {appConstants.SIGN_OUT}                  

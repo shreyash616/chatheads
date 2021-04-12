@@ -40,7 +40,9 @@ import {
     SentTrDown,
     ReceivedTrDown,    
     ChatWindowHeader,
-    ChatWindowHeaderName
+    ChatWindowHeaderName,
+    RowDiv,
+    Chathead
 } from './styles'
 import { getResponseKey } from '../../common/utilities/getResponseKey'
 
@@ -221,10 +223,12 @@ const Chats = (props) => {
       setSearchText(event.target.value)      
     }
     const handleClickOnChatAfterSearch = (chat) => {
-      setSelectedChat(chat)
+      const usersChat = userDetails.chats && userDetails.chats.length > 0 && userDetails.chats.filter(userChat => userChat.userId === chat.userId)[0]
+      setSelectedChat(usersChat || chat)
       setSearchText('')
     }
-    const sendMessage = () => {
+    const sendMessage = (e) => {
+      e.preventDefault()
       if(message){
         let payload = {
           jwtToken: props.homeData.data ? props.homeData.data.data.jwtToken: null,
@@ -244,10 +248,15 @@ const Chats = (props) => {
 
     //sub components
     const SendIcon = () => {
-      return <IconWrapper onClick={()=>sendMessage()} onKeyPress={()=>sendMessage()}>
+      return <IconWrapper>
+              <button style={{
+                background: 'none',
+                border: 'none'
+              }} type='submit'>
               <svg tabIndex={1} height='25' width = '25' className={props.theme === 'dark'?"svg-icon-orange icon-margin-top":"svg-icon-blue icon-margin-top"} viewBox="0 0 20 20">
                 <path d="M17.218,2.268L2.477,8.388C2.13,8.535,2.164,9.05,2.542,9.134L9.33,10.67l1.535,6.787c0.083,0.377,0.602,0.415,0.745,0.065l6.123-14.74C17.866,2.46,17.539,2.134,17.218,2.268 M3.92,8.641l11.772-4.89L9.535,9.909L3.92,8.641z M11.358,16.078l-1.268-5.613l6.157-6.157L11.358,16.078z"></path>
               </svg>
+              </button>
             </IconWrapper>
     }
 
@@ -273,36 +282,37 @@ const Chats = (props) => {
     }
 
     const getSearchedChatheads = () => {
-      return searchedChatheads.map((chat)=>{
+      return <RowDiv>
+      {searchedChatheads.map((chat)=>{
         if(chat.userId !== userDetails.userId){
           return (
-          <React.Fragment>
+          <Chathead>
             <ChatheadsCircles 
               onClick={()=>handleClickOnChatAfterSearch(chat)}
               {...props}
             />
             <ChatheadsName {...props}>{chat.name}</ChatheadsName>
-          </React.Fragment> 
+          </Chathead> 
           )
         }
-        })
+        })}</RowDiv>
     }
 
-    const getChatheads = () => {
-      // props.signInData.data.data.userData.chats && props.signInData.data.data.userData.chats.map((chathead)=>{
+    const getChatheads = () => {    
+      const sortedChat = userDetails && userDetails.chats.length > 0 && userDetails.chats.sort((a,b) => new Date(b.updateTime) - new Date(a.updateTime))  
         if(userDetails){
-          return userDetails.chats.map((chat)=>{
+          return <RowDiv>{sortedChat.map((chat)=>{
             if(chat.userId !== userDetails.userId){
               return (
-              <React.Fragment>
+              <Chathead>
                 <ChatheadsCircles 
                   onClick={()=>setSelectedChat(chat)}
                 {...props}/>
                 <ChatheadsName {...props}>{chat.userId}</ChatheadsName>
-              </React.Fragment>
+              </Chathead>
               )
             }        
-            })
+            })}</RowDiv>
         }
     }
 
@@ -376,23 +386,25 @@ const Chats = (props) => {
                    theme = {props.theme}>{chatConstants.CHATS_TITLE}</ChatsTitle>                                              
                   </DetailsWrapper>
                   {showChats
-                 ?<ConversationWrapper {...props}>
+                 ?<ConversationWrapper {...props}>                   
                     {!searchText
                      ?<ChatheadWrapper theme={props.theme}>
+                       <div>
                       {props.searchData.loading && <Loader theme={props.theme}/>}
-                      <SearchInputWrapper>
+                      <SearchInputWrapper search={false}>
                         <TextInput
                           placeholder={chatConstants.SEARCH_PLACEHOLDER}
                           theme={props.theme}
                           value={searchText}
                           onChange={handleSearchText}
                         />
-                      </SearchInputWrapper> 
+                      </SearchInputWrapper>
+                      </div>
                       {getChatheads()}   
                       {userDetails && userDetails.chats.length === 0 && <NoChatheadsMessage theme={props.theme}>{chatConstants.NO_CHATS_MESSAGE}</NoChatheadsMessage>}                                                   
                       </ChatheadWrapper>
                      :<ChatheadWrapper theme={props.theme}>
-                      <SearchInputWrapper>
+                      <SearchInputWrapper search>
                         {props.searchData.loading && <Loader theme={props.theme}/>}
                         <TextInput
                           placeholder={chatConstants.SEARCH_PLACEHOLDER}
@@ -404,7 +416,7 @@ const Chats = (props) => {
                       {getSearchedChatheads()}
                       {searchError && <NoChatheadsMessage theme={props.theme}>{searchError}</NoChatheadsMessage>}
                       </ChatheadWrapper>
-                    }                    
+                    }                                    
                     <ChatWrapper {...props}>
                       {selectedChat
                       ? <React.Fragment>
@@ -414,6 +426,7 @@ const Chats = (props) => {
                           <ChatWindow>                            
                             {getChats()}                             
                           </ChatWindow>
+                          <form onSubmit={sendMessage}>
                           <MessageWrapper>
                             <MessageInputWrapper>
                               <TextInput
@@ -424,6 +437,7 @@ const Chats = (props) => {
                             </MessageInputWrapper>
                             <SendIcon />
                           </MessageWrapper>
+                          </form>
                         </React.Fragment>
                       : <NoChatSelectedMessage theme={props.theme}>{chatConstants.NO_CHAT_SELECTED_MESSAGE}</NoChatSelectedMessage>}
                     </ChatWrapper>

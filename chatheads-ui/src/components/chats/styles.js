@@ -6,7 +6,7 @@ export const PageWrapper = styled.div`
     display:flex;
     flex-direction: column;
     margin: ${styleVals.dimensions.spacing16};
-    width: 100%;
+    width: auto;
     height: 100%;
 
 `
@@ -21,23 +21,51 @@ export const DetailsWrapper = styled.div`
 export const ConversationWrapper = styled.div`           
     height: 65vh;
     display: flex;
-    flex-direction: row;    
+    flex-direction: column;    
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
     border-radius: ${styleVals.dimensions.spacing10};
+    @media ${styleVals.breakpoints.tabletLandscape}, ${styleVals.breakpoints.tabletPortrait} {
+        flex-direction: row;
+    }
 `
 export const ChatheadWrapper = styled.div`    
-    width: 20%;
+    width: 100%;
     display: flex;
     flex-direction: column; 
-    height: 100%;
+    height: 33%;
     overflow: auto;
-    border-right: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};   
+    border-bottom: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    border-right: none;
+    @media ${styleVals.breakpoints.tabletPortrait} {
+        width: 30%;
+        flex-direction: column;
+        height: 100%;
+        border-bottom: none;
+        border-right: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    }
+    @media ${styleVals.breakpoints.tabletLandscape} {
+        width: 20%;
+        flex-direction: column;
+        height: 100%;
+        border-bottom: none;
+        border-right: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    }  
 `
 
 export const ChatWrapper = styled.div`    
-    width:80%;
+    width: 100%;
     display: flex;
     flex-direction: column; 
+    @media ${styleVals.breakpoints.tabletPortrait} {
+        width: 70%;
+        height: 100%;
+    }
+    @media ${styleVals.breakpoints.tabletLandscape} {
+        width: 80%;
+        height: 100%;
+    }
+    overflow: auto;
+    height: 70%;
 `
 export const ProfileTitle = styled.span`
     margin-left: auto;
@@ -135,6 +163,10 @@ export const SearchInputWrapper = styled.div`
     width: auto;
     padding: ${styleVals.dimensions.spacing12};
     padding-bottom: ${styleVals.dimensions.spacing8};
+    margin-bottom: ${props => props.search ? styleVals.dimensions.spacing32 : styleVals.dimensions.spacing12};
+    @media ${styleVals.breakpoints.tabletLandscape}, ${styleVals.breakpoints.tabletPortrait} {
+        width: auto;
+    }
 `
 export const MessageInputWrapper = styled.div`
     height: 10%;
@@ -156,6 +188,7 @@ export const NoChatSelectedMessage = styled.h1`
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
+    text-align: center;
     color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
     font-family: ${styleVals.fonts.wordFont};
 `
@@ -257,5 +290,26 @@ export const ChatWindowHeader = styled.div`
 export const ChatWindowHeaderName = styled.p`
     text-align: center;   
     font-weight: bold; 
+`
+
+export const RowDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    @media ${styleVals.breakpoints.tabletLandscape}, ${styleVals.breakpoints.tabletPortrait} {
+        flex-direction: column
+    }    
+`
+export const Chathead = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: ${styleVals.dimensions.spacing16};
+    margin-right: ${styleVals.dimensions.spacing16};
+    @media ${styleVals.breakpoints.tabletLandscape}, ${styleVals.breakpoints.tabletPortrait} {
+        margin-left: ${styleVals.dimensions.spacing0};
+        margin-right: ${styleVals.dimensions.spacing0};
+    }
 `
 

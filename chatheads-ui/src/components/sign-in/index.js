@@ -103,7 +103,8 @@ const SignIn = (props) =>{
   const handlePassword = (event) => {
     setPassword(event.target.value)
   }
-  const handleSignIn = () => {
+  const handleSignIn = (e) => {
+    e.preventDefault()
     let signInDetails = {
       jwtToken: props.homeData.data ? props.homeData.data.data.jwtToken: null ,
       data: {
@@ -125,6 +126,7 @@ const SignIn = (props) =>{
             <AlertWithLoginWrapper>
               {alert.showAlert && <AlertBox theme={props.theme}>{alert.message}</AlertBox>}
               {showLoader && <AppLoader theme={props.theme}/>} 
+              <form onSubmit = {handleSignIn}>
               <LoginWrapper {...props}>   
                   <UsernameWrapper>
                     <TextInput
@@ -146,12 +148,13 @@ const SignIn = (props) =>{
                     /> 
                   </PasswordWrapper>            
                 <SignInButtonWrapper
-                  onClick= {handleSignIn}
+                  type='submit'                   
                   {...props}
                 >
                   {signInConstants.SIGN_IN}
                 </SignInButtonWrapper>              
               </LoginWrapper>
+              </form>
             </AlertWithLoginWrapper>
           </PageWrapper>
         </PageContainer>
