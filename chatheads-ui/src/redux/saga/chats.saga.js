@@ -5,7 +5,7 @@ import actionTypes from '../actions/actionTypes';
 
 
 function * handleSearchChatheads(action){
-    const searchData = yield axios.post('http://localhost:3001/searchChatheads',action.searchDetails).then(response => response.data).catch(error => error);
+    const searchData = yield axios.post('https://chatheads-ws.herokuapp.com/searchChatheads',action.searchDetails).then(response => response.data).catch(error => error);
     if(searchData instanceof Error){
         if(searchData.response){
             yield put(actions.chatsActions.searchChatheadsFailure(searchData.response))
@@ -23,7 +23,7 @@ export function * catchInitiateSearchChatheads(){
 }
 
 function * handleSendMessage(action){
-    const sendMessageData = yield axios.post('http://localhost:3001/sendMessage',action.messageDetails).then(response => response.data).catch(error => error);
+    const sendMessageData = yield axios.post('https://chatheads-ws.herokuapp.com/sendMessage',action.messageDetails).then(response => response.data).catch(error => error);
     if(sendMessageData instanceof Error){
         if(sendMessageData.response){
             yield put(actions.chatsActions.sendingMessageFailure(sendMessageData.response))
@@ -41,7 +41,7 @@ export function * catchInitiateSendMessage(){
 }
 
 function * handleUpdateUserId(action){
-    const updateUserIdData = yield axios.post('http://localhost:3001/updateUsername',action.payload).then(response => response.data).catch(error => error);
+    const updateUserIdData = yield axios.post('https://chatheads-ws.herokuapp.com/updateUsername',action.payload).then(response => response.data).catch(error => error);
     if(updateUserIdData instanceof Error){
         if(updateUserIdData.response){
             yield put(actions.chatsActions.updateUserIdFailure(updateUserIdData.response))
@@ -60,7 +60,7 @@ export function * catchInitiateUpdateUserId(){
 
 function * handleGetMessages(action){
     console.log(action)
-    const updateUserIdData = yield axios.post('http://localhost:3001/getMessages',action.userDetails).then(response => response.data).catch(error => error);
+    const updateUserIdData = yield axios.post('https://chatheads-ws.herokuapp.com/getMessages',action.userDetails).then(response => response.data).catch(error => error);
     if(updateUserIdData instanceof Error){
         if(updateUserIdData.response){
             yield put(actions.chatsActions.getMessagesFailure(updateUserIdData.response))

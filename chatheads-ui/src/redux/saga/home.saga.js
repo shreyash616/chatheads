@@ -4,7 +4,7 @@ import axios from 'axios'
 import actions from '../actions'
 
 function * handleGetJwtToken(action){
-    const jwtTokenDetails = yield axios.post('http://localhost:3001/getJwtToken',action.authHeader).then(response => response.data).catch(error => error)
+    const jwtTokenDetails = yield axios.post('https://chatheads-ws.herokuapp.com/getJwtToken',action.authHeader).then(response => response.data).catch(error => error)
     
     if(jwtTokenDetails instanceof Error){
         if(jwtTokenDetails.response){

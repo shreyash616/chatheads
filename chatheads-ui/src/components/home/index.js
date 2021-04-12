@@ -45,16 +45,17 @@ const Home = (props) => {
       message: ''
     })
 
-    useEffect(()=>{  
-      if(props.homeData.status === ''){
-        props.getJwtToken()
-      }
+    useEffect(()=>{      
+      props.getJwtToken()      
+    }, [])
+
+    useEffect(()=>{
       if(props.homeData.loading){
         setShowLoader(true)
       }else{
         setShowLoader(false)
       }
-    },[props])
+    },[props.homeData])
 
     useEffect(()=>{
       if(props.homeData.status==='failure'){

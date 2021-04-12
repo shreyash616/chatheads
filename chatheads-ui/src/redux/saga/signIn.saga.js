@@ -5,7 +5,7 @@ import actionTypes from '../actions/actionTypes'
 
 function * handleSignIn(action){
     
-    const signInResponseData = yield axios.post('http://localhost:3001/signIn',action.signInDetails).then(response => response.data).catch(error => error)        
+    const signInResponseData = yield axios.post('https://chatheads-ws.herokuapp.com/signIn',action.signInDetails).then(response => response.data).catch(error => error)        
     
     if(signInResponseData instanceof Error){
         if(signInResponseData.response){
