@@ -14,18 +14,23 @@ export const ModalWrapper = styled.div`
 export const ModalStyle = styled.div`
     display: flex;
     flex-direction: column;
-    max-width: 300px;
-    min-height: 40vh;    
+    width: auto;
+    min-height: 20vh;    
     padding: 10px;
     margin-top: 20vh;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 10px;
+    margin-right: 10px;
     background-color: #fff;
     border: 5px solid ${props => props.theme === 'dark'? styleVals.color.bestOrange : styleVals.color.ogBlue};
     border-radius: 10px;
     box-shadow: ${styleVals.color.shadowColor};
     font: ${styleVals.fonts.wordFont};
     font-weight: 600;
+    @media ${styleVals.breakpoints.tabletLandscape}, ${styleVals.breakpoints.tabletPortrait} {
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px;
+    }
 `
 
 export const ModalHeader = styled.div`
@@ -49,7 +54,7 @@ export const ButtonWrapper = styled.div`
 `
 export const TitleSeparator = styled.div`
     position: relative;
-    margin-top: ${styleVals.dimensions.spacing40};
+    margin-top: ${styleVals.dimensions.spacing20};
     margin-bottom: ${styleVals.dimensions.spacing16};
     border-bottom: 2px solid #CDCDCD;
 `

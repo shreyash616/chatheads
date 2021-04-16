@@ -33,7 +33,7 @@ export const ChatheadWrapper = styled.div`
     display: flex;
     flex-direction: column; 
     height: 33%;
-    overflow: auto;
+    overflow-x: auto;
     border-bottom: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
     border-right: none;
     @media ${styleVals.breakpoints.tabletPortrait} {
@@ -172,10 +172,11 @@ export const SearchInputWrapper = styled.div`
     height: 10%;
     width: auto;
     padding: ${styleVals.dimensions.spacing12};
-    padding-bottom: ${styleVals.dimensions.spacing8};
-    margin-bottom: ${props => props.search ? styleVals.dimensions.spacing32 : styleVals.dimensions.spacing12};
+    padding-bottom: ${styleVals.dimensions.spacing0};
+    margin-bottom: ${props => props.search ? styleVals.dimensions.spacing38 : styleVals.dimensions.spacing6};
     @media ${styleVals.breakpoints.tabletLandscape}, ${styleVals.breakpoints.tabletPortrait} {
         width: auto;
+        margin-bottom: ${props => props.search ? styleVals.dimensions.spacing12 : styleVals.dimensions.spacing14};
     }
 `
 export const MessageInputWrapper = styled.div`

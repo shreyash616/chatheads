@@ -112,9 +112,10 @@ const Chats = (props) => {
     }, [userDetails])    
 
     useEffect(()=>{
-      setMessage('')
+      setMessage('')      
       const chats = getResponseKey(['messages'], selectedChat)
       chats && chats.length > 0 && focusOnField(`message-${chats.length}`)
+      focusOnField('message-field')
       const unreadFlag = selectedChat && selectedChat.messages && selectedChat.messages.find(msg => msg.unread === true)      
       if(!!unreadFlag) {
         const payload = {
@@ -124,15 +125,12 @@ const Chats = (props) => {
             senderUserId: selectedChat.userId
           }
         }
-        props.markRead(payload)
-        console.log('marked read')
+        props.markRead(payload)        
       }
     }, [selectedChat])
 
     useEffect(() => {
       if(getResponseKey(['status'], props.markReadData) === 'success'){
-        console.log('marked read success')
-        console.log('called get messages')
         props.getMessages({
           jwtToken: props.homeData.data?props.homeData.data.data.jwtToken:null,
           data: {
@@ -172,8 +170,7 @@ const Chats = (props) => {
 
     useEffect(()=>{
       const messagesStatus = getResponseKey(['status'], props.getMessagesData)
-      if(messagesStatus === 'success'){
-        console.log(props.getMessagesData.data)
+      if(messagesStatus === 'success'){        
         setUserDetails({
           ...userDetails,
           chats: getResponseKey(['data', 'data', 'userData', 'chats'], props.getMessagesData)
@@ -197,7 +194,8 @@ const Chats = (props) => {
       }
     },[userDetails])
 
-    useEffect(()=>{      
+    useEffect(()=>{
+      focusOnField('search-field')      
       if(searchText){
         let searchDetails = {
           jwtToken: props.homeData.data?props.homeData.data.data.jwtToken:null,
@@ -218,6 +216,7 @@ const Chats = (props) => {
           if(chats[i].userId === selectedId){
             setSelectedChat(chats[i])
             setMessage('')            
+            focusOnField('message-field')
             break
           }
         }
@@ -402,7 +401,7 @@ const Chats = (props) => {
           </UsernameWrapper>
         </React.Fragment>
       )
-    }
+    }    
 
     return(
         <React.Fragment>                           
@@ -425,24 +424,26 @@ const Chats = (props) => {
                  ?<ConversationWrapper {...props}>                   
                     {!searchText
                      ?<ChatheadWrapper theme={props.theme}>
-                       <div>
-                      {props.searchData.loading && <Loader theme={props.theme}/>}
-                      <SearchInputWrapper search={false}>
-                        <TextInput
-                          placeholder={chatConstants.SEARCH_PLACEHOLDER}
-                          theme={props.theme}
-                          value={searchText}
-                          onChange={handleSearchText}
-                        />
-                      </SearchInputWrapper>
-                      </div>
+                        <div style={{
+                          overflowX: 'hidden'
+                        }}>                      
+                          <SearchInputWrapper>
+                            <TextInput
+                              id='search-field'
+                              placeholder={chatConstants.SEARCH_PLACEHOLDER}
+                              theme={props.theme}
+                              value={searchText}
+                              onChange={handleSearchText}
+                            />
+                          </SearchInputWrapper>
+                        </div>
                       {getChatheads()}   
                       {userDetails && userDetails.chats.length === 0 && <NoChatheadsMessage theme={props.theme}>{chatConstants.NO_CHATS_MESSAGE}</NoChatheadsMessage>}                                                   
                       </ChatheadWrapper>
                      :<ChatheadWrapper theme={props.theme}>
-                      <SearchInputWrapper search>
-                        {props.searchData.loading && <Loader theme={props.theme}/>}
+                      <SearchInputWrapper search>                        
                         <TextInput
+                          id='search-field'
                           placeholder={chatConstants.SEARCH_PLACEHOLDER}
                           theme={props.theme}
                           value={searchText}
@@ -466,6 +467,7 @@ const Chats = (props) => {
                           <MessageWrapper>
                             <MessageInputWrapper>
                               <TextInput
+                              id={'message-field'}
                               theme={props.theme}
                               value={message}
                               placeholder={chatConstants.MESSAGE_PLACEHOLDER}
