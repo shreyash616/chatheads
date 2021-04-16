@@ -99,3 +99,29 @@ export const getMessagesFailure = userDetails => {
     }
 }
 
+export const markRead = userDetails => {
+    return {
+        type: actionTypes.MARK_READ,
+        userDetails
+    }
+}
+
+export const markReadSuccess = userDetails => {
+    return {
+        type: actionTypes.MARK_READ_SUCCESS,
+        userDetails
+    }
+}
+
+export const markReadFailure = userDetails => {
+    return {
+        type: actionTypes.MARK_READ_FAILURE,
+        userDetails
+    }
+}
+
+export const clearMarkReadData = () => {
+    return {
+        type: actionTypes.CLEAR_MARK_READ_DATA,        
+    }
+}

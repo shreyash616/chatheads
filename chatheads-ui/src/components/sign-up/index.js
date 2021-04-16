@@ -227,7 +227,7 @@ const SignUp = (props) => {
       <React.Fragment>
       {error.isAlert && <AlertWrapper><AlertBox theme={props.theme}>{error.message}</AlertBox></AlertWrapper>}    
       {showJwtLoader && <AppLoader theme={props.theme}/>}
-      <PageContainer {...props}>
+      <PageContainer noPadding {...props}>
         <PageWrapper {...props}>          
           <LogoWrapper>
             <Logo theme = {props.theme}>{homeConstants.LOGO}</Logo>                

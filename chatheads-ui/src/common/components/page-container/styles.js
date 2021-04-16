@@ -6,5 +6,5 @@ export const Content = styled.div`
     border-radius: ${styleVals.dimensions.spacing10};
     min-height: 50vh;   
     box-shadow: ${styleVals.color.shadowColor}; 
-    padding: ${styleVals.dimensions.spacing8};   
+    padding: ${props => props.noPadding ? styleVals.dimensions.spacing8 : styleVals.dimensions.spacing40};   
 `

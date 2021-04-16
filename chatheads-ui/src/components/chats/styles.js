@@ -125,6 +125,7 @@ export const ChatsTitle = styled.span`
     }
 `
 export const ChatheadsCircles = styled.div`
+    position: relative;
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue}; 
     border-radius: 50%;
     margin-top: ${styleVals.dimensions.spacing12};
@@ -138,6 +139,15 @@ export const ChatheadsCircles = styled.div`
         transform: scale(1.1,1.1);
     }
     transition: 0.2s all linear;
+`
+export const ChatheadBadge = styled.span`
+    position: absolute;
+    right: 3px;
+    top: -3px;
+    background: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    text-align: center;
+    border-radius: 50%;    
+    padding: 5px 5px;    
 `
 export const ChatheadsName = styled.span`
     margin-left: auto;
@@ -280,8 +290,8 @@ export const ChatBottom = styled.div`
 
 export const ChatWindowHeader = styled.div` 
     background-color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};           
-    margin: ${styleVals.dimensions.spacing12};
-    width: 20%;
+    margin: ${styleVals.dimensions.spacing4};
+    width: auto;
     border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
@@ -290,6 +300,9 @@ export const ChatWindowHeader = styled.div`
 export const ChatWindowHeaderName = styled.p`
     text-align: center;   
     font-weight: bold; 
+    margin: 8px;
+    margin-left: 28px;
+    margin-right: 28px;
 `
 
 export const RowDiv = styled.div`
@@ -310,6 +323,22 @@ export const Chathead = styled.div`
     @media ${styleVals.breakpoints.tabletLandscape}, ${styleVals.breakpoints.tabletPortrait} {
         margin-left: ${styleVals.dimensions.spacing0};
         margin-right: ${styleVals.dimensions.spacing0};
+    }
+`
+
+export const UnreadMarker = styled.div`    
+    display: flex;  
+    align-items: center;
+    font-weight: bold;
+    color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+    &:before,
+    &:after{
+        content: '';
+        flex-grow: 1;
+        background-color: ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
+        padding: 0.5px;
+        height: 1px;
+        margin: 0px 4px;
     }
 `
 

@@ -13,7 +13,8 @@ const rootReducer = combineReducers(
         searchChatheadsData: reducers.searchChatheadsReducer,
         sendMessageData: reducers.sendMessageReducer,
         updateUserIdData: reducers.updateUserIdReducer,
-        getMessagesData: reducers.getMessagesReducer
+        getMessagesData: reducers.getMessagesReducer,
+        markReadData: reducers.markReadReducer
     }
 )
 

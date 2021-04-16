@@ -4,7 +4,7 @@ import actions from '../actions/index'
 import actionTypes from '../actions/actionTypes'
 
 function * handleSignUp(action){
-    const signUpResponseData = yield axios.post('https://chatheads-ws.herokuapp.com/signUp',action.signUpDetails).then(response => response.data).catch(error => error)    
+    const signUpResponseData = yield axios.post(actionTypes.ONLINE_ENDPOINT+'signUp',action.signUpDetails).then(response => response.data).catch(error => error)    
     
     if(signUpResponseData instanceof Error){
         if(signUpResponseData.response){

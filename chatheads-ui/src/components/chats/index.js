@@ -42,7 +42,9 @@ import {
     ChatWindowHeader,
     ChatWindowHeaderName,
     RowDiv,
-    Chathead
+    Chathead,
+    UnreadMarker,
+    ChatheadBadge
 } from './styles'
 import { getResponseKey } from '../../common/utilities/getResponseKey'
 
@@ -53,7 +55,8 @@ const mapStateToProps = store => ({
   searchData: store.searchChatheadsData,
   sendMessageData: store.sendMessageData,
   updateUserIdData: store.updateUserIdData,
-  getMessagesData: store.getMessagesData
+  getMessagesData: store.getMessagesData,
+  markReadData: store.markReadData
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -63,7 +66,9 @@ const mapDispatchToProps = dispatch => ({
   initiateSignIn: (signInDetails) => dispatch(actions.signInActions.initiateSignIn(signInDetails)),
   clearUpdateUserIdData: () => dispatch(actions.chatsActions.clearUpdateUserIdData()),
   clearSendingMessageData: () => dispatch(actions.chatsActions.clearSendingMessageData()),
-  getMessages: (userDetails) => dispatch(actions.chatsActions.getMessages(userDetails))
+  getMessages: (userDetails) => dispatch(actions.chatsActions.getMessages(userDetails)),
+  markRead: userDetails => dispatch(actions.chatsActions.markRead(userDetails)),
+  clearMarkReadData: () => dispatch(actions.chatsActions.clearMarkReadData())
 })
 
 const Chats = (props) => {  
@@ -92,26 +97,51 @@ const Chats = (props) => {
       });
   
       var channel = pusher.subscribe('chatheads-messages');
-      channel.bind('message-received', function(data) {
-        console.log('change received')
+      channel.bind('message-received', function() {        
         props.getMessages({
           jwtToken: props.homeData.data?props.homeData.data.data.jwtToken:null,
           data: {
             userId: userDetails.userId
           }
         })
-      });
+      })
       return () => {
         channel.unbind_all()
         channel.unsubscribe()
       }
-    }, [userDetails])
+    }, [userDetails])    
 
     useEffect(()=>{
       setMessage('')
       const chats = getResponseKey(['messages'], selectedChat)
       chats && chats.length > 0 && focusOnField(`message-${chats.length}`)
+      const unreadFlag = selectedChat && selectedChat.messages && selectedChat.messages.find(msg => msg.unread === true)      
+      if(!!unreadFlag) {
+        const payload = {
+          jwtToken: props.homeData.data?props.homeData.data.data.jwtToken:null,
+          data: {
+            receiverUserId: userDetails.userId,
+            senderUserId: selectedChat.userId
+          }
+        }
+        props.markRead(payload)
+        console.log('marked read')
+      }
     }, [selectedChat])
+
+    useEffect(() => {
+      if(getResponseKey(['status'], props.markReadData) === 'success'){
+        console.log('marked read success')
+        console.log('called get messages')
+        props.getMessages({
+          jwtToken: props.homeData.data?props.homeData.data.data.jwtToken:null,
+          data: {
+            userId: userDetails.userId
+          }
+        })
+      }
+      props.clearMarkReadData()
+    }, [props.markReadData])
 
     useEffect(()=>{
       if(props.signInData.status === 'success'){        
@@ -143,18 +173,21 @@ const Chats = (props) => {
     useEffect(()=>{
       const messagesStatus = getResponseKey(['status'], props.getMessagesData)
       if(messagesStatus === 'success'){
+        console.log(props.getMessagesData.data)
         setUserDetails({
           ...userDetails,
           chats: getResponseKey(['data', 'data', 'userData', 'chats'], props.getMessagesData)
         })    
-        const selectedId = selectedChat.userId
-        const chats = getResponseKey(['data', 'data', 'userData', 'chats'], props.getMessagesData)
-        for(let i=0;i<chats.length;i++){
-          if(chats[i].userId === selectedId){
-            setSelectedChat(chats[i])                       
-            break
-          }
-        }    
+        const selectedId = selectedChat && selectedChat.userId
+        if(selectedId){
+          const chats = getResponseKey(['data', 'data', 'userData', 'chats'], props.getMessagesData)
+          for(let i=0;i<chats.length;i++){
+            if(chats[i].userId === selectedId){
+              setSelectedChat(chats[i])              
+              break
+            }
+          }     
+        }        
       }
     }, [props.getMessagesData])
 
@@ -262,6 +295,7 @@ const Chats = (props) => {
 
     const getChats = () => {
       if(selectedChat.messages){
+        const firstUnreadIndex = selectedChat.messages.findIndex(msg => msg.unread === true)
         return selectedChat.messages.map((messageObj,i)=>{        
           if(messageObj.userId === userDetails.userId){
             return <React.Fragment key={i}>
@@ -272,6 +306,7 @@ const Chats = (props) => {
           }
           else{
             return <React.Fragment key={i}>
+              {i === firstUnreadIndex && <UnreadMarker theme={props.theme}>Unread</UnreadMarker>}
               <ReceivedMessage theme={props.theme}>{messageObj.message}</ReceivedMessage>
               <ReceivedTrDown tabIndex={-1} id={`message-${i+1}`} theme={props.theme}/>
               {i === selectedChat.messages.length-1 && <div ref={chatBottomRef}></div> }
@@ -299,15 +334,16 @@ const Chats = (props) => {
     }
 
     const getChatheads = () => {    
-      const sortedChat = userDetails && userDetails.chats.length > 0 && userDetails.chats.sort((a,b) => new Date(b.updateTime) - new Date(a.updateTime))  
+      const sortedChat = (userDetails && userDetails.chats.length > 0 && userDetails.chats.sort((a,b) => new Date(b.updateTime) - new Date(a.updateTime))) || []
         if(userDetails){
           return <RowDiv>{sortedChat.map((chat)=>{
+            
             if(chat.userId !== userDetails.userId){
               return (
               <Chathead>
                 <ChatheadsCircles 
                   onClick={()=>setSelectedChat(chat)}
-                {...props}/>
+                {...props}>{chat.messages.find(msg => msg.unread === true) && <ChatheadBadge theme={props.theme}/>}</ChatheadsCircles>
                 <ChatheadsName {...props}>{chat.userId}</ChatheadsName>
               </Chathead>
               )
@@ -373,7 +409,7 @@ const Chats = (props) => {
           {props.signInData.data
             ?props.signInData.data.data.userData             
             ?<React.Fragment>
-              <PageContainer {...props}>            
+              <PageContainer noPadding {...props}>            
                 <PageWrapper {...props}>
                   <DetailsWrapper {...props}>
                   <ProfileTitle
