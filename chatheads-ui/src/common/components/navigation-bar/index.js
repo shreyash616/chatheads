@@ -42,7 +42,7 @@ const AppNavbar = (props) => {
   }
 
   const goToHome = () => {
-    props.history.push('/home')
+    !props.loginState && props.history.push('/home')
   }
     return (        
     <StyledNavbar {...props}>            

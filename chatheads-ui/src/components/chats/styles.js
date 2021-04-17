@@ -221,7 +221,7 @@ export const Loader = styled(LinearProgress)`
 export const UsernameWrapper = styled.div`
     display: flex;
     flex-direction: ${props => props.persistent?'row':'column'};
-    @media ${styleVals.breakpoints.tabletLandscape} {
+    @media ${styleVals.breakpoints.tabletLandscape}, ${styleVals.breakpoints.tabletPortrait}, ${styleVals.breakpoints.tablet} {
         flex-direction: row;
     }
 `
@@ -320,10 +320,11 @@ export const Chathead = styled.div`
     flex-direction: column;
     text-align: center;
     margin-left: ${styleVals.dimensions.spacing16};
-    margin-right: ${styleVals.dimensions.spacing16};
+    margin-right: ${styleVals.dimensions.spacing16};    
     @media ${styleVals.breakpoints.tabletLandscape}, ${styleVals.breakpoints.tabletPortrait} {
         margin-left: ${styleVals.dimensions.spacing0};
         margin-right: ${styleVals.dimensions.spacing0};
+        margin-bottom: ${styleVals.dimensions.spacing8};
     }
 `
 
