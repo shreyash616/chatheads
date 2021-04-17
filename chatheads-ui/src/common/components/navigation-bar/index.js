@@ -44,14 +44,29 @@ const AppNavbar = (props) => {
   const goToHome = () => {
     !props.loginState && props.history.push('/home')
   }
+
+  const getNavbarLink = path => {
+    return {
+      '/signIn': '/signUp',
+      '/signUp': '/signIn'
+    }[path]
+  }
+
+  const getNavLinkName = path => {
+    return {
+      '/signIn': appConstants.SIGN_UP,
+      '/signUp': appConstants.SIGN_IN
+    }[path]
+  }
+
     return (        
     <StyledNavbar {...props}>            
     <NavbarBrand onClick={goToHome}  {...props}>{props.title}</NavbarBrand>
     <ActionButtons>
       <ActionButtonsWrapper>
-        {!props.loginState && <Link to='/signIn'>
+        {!props.loginState && <Link to={getNavbarLink(props.history.location.pathname)}>
           <Button disabled={!props.signInRoute} {...props}>
-            {appConstants.SIGN_IN}                  
+            {getNavLinkName(props.history.location.pathname)}                  
           </Button>
         </Link>}
       </ActionButtonsWrapper>

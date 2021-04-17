@@ -33,19 +33,23 @@ export const LoginWrapper = styled.div`
     @media ${styleVals.breakpoints.tablet},${styleVals.breakpoints.tabletPortrait},${styleVals.breakpoints.mobile}{        
         width: 100%;
     }
+    h1{        
+        text-align: center;        
+        margin-top: ${styleVals.dimensions.spacing24};
+    }
 `
 export const UsernameWrapper = styled.div `
-    margin-top: ${styleVals.dimensions.spacing36};
+    margin-top: ${styleVals.dimensions.spacing8};
     margin-left: ${styleVals.dimensions.spacing12};
     margin-right: ${styleVals.dimensions.spacing12};
 `
 export const PasswordWrapper = styled.div `
-    margin-top: ${styleVals.dimensions.spacing36};
+    margin-top: ${styleVals.dimensions.spacing16};
     margin-left: ${styleVals.dimensions.spacing12};
     margin-right: ${styleVals.dimensions.spacing12};
 `
 export const SignInButtonWrapper = styled(Button)`
-    margin-top: ${styleVals.dimensions.spacing54};
+    margin-top: ${styleVals.dimensions.spacing36};
     width: auto;
     margin-left: ${styleVals.dimensions.spacing12};
     margin-right: ${styleVals.dimensions.spacing12};

@@ -21,6 +21,7 @@ import {
     SignInButtonWrapper,
     Loader
 } from "./styles";
+import { H1 } from "../../common/components/typography";
 
 
 const mapStateToProps = store => {
@@ -117,8 +118,7 @@ const SignIn = (props) =>{
 
 
   return (
-    <React.Fragment>
-      
+    <React.Fragment>      
       {!redirect
       ?<React.Fragment>                  
         <PageContainer {...props}>
@@ -127,7 +127,8 @@ const SignIn = (props) =>{
               {alert.showAlert && <AlertBox theme={props.theme}>{alert.message}</AlertBox>}
               {showLoader && <AppLoader theme={props.theme}/>} 
               <form onSubmit = {handleSignIn}>
-              <LoginWrapper {...props}>   
+              <LoginWrapper {...props}>
+                  <H1 theme={props.theme}>Sign in, fellow Chathead!</H1>
                   <UsernameWrapper>
                     <TextInput
                       {...props}

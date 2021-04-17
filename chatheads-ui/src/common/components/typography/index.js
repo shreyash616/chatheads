@@ -7,7 +7,7 @@ export const P = styled.p`
 `
 export const H1 = styled.h1`    
     font-family: ${styleVals.fonts.wordFont};
-    color: ${styleVals.color.ogBlue};
-    line-height: 0.8em;
+    color: ${props => props.theme === 'dark' ? styleVals.color.bestOrange : styleVals.color.ogBlue};
+    line-height: 1.2em;
     margin-top: 0px;    
 `

@@ -1,6 +1,6 @@
 export default {
-    ONLINE_ENDPOINT1: 'https://chatheads-ws.herokuapp.com/',
-    ONLINE_ENDPOINT: 'http://localhost:3001/',
+    ONLINE_ENDPOINT: 'https://chatheads-ws.herokuapp.com/',
+    ONLINE_ENDPOINT1: 'http://localhost:3001/',
     INITIATE_SIGN_IN: 'INITIATE_SIGN_IN',
     SIGN_IN_SUCCESS: 'SIGN_IN_SUCCESS',
     SIGN_IN_FAILURE: 'SIGN_IN_FAILURE',
