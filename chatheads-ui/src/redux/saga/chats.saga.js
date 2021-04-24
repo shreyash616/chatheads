@@ -58,8 +58,7 @@ export function * catchInitiateUpdateUserId(){
     yield takeEvery(actionTypes.UPDATE_USERID, handleUpdateUserId)
 }
 
-function * handleGetMessages(action){
-    console.log(action)
+function * handleGetMessages(action){    
     const updateUserIdData = yield axios.post(actionTypes.ONLINE_ENDPOINT+'getMessages',action.userDetails).then(response => response.data).catch(error => error);
     if(updateUserIdData instanceof Error){
         if(updateUserIdData.response){

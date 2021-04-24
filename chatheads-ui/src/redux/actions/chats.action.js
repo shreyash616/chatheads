@@ -77,8 +77,7 @@ export const clearUpdateUserIdData = () => {
     }
 }
 
-export const getMessages = userDetails => {
-    console.log(userDetails)
+export const getMessages = userDetails => {    
     return {
         type: actionTypes.GET_MESSAGES,
         userDetails
@@ -96,6 +95,12 @@ export const getMessagesFailure = userDetails => {
     return {
         type: actionTypes.GET_MESSAGES_FAILURE,
         userDetails
+    }
+}
+
+export const clearGetMessagesData = () => {
+    return {
+        type: actionTypes.CLEAR_GET_MESSAGES
     }
 }
 

@@ -9,8 +9,9 @@ import PageContainer from '../../common/components/page-container/index'
 import TextInput from '../../common/components/text-input'
 import Alert from '../../common/components/alert-box'
 import DialogModal from '../../common/components/dialog-modal'
-import ReadIcon from '@material-ui/icons/DoneAll';
-import SentIcon from '@material-ui/icons/Done';
+import ReadIcon from '@material-ui/icons/DoneAll'
+import SentIcon from '@material-ui/icons/Done'
+import WaitIcon from '@material-ui/icons/AccessTime'
 
 import Pusher from 'pusher-js'
 
@@ -69,7 +70,8 @@ const mapDispatchToProps = dispatch => ({
   clearSendingMessageData: () => dispatch(actions.chatsActions.clearSendingMessageData()),
   getMessages: (userDetails) => dispatch(actions.chatsActions.getMessages(userDetails)),
   markRead: userDetails => dispatch(actions.chatsActions.markRead(userDetails)),
-  clearMarkReadData: () => dispatch(actions.chatsActions.clearMarkReadData())
+  clearMarkReadData: () => dispatch(actions.chatsActions.clearMarkReadData()),
+  clearGetMessagesData: () => dispatch(actions.chatsActions.clearGetMessagesData())
 })
 
 const Chats = (props) => {  
@@ -93,31 +95,58 @@ const Chats = (props) => {
     }
 
     useEffect(()=>{
+      if(props.signInData.status === 'success'){        
+        const userDetailsFromApi = getResponseKey(['data', 'data', 'userData'], props.signInData)
+        userDetailsFromApi && setUserDetails(userDetailsFromApi)        
+      }
+      else{
+        setUserDetails(null)
+      }
+    }, [props.signInData])
+
+    useEffect(() => {
       const pusher = new Pusher('93a108f8963680657f0b', {
         cluster: 'us2'
       });
-      var channel = pusher.subscribe('chatheads-messages');
-      channel.bind('message-received', function() {        
-        props.getMessages({
-          jwtToken: props.homeData.data?props.homeData.data.data.jwtToken:null,
-          data: {
-            userId: userDetails.userId
-          }
-        })
-      })    
+      const channel2 = pusher.subscribe('chatheads-mark-read'); 
+      channel2.bind('mark-read', function(data) {        
+        const userIdsModified = getResponseKey(['message', 'userIdsModified'], data)        
+        if(userIdsModified && userIdsModified.includes(userDetails.userId)){          
+          props.getMessages({
+            jwtToken: props.homeData.data?props.homeData.data.data.jwtToken:null,
+            data: {
+              userId: userDetails.userId
+            }
+          })
+        }                               
+      })
+      const channel1 = pusher.subscribe('chatheads-send-message');
+      channel1.bind('message-received', function(data) {        
+        const userIdsModified = getResponseKey(['message', 'userIdsModified'], data)        
+        if(userIdsModified && userIdsModified.includes(userDetails.userId)){          
+          props.getMessages({
+            jwtToken: props.homeData.data?props.homeData.data.data.jwtToken:null,
+            data: {
+              userId: userDetails.userId
+            }
+          })
+        }                               
+      })          
       return () => {
-        channel.unbind_all()
-        channel.unsubscribe()
+        channel1.unbind_all()
+        channel1.unsubscribe()
+        channel2.unbind_all()
+        channel2.unsubscribe()
       }
     }, [userDetails])    
 
     useEffect(()=>{
       setMessage('')      
       const chats = getResponseKey(['messages'], selectedChat)
-      chats && chats.length > 0 && focusOnField(`message-${chats.length}`)
+      chats && chats.length > 0 && focusOnField(`message-${chats.length}`)      
       focusOnField('message-field')
       const unreadFlag = selectedChat && selectedChat.messages && selectedChat.messages.find(msg => msg.unread === true)      
-      if(!!unreadFlag) {
+      if(!!unreadFlag) {        
         const payload = {
           jwtToken: props.homeData.data?props.homeData.data.data.jwtToken:null,
           data: {
@@ -125,7 +154,7 @@ const Chats = (props) => {
             senderUserId: selectedChat.userId
           }
         }
-        props.markRead(payload)        
+        props.markRead(payload)
       }
     }, [selectedChat])
 
@@ -140,16 +169,6 @@ const Chats = (props) => {
       }
       props.clearMarkReadData()
     }, [props.markReadData])
-
-    useEffect(()=>{
-      if(props.signInData.status === 'success'){        
-        const userDetailsFromApi = getResponseKey(['data', 'data', 'userData'], props.signInData)
-        userDetailsFromApi && setUserDetails(userDetailsFromApi)        
-      }
-      else{
-        setUserDetails(null)
-      }
-    },[props.signInData])
 
     useEffect(()=>{    
       const updateStatus = getResponseKey(['status'], props.updateUserIdData)        
@@ -171,13 +190,13 @@ const Chats = (props) => {
     useEffect(()=>{
       const messagesStatus = getResponseKey(['status'], props.getMessagesData)
       if(messagesStatus === 'success'){        
+        const chats = getResponseKey(['data', 'data', 'userData', 'chats'], props.getMessagesData)
         setUserDetails({
           ...userDetails,
-          chats: getResponseKey(['data', 'data', 'userData', 'chats'], props.getMessagesData)
+          chats
         })    
         const selectedId = selectedChat && selectedChat.userId
-        if(selectedId){
-          const chats = getResponseKey(['data', 'data', 'userData', 'chats'], props.getMessagesData)
+        if(selectedId){          
           for(let i=0;i<chats.length;i++){
             if(chats[i].userId === selectedId){
               setSelectedChat(chats[i])              
@@ -185,6 +204,7 @@ const Chats = (props) => {
             }
           }     
         }        
+        props.clearGetMessagesData()
       }
     }, [props.getMessagesData])
 
@@ -271,6 +291,10 @@ const Chats = (props) => {
           }
         }
         props.sendMessage(payload)
+        setSelectedChat({
+         ...selectedChat,
+         messages: selectedChat.messages ? [...selectedChat.messages, {message, userId: userDetails.userId, read: 'waiting'}] : [{message, userId: userDetails.userId, read: 'waiting'}]
+        })
       }      
     }
 
@@ -298,7 +322,7 @@ const Chats = (props) => {
         return selectedChat.messages.map((messageObj,i)=>{        
           if(messageObj.userId === userDetails.userId){
             return <React.Fragment key={i}>
-              <SentMessage theme={props.theme}>{messageObj.message}{messageObj.read ? <ReadIcon style={{marginLeft: '4px', marginTop: '1px'}} fontSize={'small'}/> : <SentIcon style={{marginLeft: '4px', marginTop: '1px'}} fontSize={'small'}/>}</SentMessage>          
+              <SentMessage theme={props.theme}>{messageObj.message}{messageObj.read === 'waiting' ? <WaitIcon style={{marginLeft: '4px', marginTop: '1px'}} fontSize={'small'}/> : messageObj.read ? <ReadIcon style={{marginLeft: '4px', marginTop: '1px'}} fontSize={'small'}/> : <SentIcon style={{marginLeft: '4px', marginTop: '1px'}} fontSize={'small'}/>}</SentMessage>          
               <SentTrDown tabIndex={-1} id={`message-${i+1}`} theme={props.theme}/>
               {i === selectedChat.messages.length-1 && <div ref={chatBottomRef}></div> }
             </React.Fragment>
