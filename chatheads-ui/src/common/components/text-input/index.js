@@ -37,7 +37,7 @@ const TextInput = (props) => {
     return (
         <React.Fragment>
             <InputTextWrapper>  
-            <Label {...props}>{props.label}{props.requiredField && <Starred>*</Starred>}</Label>
+            <Label theme={props.theme}>{props.label}{props.requiredField && <Starred>*</Starred>}</Label>
             {props.isPassword
             ?<PasswordWrapper>
                 <PasswordInputWithToggleSwitch
@@ -54,6 +54,7 @@ const TextInput = (props) => {
             </PasswordWrapper>
             : <StyledTextInput
                 {...props}
+                id={props.id}
                 type={props.isPassword?showPassword?props.type:'password':props.type}              
                 value={props.value}           
               />

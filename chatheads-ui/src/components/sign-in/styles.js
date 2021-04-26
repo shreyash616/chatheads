@@ -5,53 +5,55 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 
 
 export const PageWrapper = styled.div`    
-    width: 100%;  
     display: flex;
-    margin: ${styleVals.dimensions.spacing20};
-    flex-direction: row;
-    @media ${styleVals.breakpoints.tablet},${styleVals.breakpoints.tabletPortrait},${styleVals.breakpoints.mobile}{
-        flex-direction: column;
-    }       
+    flex-direction: column;        
+    @media ${styleVals.breakpoints.tabletLandscape},${styleVals.breakpoints.tabletPortrait}{
+        flex-direction: row;
+    }        
 `
 export const AlertWithLoginWrapper = styled.div`
-    width: 25%;
+    width: 100%;    
     display: flex;
-    flex-direction: column; 
-    margin-left: auto;
-    @media ${styleVals.breakpoints.tablet},${styleVals.breakpoints.tabletPortrait},${styleVals.breakpoints.mobile}{
-        width: 100%;
+    flex-direction: column;     
+    margin-top: auto;
+    margin-bottom: auto;
+    @media ${styleVals.breakpoints.tabletLandscape},${styleVals.breakpoints.tabletPortrait}{
+        width: 35%;
+        margin-left: auto;
     }
 `
 export const LoginWrapper = styled.div`
-    width: 100%;
+    width:100%;
     display: flex;
     flex-direction: column;
     margin-left: auto;
     border: 2px solid ${props=>props.theme==='dark'?styleVals.color.bestOrange:styleVals.color.ogBlue};
-    border-radius: ${styleVals.dimensions.spacing10};
-    margin-top: ${styleVals.dimensions.spacing0};
+    border-radius: ${styleVals.dimensions.spacing10};    
     box-shadow: ${styleVals.color.shadowColor};
-    @media ${styleVals.breakpoints.tablet},${styleVals.breakpoints.tabletPortrait},${styleVals.breakpoints.mobile}{    
-        margin-top: ${styleVals.dimensions.spacing0};
+    @media ${styleVals.breakpoints.tablet},${styleVals.breakpoints.tabletPortrait},${styleVals.breakpoints.mobile}{        
         width: 100%;
+    }
+    h1{        
+        text-align: center;        
+        margin-top: ${styleVals.dimensions.spacing24};
     }
 `
 export const UsernameWrapper = styled.div `
-    margin-top: ${styleVals.dimensions.spacing12};
+    margin-top: ${styleVals.dimensions.spacing8};
     margin-left: ${styleVals.dimensions.spacing12};
     margin-right: ${styleVals.dimensions.spacing12};
 `
 export const PasswordWrapper = styled.div `
-    margin-top: ${styleVals.dimensions.spacing12};
+    margin-top: ${styleVals.dimensions.spacing16};
     margin-left: ${styleVals.dimensions.spacing12};
     margin-right: ${styleVals.dimensions.spacing12};
 `
 export const SignInButtonWrapper = styled(Button)`
-    margin-top: ${styleVals.dimensions.spacing20};  
+    margin-top: ${styleVals.dimensions.spacing36};
     width: auto;
     margin-left: ${styleVals.dimensions.spacing12};
     margin-right: ${styleVals.dimensions.spacing12};
-    margin-bottom: ${styleVals.dimensions.spacing20};
+    margin-bottom: ${styleVals.dimensions.spacing32};
 `
 export const Loader = styled(LinearProgress)`
     width: auto;    

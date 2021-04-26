@@ -115,4 +115,21 @@ chatheadsService.sendMessage = (messageDetails) =>{
     }
 }
 
+chatheadsService.getMessages = (messageDetails) =>{
+    if(validator.validateToken(messageDetails.jwtToken)){
+        return chatheadsModel.getMessages(messageDetails.data).then((response)=>{
+            return response
+        }).catch((err)=>{
+            if(err.message){
+                throw err;
+            }
+            else{
+                let error = new Error("Couldn't connect to database");
+                error.status = 400;
+                throw error;
+            }
+        })
+    }
+}
+
 module.exports = chatheadsService

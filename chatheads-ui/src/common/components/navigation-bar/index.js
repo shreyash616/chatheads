@@ -38,29 +38,35 @@ const ThemeSwitch = withStyles(navbarMaterialStyle)(Switch)
 const AppNavbar = (props) => {
 
   const handleLogOut = ()=>{
-    if(window.confirm('Do you want to sign out?')){
-      props.signOut()
-    }
+    props.showLogOutModal()
   }
 
   const goToHome = () => {
-    props.history.push('/home')
+    !props.loginState && props.history.push('/home')
   }
+
+  const getNavbarLink = path => {
+    return {
+      '/signIn': '/signUp',
+      '/signUp': '/signIn'
+    }[path]
+  }
+
+  const getNavLinkName = path => {
+    return {
+      '/signIn': appConstants.SIGN_UP,
+      '/signUp': appConstants.SIGN_IN
+    }[path]
+  }
+
     return (        
     <StyledNavbar {...props}>            
     <NavbarBrand onClick={goToHome}  {...props}>{props.title}</NavbarBrand>
     <ActionButtons>
       <ActionButtonsWrapper>
-        {!props.loginState && <Link to='/signIn'>
+        {!props.loginState && <Link to={getNavbarLink(props.history.location.pathname)}>
           <Button disabled={!props.signInRoute} {...props}>
-            {appConstants.SIGN_IN}                  
-          </Button>
-        </Link>}
-      </ActionButtonsWrapper>
-      <ActionButtonsWrapper>
-        {!props.loginState && <Link to='/signUp'>
-          <Button disabled={!props.signUpRoute} {...props}>
-            {appConstants.SIGN_UP}                                   
+            {getNavLinkName(props.history.location.pathname)}                  
           </Button>
         </Link>}
       </ActionButtonsWrapper>

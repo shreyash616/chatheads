@@ -1,7 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const chatheadsService = require('../service/index')
-const { response } = require('express')
+
+router.get('/', (req, res, next) => {
+    res.status(200).send('<h1>Welcome to chatheads-ws<h1/>')
+})
 
 router.post('/getJwtToken', (req,res,next) => {
     chatheadsService.getJwtToken(req.body.authHeader).then((resp)=>{
