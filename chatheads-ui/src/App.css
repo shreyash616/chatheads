@@ -15,7 +15,6 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,11 +36,6 @@
   }
 }
 
-.svg-icon-orange {
-  width: 1em;
-  height: 1em;
-}
-
 .svg-icon-orange path,
 .svg-icon-orange polygon,
 .svg-icon-orange rect {
@@ -53,9 +47,8 @@
   stroke-width: 1;
 }
 
-.svg-icon-blue {
-  width: 1em;
-  height: 1em;
+.icon-margin-top {
+  margin-top: 10px;
 }
 
 .svg-icon-blue path,
@@ -66,5 +59,16 @@
 
 .svg-icon-blue circle {
   stroke: #1976d2;
+  stroke-width: 1;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #4691f6;
+}
+
+.svg-icon circle {
+  stroke: #4691f6;
   stroke-width: 1;
 }

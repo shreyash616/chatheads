@@ -4,8 +4,8 @@ import axios from 'axios'
 import actions from '../actions'
 
 function * handleGetJwtToken(action){
-    const jwtTokenDetails = yield axios.post('http://localhost:3001/getJwtToken',action.authHeader).then(response => response.data).catch(error => error)
-    console.log(jwtTokenDetails)
+    const jwtTokenDetails = yield axios.post(actionTypes.ONLINE_ENDPOINT+'getJwtToken',action.authHeader).then(response => response.data).catch(error => error)
+    
     if(jwtTokenDetails instanceof Error){
         if(jwtTokenDetails.response){
             yield put(actions.homeActions.getJwtTokenFailure(jwtTokenDetails.response))
