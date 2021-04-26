@@ -1,13 +1,14 @@
 export const getResponseKey = (arr, val) => {
-    let retVal
+    let retVal = val
     for(let i = 0;i<arr.length;i++){
-        retVal = val[arr[i]]
-        if(retVal){
+        retVal = retVal instanceof Object && retVal[arr[i]]
+        if(retVal instanceof Object){
             continue
         }
-        else{
+        else{            
             break
         }
     }
+    
     return retVal
 }

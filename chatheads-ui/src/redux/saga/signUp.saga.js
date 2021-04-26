@@ -4,8 +4,8 @@ import actions from '../actions/index'
 import actionTypes from '../actions/actionTypes'
 
 function * handleSignUp(action){
-    const signUpResponseData = yield axios.post('http://localhost:3001/signUp',action.signUpDetails).then(response => response.data).catch(error => error)    
-    console.log(signUpResponseData)
+    const signUpResponseData = yield axios.post(actionTypes.ONLINE_ENDPOINT+'signUp',action.signUpDetails).then(response => response.data).catch(error => error)    
+    
     if(signUpResponseData instanceof Error){
         if(signUpResponseData.response){
             yield put(actions.signUpActions.signUpFailure(signUpResponseData.response))

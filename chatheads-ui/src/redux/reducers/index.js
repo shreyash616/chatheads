@@ -1,12 +1,15 @@
 import {signInReducer} from './signIn.reducer'
 import {signUpReducer} from './signUp.reducer'
 import {homeReducer} from './home.reducer'
-import {searchChatheadsReducer, sendMessageReducer} from './chats.reducer'
+import {searchChatheadsReducer, sendMessageReducer, updateUserIdReducer, getMessagesReducer, markReadReducer} from './chats.reducer'
 
 export default {
     signInReducer,
     signUpReducer,
     homeReducer,
     searchChatheadsReducer,
-    sendMessageReducer
+    sendMessageReducer,
+    updateUserIdReducer,
+    getMessagesReducer,
+    markReadReducer
 }

@@ -21,6 +21,7 @@ import {
     SignInButtonWrapper,
     Loader
 } from "./styles";
+import { H1 } from "../../common/components/typography";
 
 
 const mapStateToProps = store => {
@@ -70,15 +71,6 @@ const SignIn = (props) =>{
   },[props.signInData])
 
   useEffect(()=>{
-    
-    const redirectToSignUp = () => {
-      setTimeout(()=>{
-        if(window.confirm('Do you want to sign up?')){
-          props.history.push('/signUp')
-        }
-      },2000)
-    }
-
     if(props.signInData.data){      
       if(props.signInData.status === 'failure'){
         if(props.signInData.data.data){
@@ -86,11 +78,6 @@ const SignIn = (props) =>{
             showAlert:true,
             message: props.signInData.data.data
           })
-          if(props.signInData.data.data === 'We couldn\'t find this username. Please sign up.'){
-            setTimeout(()=>{
-              redirectToSignUp()
-            },2000)
-          }
         }
         else{
           setAlert({
@@ -117,7 +104,8 @@ const SignIn = (props) =>{
   const handlePassword = (event) => {
     setPassword(event.target.value)
   }
-  const handleSignIn = () => {
+  const handleSignIn = (e) => {
+    e.preventDefault()
     let signInDetails = {
       jwtToken: props.homeData.data ? props.homeData.data.data.jwtToken: null ,
       data: {
@@ -130,8 +118,7 @@ const SignIn = (props) =>{
 
 
   return (
-    <React.Fragment>
-      {console.log(isLoading)}
+    <React.Fragment>      
       {!redirect
       ?<React.Fragment>                  
         <PageContainer {...props}>
@@ -139,7 +126,9 @@ const SignIn = (props) =>{
             <AlertWithLoginWrapper>
               {alert.showAlert && <AlertBox theme={props.theme}>{alert.message}</AlertBox>}
               {showLoader && <AppLoader theme={props.theme}/>} 
-              <LoginWrapper {...props}>   
+              <form onSubmit = {handleSignIn}>
+              <LoginWrapper {...props}>
+                  <H1 theme={props.theme}>Sign in, fellow Chathead!</H1>
                   <UsernameWrapper>
                     <TextInput
                       {...props}
@@ -160,12 +149,13 @@ const SignIn = (props) =>{
                     /> 
                   </PasswordWrapper>            
                 <SignInButtonWrapper
-                  onClick= {handleSignIn}
+                  type='submit'                   
                   {...props}
                 >
                   {signInConstants.SIGN_IN}
                 </SignInButtonWrapper>              
               </LoginWrapper>
+              </form>
             </AlertWithLoginWrapper>
           </PageWrapper>
         </PageContainer>

@@ -18,6 +18,8 @@ export const signUpReducer = (state = INITIAL_STATE, action) => {
         case actionTypes.SIGN_UP_FAILURE:
             let failureState = {...state, data: action.signUpFailureData, status: 'failure', error: true, loading: false}
             return failureState
+        case actionTypes.SIGN_OUT:
+            return INITIAL_STATE
         default:
             return state
     }

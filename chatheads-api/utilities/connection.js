@@ -1,9 +1,6 @@
 const mongoose = require("mongoose")
-mongoose.Promise = global.Promise;
-const Schema = mongoose.Schema
-mongoose.set("useCreateIndex", true)
 
-var userSchema = new Schema({
+var userSchema = new mongoose.Schema({
     userId: {
         type: String, 
         required: true, 
@@ -31,16 +28,4 @@ var userSchema = new Schema({
     }
 })
 
-let connection = {}
-connection.getUserModel = () => {
-    return mongoose.connect("mongodb://localhost:27017/Chatheads", { useNewUrlParser: true }).then((db) => {
-        return db.model('User', userSchema)
-    }).catch((err) => {
-        console.log(err.message);
-        let error = new Error("Could not connect to database")
-        error.status = 500
-        throw error
-    })
-}
-
-module.exports = connection
+module.exports = mongoose.model('User', userSchema)
