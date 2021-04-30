@@ -8,6 +8,7 @@ export const PageWrapper = styled.div`
   margin: ${styleVals.dimensions.spacing16};
   width: auto;
   height: 100%;
+  margin-bottom: 80px;
 `;
 export const DetailsWrapper = styled.div`
   height: 10vh;

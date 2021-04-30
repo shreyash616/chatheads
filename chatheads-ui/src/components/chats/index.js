@@ -700,21 +700,19 @@ const Chats = (props) => {
   return (
     <React.Fragment>
       {getResponseKey(["signInData", "data", "data", "userData"], props) ? (
-        <PageContainer noPadding {...props}>
-          <PageWrapper {...props}>
-            <ProfileChatsOptions />
-            {showChats ? (
-              <ConversationWrapper {...props}>
-                {ChatheadsList}
-                {ChatDisplay}
-              </ConversationWrapper>
-            ) : (
-              <ConversationWrapper {...props}>
-                <Profile />
-              </ConversationWrapper>
-            )}
-          </PageWrapper>
-        </PageContainer>
+        <PageWrapper {...props}>
+          <ProfileChatsOptions />
+          {showChats ? (
+            <ConversationWrapper {...props}>
+              {ChatheadsList}
+              {ChatDisplay}
+            </ConversationWrapper>
+          ) : (
+            <ConversationWrapper {...props}>
+              <Profile />
+            </ConversationWrapper>
+          )}
+        </PageWrapper>
       ) : (
         <Redirect to="/home" />
       )}
